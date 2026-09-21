@@ -1,0 +1,50 @@
+expression fx_ParseRangeNumber =
+		(value as nullable text) as nullable number =>
+		let
+		    CleanText =
+		        if value = null
+		        then null
+		        else Text.Lower(Text.Trim(value)),
+		
+		    WithoutUnit =
+		        if CleanText = null
+		        then null
+		        else Text.Replace(CleanText, "hp", ""),
+		
+		    CleanSpaces =
+		        if WithoutUnit = null
+		        then null
+		        else Text.Trim(WithoutUnit),
+		
+		    Parts =
+		        if CleanSpaces = null
+		        then {}
+		        else Text.Split(CleanSpaces, "-"),
+		
+		    Numbers =
+		        List.RemoveNulls(
+		            List.Transform(
+		                Parts,
+		                each
+		                    try Number.FromText(
+		                        Text.Trim(
+		                            Text.Replace(_, ",", "")
+		                        )
+		                    )
+		                    otherwise null
+		            )
+		        ),
+		
+		    Result =
+		        if List.Count(Numbers) = 0
+		        then null
+		        else List.Average(Numbers)
+		in
+		    Result
+	lineageTag: 38506104-0730-4efe-a01f-1b2313922f90
+	queryGroup: 'Main Querys'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Function
+

@@ -1,0 +1,12 @@
+relationship 1cde52a5-bdd1-36f2-e075-ac07f56e0f7c
+	fromColumn: FactVehicle.Company
+	toColumn: DimCompany.Company
+
+relationship c9ab7880-7e59-667e-1618-74a723832b03
+	fromColumn: FactVehicle.Fuel_Group
+	toColumn: DimFuel.Fuel_Group
+
+relationship AutoDetected_9ccc7f6e-880b-45ca-a43b-21a3b3d3f733
+	fromColumn: FactVehicle.Engine_Key
+	toColumn: DimEngine.Engine_Key
+

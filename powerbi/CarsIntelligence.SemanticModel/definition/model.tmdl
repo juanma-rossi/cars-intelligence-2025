@@ -7,9 +7,31 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
+/// Qa querys to help on some errors
+queryGroup Qa
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Main Querys'
+
+	annotation PBI_QueryGroupOrder = 1
+
 annotation __PBI_TimeIntelligenceEnabled = 1
 
 annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBI_QueryOrder = ["stg_Cars_Raw","FactVehicle","DimCompany","DimFuel","DimEngine","fx_ParseRangeNumber","qa_Cars_Audit","qa_DuplicateVehicles","qa_DuplicateDetails"]
+
+annotation PBI_RemovedChildren = [{"remoteItemId":{"foreignKeyRelationship":{"fromTableLocalLineageTag":"2066e395-7b0b-424e-88a6-948e3a74ea3f","fromColumnLocalLineageTag":"1d0e3a2c-9b0d-40cf-8755-4e5cb9ade048","toTableLocalLineageTag":"95d993b4-0b2a-4b5a-8707-16df3fb728ce","toColumnLocalLineageTag":"4e700b1a-c96d-482e-9f7d-27b965ddafa8"}},"objectType":"Relationship"}]
+
+ref table stg_Cars_Raw
+ref table FactVehicle
+ref table DimCompany
+ref table DimFuel
+ref table DimEngine
+ref table qa_Cars_Audit
+ref table qa_DuplicateVehicles
+ref table qa_DuplicateDetails
 
 ref cultureInfo en-US
 

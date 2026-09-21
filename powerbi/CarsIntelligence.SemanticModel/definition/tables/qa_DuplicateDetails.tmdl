@@ -1,0 +1,759 @@
+table qa_DuplicateDetails
+	lineageTag: 2066e395-7b0b-424e-88a6-948e3a74ea3f
+
+	column Vehicle_ID
+		dataType: string
+		lineageTag: 1d0e3a2c-9b0d-40cf-8755-4e5cb9ade048
+		summarizeBy: none
+		sourceColumn: Vehicle_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Company
+		dataType: string
+		lineageTag: c7363242-ae55-4d25-b6d4-2a4ecb4bbe26
+		summarizeBy: none
+		sourceColumn: Company
+
+		annotation SummarizationSetBy = Automatic
+
+	column Car_Name
+		dataType: string
+		lineageTag: 8b526544-6ffe-4c4a-a78d-1f6da5b672f7
+		summarizeBy: none
+		sourceColumn: Car_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Engine_Raw
+		dataType: string
+		lineageTag: 005f1350-da15-44fc-91c6-2ab774a50baa
+		summarizeBy: none
+		sourceColumn: Engine_Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column CC_Battery_Raw
+		dataType: string
+		lineageTag: 3972d8fc-1ec2-445c-8b3b-9f66a0b70c3b
+		summarizeBy: none
+		sourceColumn: CC_Battery_Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column Engine_Displacement_CC
+		dataType: double
+		lineageTag: 6502e89c-913b-4437-90ef-b8a7ccedca51
+		summarizeBy: sum
+		sourceColumn: Engine_Displacement_CC
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Battery_Capacity_KWh
+		dataType: double
+		lineageTag: 3812a8fa-e0d5-4eaf-9da1-ce51400692b0
+		summarizeBy: sum
+		sourceColumn: Battery_Capacity_KWh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HorsePower_Min
+		dataType: double
+		lineageTag: fecb1b92-12c1-42d7-80ec-ebc87af25a46
+		summarizeBy: sum
+		sourceColumn: HorsePower_Min
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HorsePower_Max
+		dataType: double
+		lineageTag: 226af17b-8b9b-4d28-ab8a-421595ec59b9
+		summarizeBy: sum
+		sourceColumn: HorsePower_Max
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HorsePower_Avg
+		dataType: double
+		lineageTag: 7c951835-1a85-45bc-a9ac-02b7d47f3ccb
+		summarizeBy: sum
+		sourceColumn: HorsePower_Avg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Speed_KMH
+		dataType: double
+		lineageTag: 46d7510c-acf7-4f9f-a0b0-e485d68875e4
+		summarizeBy: sum
+		sourceColumn: Speed_KMH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Acceleration_0_100_Sec
+		dataType: double
+		lineageTag: 95c9acef-d3b1-4882-83f1-2a68a79d0342
+		summarizeBy: sum
+		sourceColumn: Acceleration_0_100_Sec
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Min_USD
+		dataType: double
+		lineageTag: ae1699e5-78ed-469e-b612-5d9df420339a
+		summarizeBy: sum
+		sourceColumn: Price_Min_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Max_USD
+		dataType: double
+		lineageTag: 8510221e-3c45-4b63-be21-0c801d584fcf
+		summarizeBy: sum
+		sourceColumn: Price_Max_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Avg_USD
+		dataType: double
+		lineageTag: c587c6df-0886-4773-a456-9fa43c3c7d9c
+		summarizeBy: sum
+		sourceColumn: Price_Avg_USD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Is_Range
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5a6d1c29-a0cc-4f48-9ecb-43401b6a33cb
+		summarizeBy: none
+		sourceColumn: Price_Is_Range
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fuel_Raw
+		dataType: string
+		lineageTag: a5017475-3d23-46cf-9312-349c295170a5
+		summarizeBy: none
+		sourceColumn: Fuel_Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fuel_Group
+		dataType: string
+		lineageTag: 904490d1-cf04-491b-a6c2-7a447ef0fbf8
+		summarizeBy: none
+		sourceColumn: Fuel_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seats_Raw
+		dataType: string
+		lineageTag: 3fcc735c-8b08-415b-9e0b-47c358075a36
+		summarizeBy: none
+		sourceColumn: Seats_Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seats_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: ed0e7327-be62-45f6-a1ba-90573989d355
+		summarizeBy: sum
+		sourceColumn: Seats_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Seats_Layout
+		dataType: string
+		lineageTag: 2411f542-ecea-4b77-b963-9e9f600dd528
+		summarizeBy: none
+		sourceColumn: Seats_Layout
+
+		annotation SummarizationSetBy = Automatic
+
+	column Torque_Raw
+		dataType: string
+		lineageTag: e44d0bcd-220c-46c1-8b60-687236fd70e6
+		summarizeBy: none
+		sourceColumn: Torque_Raw
+
+		annotation SummarizationSetBy = Automatic
+
+	column Torque_Min_Nm
+		dataType: double
+		lineageTag: 900c66d6-c5bd-44a8-9ffb-0d2a54cb2da9
+		summarizeBy: sum
+		sourceColumn: Torque_Min_Nm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Torque_Max_Nm
+		dataType: double
+		lineageTag: 0cca1c8a-5c0b-4eba-ae2b-5607a607fd2e
+		summarizeBy: sum
+		sourceColumn: Torque_Max_Nm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Torque_Avg_Nm
+		dataType: double
+		lineageTag: 443b5d02-5bf4-4658-942c-d6aa28761579
+		summarizeBy: sum
+		sourceColumn: Torque_Avg_Nm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DataQuality_Flag
+		dataType: string
+		lineageTag: ec090dbf-b8ea-4780-b05f-2bcfa800a150
+		summarizeBy: none
+		sourceColumn: DataQuality_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quality_Issue_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: fe37e98b-f8fe-40a6-b6fb-dcf62493420f
+		summarizeBy: sum
+		sourceColumn: Quality_Issue_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'qa_DuplicateVehicles.Row_Count'
+		dataType: string
+		lineageTag: 1a5ae1bd-5a09-454d-a469-f1db929a58fb
+		summarizeBy: none
+		sourceColumn: qa_DuplicateVehicles.Row_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	partition qa_DuplicateDetails = m
+		mode: import
+		queryGroup: Qa
+		source = ```
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\Juanma\Desktop\cars-intelligence-2025\data\raw\Cars Datasets 2025.csv"), [Delimiter = ",", Columns = 11, QuoteStyle = QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Company Names", type text}, {"Cars Names", type text}, {"Engines", type text}, {"CC/Battery Capacity", type text}, {"HorsePower", type text}, {"Total Speed", type text}, {"Performance(0 - 100 )KM/H", type text}, {"Cars Prices", type text}, {"Fuel Types", type text}, {"Seats", type text}, {"Torque", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Company Names", "Company"}, {"Cars Names", "Car_Name"}, {"Engines", "Engine_Raw"}, {"CC/Battery Capacity", "CC_Battery_Raw"}, {"HorsePower", "HorsePower_Raw"}, {"Total Speed", "Speed_Raw"}, {"Performance(0 - 100 )KM/H", "Acceleration_Raw"}, {"Cars Prices", "Price_Raw"}, {"Fuel Types", "Fuel_Raw"}, {"Seats", "Seats_Raw"}, {"Torque", "Torque_Raw"}}),
+				    #"Trimmed Text" = Table.TransformColumns(#"Renamed Columns",{{"Company", Text.Trim, type text}, {"Car_Name", Text.Trim, type text}, {"Engine_Raw", Text.Trim, type text}, {"CC_Battery_Raw", Text.Trim, type text}, {"HorsePower_Raw", Text.Trim, type text}, {"Speed_Raw", Text.Trim, type text}, {"Acceleration_Raw", Text.Trim, type text}, {"Price_Raw", Text.Trim, type text}, {"Fuel_Raw", Text.Trim, type text}, {"Seats_Raw", Text.Trim, type text}, {"Torque_Raw", Text.Trim, type text}}),
+				    #"Cleaned Text" = Table.TransformColumns(#"Trimmed Text",{{"Company", Text.Clean, type text}, {"Car_Name", Text.Clean, type text}, {"Engine_Raw", Text.Clean, type text}, {"CC_Battery_Raw", Text.Clean, type text}, {"HorsePower_Raw", Text.Clean, type text}, {"Speed_Raw", Text.Clean, type text}, {"Acceleration_Raw", Text.Clean, type text}, {"Price_Raw", Text.Clean, type text}, {"Fuel_Raw", Text.Clean, type text}, {"Seats_Raw", Text.Clean, type text}, {"Torque_Raw", Text.Clean, type text}}),
+				    #"Added Custom" = Table.AddColumn(#"Cleaned Text", "HorsePower_Avg", each fx_ParseRangeNumber([HorsePower_Raw])),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"HorsePower_Avg", type number}}),
+				    #"Added Custom1" = Table.AddColumn(#"Changed Type1", "Speed_KMH", each try Number.FromText(
+				    Text.BeforeDelimiter(
+				        Text.Lower([Speed_Raw]),
+				        "km/h"
+				    )
+				) otherwise null),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Added Custom1",{{"Speed_KMH", type number}}),
+				    #"Added Custom2" = Table.AddColumn(#"Changed Type2", "Acceleration_0_100_Sec", each try Number.FromText(
+				    Text.Trim(
+				        Text.Replace(
+				            Text.BeforeDelimiter(
+				                Text.Lower([Acceleration_Raw]),
+				                "sec"
+				            ),
+				            " ",
+				            ""
+				         )
+				    )
+				) otherwise null),
+				    #"Added Custom3" = Table.AddColumn(#"Added Custom2", "Price_Min_USD", each let
+				    Raw = if [Price_Raw] = null then null else Text.Trim([Price_Raw]),
+				    Clean = if Raw = null then null
+				            else Text.Replace(
+				                    Text.Replace(Raw, "$", ""),
+				                    ",",
+				                    ""
+				                 ),
+				    Parts = if Clean = null then {}
+				            else List.Transform(
+				                    Text.Split(Clean, "-"),
+				                    each Text.Trim(_)
+				                 ),
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(_, "en-US")
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Min(Numbers)),
+				    #"Changed Type3" = Table.TransformColumnTypes(#"Added Custom3",{{"Price_Min_USD", type number}}),
+				    #"Added Custom4" = Table.AddColumn(#"Changed Type3", "Price_Max_USD", each let
+				    Raw = if [Price_Raw] = null then null else Text.Trim([Price_Raw]),
+				    Clean = if Raw = null then null
+				            else Text.Replace(
+				                    Text.Replace(Raw, "$", ""),
+				                    ",",
+				                    ""
+				                 ),
+				    Parts = if Clean = null then {}
+				            else List.Transform(
+				                    Text.Split(Clean, "-"),
+				                    each Text.Trim(_)
+				                 ),
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(_, "en-US")
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Max(Numbers)),
+				    #"Changed Type4" = Table.TransformColumnTypes(#"Added Custom4",{{"Price_Max_USD", type number}}),
+				    #"Added Custom5" = Table.AddColumn(#"Changed Type4", "Price_Avg_USD", each let
+				    Raw = if [Price_Raw] = null then null else Text.Trim([Price_Raw]),
+				    Clean = if Raw = null then null
+				            else Text.Replace(
+				                    Text.Replace(Raw, "$", ""),
+				                    ",",
+				                    ""
+				                 ),
+				    Parts = if Clean = null then {}
+				            else List.Transform(
+				                    Text.Split(Clean, "-"),
+				                    each Text.Trim(_)
+				                 ),
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(_, "en-US")
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Average(Numbers)),
+				    #"Added Custom6" = Table.AddColumn(#"Added Custom5", "Price_Is_Range", each if [Price_Min_USD] <> [Price_Max_USD]
+				then true 
+				else false),
+				    #"Changed Type5" = Table.TransformColumnTypes(#"Added Custom6",{{"Price_Is_Range", type logical}}),
+				    #"Added Custom7" = Table.AddColumn(#"Changed Type5", "Torque_Min_Nm", each let
+				    Raw = if [Torque_Raw] = null then null else Text.Lower(Text.Trim([Torque_Raw])),
+				    Clean = if Raw = null then null
+				            else Text.Replace(
+				                    Text.Replace(Raw, "nm", ""),
+				                    ",",
+				                    ""
+				                 ),
+				    Parts = if Clean = null then {}
+				            else List.Transform(Text.Split(Clean, "-"), each Text.Trim(_)),
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(_, "en-US")
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Min(Numbers)),
+				    #"Added Custom8" = Table.AddColumn(#"Added Custom7", "Torque_Max_Nm", each let
+				    Raw = if [Torque_Raw] = null then null else Text.Lower(Text.Trim([Torque_Raw])),
+				    Clean = if Raw = null then null
+				            else Text.Replace(
+				                    Text.Replace(Raw, "nm", ""),
+				                    ",",
+				                    ""
+				                 ),
+				    Parts = if Clean = null then {}
+				            else List.Transform(Text.Split(Clean, "-"), each Text.Trim(_)),
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(_, "en-US")
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Max(Numbers)),
+				    #"Added Custom9" = Table.AddColumn(#"Added Custom8", "Torque_Avg_Nm", each let
+				    Raw = if [Torque_Raw] = null then null else Text.Lower(Text.Trim([Torque_Raw])),
+				    Clean = if Raw = null then null
+				            else Text.Replace(
+				                    Text.Replace(Raw, "nm", ""),
+				                    ",",
+				                    ""
+				                 ),
+				    Parts = if Clean = null then {}
+				            else List.Transform(Text.Split(Clean, "-"), each Text.Trim(_)),
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(_, "en-US")
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Average(Numbers)),
+				    #"Changed Type6" = Table.TransformColumnTypes(#"Added Custom9",{{"Torque_Avg_Nm", type number}, {"Torque_Max_Nm", type number}, {"Torque_Min_Nm", type number}, {"Price_Avg_USD", type number}, {"Acceleration_0_100_Sec", type number}}),
+				    #"Added Custom10" = Table.AddColumn(#"Changed Type6", "Seats_Count", each let
+				    Raw =
+				        if [Seats_Raw] = null
+				        then null
+				        else Text.Lower(Text.Trim([Seats_Raw])),
+				
+				    Parts =
+				        if Raw = null
+				        then {}
+				        else Text.Split(Raw, "+"),
+				
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(
+				                        Text.Trim(_),
+				                        "en-US"
+				                    )
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Sum(Numbers)),
+				    #"Changed Type7" = Table.TransformColumnTypes(#"Added Custom10",{{"Seats_Count", Int64.Type}}),
+				    #"Added Custom11" = Table.AddColumn(#"Changed Type7", "Seats_Layout", each if [Seats_Raw] <> null 
+				    and Text.Contains([Seats_Raw], "+")
+				then Text.Trim([Seats_Raw])
+				else null),
+				    #"Added Custom12" = Table.AddColumn(#"Added Custom11", "Fuel_Group", each let
+				    Fuel =
+				        if [Fuel_Raw] = null 
+				        then ""
+				        else Text.Lower(Text.Trim([Fuel_Raw]))
+				in 
+				    if Fuel = "petrol" then "Petrol"
+				    else if Fuel = "diesel" then "Diesel"
+				    else if Fuel = "electric" then "Electric"
+				    else if Fuel = "hybrid" then "Hybrid"
+				    else if Text.Contains(Fuel, "plug")
+				    and Text.Contains(Fuel,"hybrid") then "Plug-in Hybrid"
+				    else if Text.Contains(Fuel, "petrol") and (Text.Contains(Fuel, "hybrid") or Text.Contains(Fuel, "diesel") or Text.Contains(Fuel, "ev")) then "Multi-Fuel"
+				    else "Other"),
+				    #"Added Custom13" = Table.AddColumn(#"Added Custom12", "Engine_Displacement_CC", each let
+				    Raw =
+				        if [CC_Battery_Raw] = null
+				        then ""
+				        else Text.Lower(Text.Trim([CC_Battery_Raw])),
+				
+				    Parts =
+				        List.Transform(
+				            Text.Split(Raw, "/"),
+				            each Text.Trim(_)
+				        ),
+				
+				    CCParts =
+				        List.Select(
+				            Parts,
+				            each Text.Contains(_, "cc")
+				        ),
+				
+				    FirstCC =
+				        if List.Count(CCParts) > 0
+				        then CCParts{0}
+				        else null,
+				
+				    NumberText =
+				        if FirstCC = null
+				        then null
+				        else Text.BeforeDelimiter(
+				            FirstCC,
+				            "cc"
+				        ),
+				
+				    CleanNumber =
+				        if NumberText = null
+				        then null
+				        else Text.Replace(
+				            Text.Replace(
+				                Text.Trim(NumberText),
+				                ",",
+				                ""
+				            ),
+				            " ",
+				            ""
+				        )
+				in
+				    try Number.FromText(
+				        CleanNumber,
+				        "en-US"
+				    )
+				    otherwise null),
+				    #"Added Custom14" = Table.AddColumn(#"Added Custom13", "Battery_Capacity_KWh", each let
+				    Raw =
+				        if [CC_Battery_Raw] = null
+				        then ""
+				        else Text.Lower(Text.Trim([CC_Battery_Raw])),
+				
+				    Parts =
+				        List.Transform(
+				            Text.Split(Raw, "/"),
+				            each Text.Trim(_)
+				        ),
+				
+				    KWhParts =
+				        List.Select(
+				            Parts,
+				            each Text.Contains(_, "kwh")
+				        ),
+				
+				    FirstKWh =
+				        if List.Count(KWhParts) > 0
+				        then KWhParts{0}
+				        else null,
+				
+				    NumberText =
+				        if FirstKWh = null
+				        then null
+				        else Text.BeforeDelimiter(
+				            FirstKWh,
+				            "kwh"
+				        ),
+				
+				    CleanNumber =
+				        if NumberText = null
+				        then null
+				        else Text.Replace(
+				            Text.Trim(NumberText),
+				            " ",
+				            ""
+				        )
+				in
+				    try Number.FromText(
+				        CleanNumber,
+				        "en-US"
+				    )
+				    otherwise null),
+				    #"Added Custom15" = Table.AddColumn(#"Added Custom14", "DataQuality_Flag", each let
+				    Issues =
+				        List.RemoveNulls({
+				            if [Company] = null or Text.Trim([Company]) = ""
+				                then "COMPANY"
+				                else null,
+				
+				            if [Car_Name] = null or Text.Trim([Car_Name]) = ""
+				                then "CAR_NAME"
+				                else null,
+				
+				            if [Price_Avg_USD] = null
+				                then "PRICE"
+				                else null,
+				
+				            if [HorsePower_Avg] = null
+				                then "HP"
+				                else null,
+				
+				            if [Speed_KMH] = null
+				                then "SPEED"
+				                else null,
+				
+				            if [Acceleration_0_100_Sec] = null
+				                then "ACCELERATION"
+				                else null,
+				
+				            if [Torque_Avg_Nm] = null
+				                then "TORQUE"
+				                else null,
+				
+				            if [Seats_Count] = null
+				                then "SEATS"
+				                else null,
+				
+				            if [Fuel_Group] = "Other"
+				                then "FUEL_REVIEW"
+				                else null
+				        })
+				in
+				    if List.Count(Issues) = 0
+				    then "OK"
+				    else Text.Combine(
+				        Issues,
+				        "; "
+				    )),
+				    #"Added Custom16" = Table.AddColumn(#"Added Custom15", "Quality_Issue_Count", each let
+				    Issues =
+				        List.RemoveNulls({
+				            if [Company] = null or Text.Trim([Company]) = ""
+				                then 1 else null,
+				
+				            if [Car_Name] = null or Text.Trim([Car_Name]) = ""
+				                then 1 else null,
+				
+				            if [Price_Avg_USD] = null
+				                then 1 else null,
+				
+				            if [HorsePower_Avg] = null
+				                then 1 else null,
+				
+				            if [Speed_KMH] = null
+				                then 1 else null,
+				
+				            if [Acceleration_0_100_Sec] = null
+				                then 1 else null,
+				
+				            if [Torque_Avg_Nm] = null
+				                then 1 else null,
+				
+				            if [Seats_Count] = null
+				                then 1 else null,
+				
+				            if [Fuel_Group] = "Other"
+				                then 1 else null
+				        })
+				in
+				    List.Count(Issues)),
+				    #"Added Custom17" = Table.AddColumn(#"Added Custom16", "Vehicle_ID", each Text.Combine(
+				    {
+				        Text.Trim([Company]),
+				        Text.Trim([Car_Name]),
+				        Text.Trim([Engine_Raw])
+				    },
+				    "|"
+				)),
+				    #"Added Custom18" = Table.AddColumn(#"Added Custom17", "HorsePower_Min", each let
+				    Raw =
+				        if [HorsePower_Raw] = null
+				        then null
+				        else Text.Lower(Text.Trim([HorsePower_Raw])),
+				
+				    Clean =
+				        if Raw = null
+				        then null
+				        else Text.Replace(
+				            Text.Replace(Raw, "hp", ""),
+				            ",",
+				            ""
+				        ),
+				
+				    Parts =
+				        if Clean = null
+				        then {}
+				        else List.Transform(
+				            Text.Split(Clean, "-"),
+				            each Text.Trim(_)
+				        ),
+				
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(_, "en-US")
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Min(Numbers)),
+				    #"Added Custom19" = Table.AddColumn(#"Added Custom18", "HorsePower_Max", each let
+				    Raw =
+				        if [HorsePower_Raw] = null
+				        then null
+				        else Text.Lower(Text.Trim([HorsePower_Raw])),
+				
+				    Clean =
+				        if Raw = null
+				        then null
+				        else Text.Replace(
+				            Text.Replace(Raw, "hp", ""),
+				            ",",
+				            ""
+				        ),
+				
+				    Parts =
+				        if Clean = null
+				        then {}
+				        else List.Transform(
+				            Text.Split(Clean, "-"),
+				            each Text.Trim(_)
+				        ),
+				
+				    Numbers =
+				        List.RemoveNulls(
+				            List.Transform(
+				                Parts,
+				                each
+				                    try Number.FromText(_, "en-US")
+				                    otherwise null
+				            )
+				        )
+				in
+				    if List.Count(Numbers) = 0
+				    then null
+				    else List.Max(Numbers)),
+				    #"Added Custom20" = Table.AddColumn(#"Added Custom19", "HP_Is_Range", each [HorsePower_Min] <> [HorsePower_Max]),
+				    #"Changed Type8" = Table.TransformColumnTypes(#"Added Custom20",{{"HP_Is_Range", type logical}, {"HorsePower_Max", type number}, {"HorsePower_Min", type number}, {"Quality_Issue_Count", Int64.Type}, {"Engine_Displacement_CC", type number}, {"Battery_Capacity_KWh", type number}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Changed Type8",{"Vehicle_ID", "Company", "Car_Name", "Engine_Raw", "CC_Battery_Raw", "Engine_Displacement_CC", "Battery_Capacity_KWh", "HorsePower_Raw", "Speed_KMH", "Speed_Raw", "Acceleration_Raw", "Price_Raw", "HorsePower_Min", "HorsePower_Max", "HorsePower_Avg", "Acceleration_0_100_Sec", "Price_Min_USD", "Price_Max_USD", "Price_Avg_USD", "Price_Is_Range", "Fuel_Raw", "Fuel_Group", "Seats_Raw", "Seats_Count", "Seats_Layout", "Torque_Raw", "Torque_Min_Nm", "Torque_Max_Nm", "Torque_Avg_Nm", "DataQuality_Flag", "Quality_Issue_Count", "HP_Is_Range"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"HorsePower_Raw", "Speed_Raw"}),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Removed Columns",{"Vehicle_ID", "Company", "Car_Name", "Engine_Raw", "CC_Battery_Raw", "Engine_Displacement_CC", "Battery_Capacity_KWh", "Speed_KMH", "Acceleration_0_100_Sec", "Acceleration_Raw", "Price_Raw", "HorsePower_Min", "HorsePower_Max", "HorsePower_Avg", "Price_Min_USD", "Price_Max_USD", "Price_Avg_USD", "Price_Is_Range", "Fuel_Raw", "Fuel_Group", "Seats_Raw", "Seats_Count", "Seats_Layout", "Torque_Raw", "Torque_Min_Nm", "Torque_Max_Nm", "Torque_Avg_Nm", "DataQuality_Flag", "Quality_Issue_Count", "HP_Is_Range"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns1",{"Acceleration_Raw", "Price_Raw"}),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Removed Columns1",{"Vehicle_ID", "Company", "Car_Name", "Engine_Raw", "CC_Battery_Raw", "Engine_Displacement_CC", "Battery_Capacity_KWh", "HorsePower_Min", "HorsePower_Max", "HorsePower_Avg", "Speed_KMH", "Acceleration_0_100_Sec", "Price_Min_USD", "Price_Max_USD", "Price_Avg_USD", "Price_Is_Range", "Fuel_Raw", "Fuel_Group", "Seats_Raw", "Seats_Count", "Seats_Layout", "Torque_Raw", "Torque_Min_Nm", "Torque_Max_Nm", "Torque_Avg_Nm", "DataQuality_Flag", "Quality_Issue_Count", "HP_Is_Range"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Reordered Columns2",{"HP_Is_Range"}),
+				    #"Changed Type9" = Table.TransformColumnTypes(#"Removed Columns2",{{"Seats_Layout", type text}, {"DataQuality_Flag", type text}}),
+				    #"Merged Queries" = Table.NestedJoin(#"Changed Type9", {"Vehicle_ID"}, qa_DuplicateVehicles, {"Vehicle_ID"}, "qa_DuplicateVehicles", JoinKind.LeftOuter),
+				    #"Expanded qa_DuplicateVehicles" = Table.ExpandTableColumn(#"Merged Queries", "qa_DuplicateVehicles", {"Row_Count"}, {"qa_DuplicateVehicles.Row_Count"})
+				in
+				    #"Expanded qa_DuplicateVehicles"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
