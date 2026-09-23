@@ -1,0 +1,55 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "753eb2300e0dbe3030cc",
+  "position": {
+    "x": 1300,
+    "y": 208,
+    "z": 10,
+    "height": 150,
+    "width": 268
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Performance INDEX"
+                }
+              },
+              "queryRef": "FactVehicle.Performance INDEX",
+              "nativeQueryRef": "Performance INDEX"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactVehicle"
+                  }
+                },
+                "Property": "Performance INDEX"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

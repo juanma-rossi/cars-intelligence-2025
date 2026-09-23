@@ -1,0 +1,218 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "552b333772458a83da07",
+  "position": {
+    "x": 878.772608207559,
+    "y": 395.10706415533662,
+    "z": 6,
+    "height": 587.55145316203073,
+    "width": 1026.9377572658102
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Price_Avg_USD"
+                }
+              },
+              "queryRef": "FactVehicle.Price_Avg_USD",
+              "nativeQueryRef": "Sum of Price_Avg_USD"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Speed_KMH"
+                }
+              },
+              "queryRef": "FactVehicle.Speed_KMH",
+              "nativeQueryRef": "Sum of Speed_KMH"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Acceleration_0_100_Sec"
+                }
+              },
+              "queryRef": "FactVehicle.Acceleration_0_100_Sec",
+              "nativeQueryRef": "Acceleration_0_100_Sec"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Torque_Raw"
+                }
+              },
+              "queryRef": "FactVehicle.Torque_Raw",
+              "nativeQueryRef": "Torque_Raw"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "HorsePower_Avg"
+                }
+              },
+              "queryRef": "FactVehicle.HorsePower_Avg",
+              "nativeQueryRef": "Sum of HorsePower_Avg"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Min Price"
+                }
+              },
+              "queryRef": "FactVehicle.Min Price",
+              "nativeQueryRef": "Min Price"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "P25 Price"
+                }
+              },
+              "queryRef": "FactVehicle.P25 Price",
+              "nativeQueryRef": "P25 Price"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Median Price"
+                }
+              },
+              "queryRef": "FactVehicle.Median Price",
+              "nativeQueryRef": "Median Price"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "P75 Price"
+                }
+              },
+              "queryRef": "FactVehicle.P75 Price",
+              "nativeQueryRef": "P75 Price"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Max Price"
+                }
+              },
+              "queryRef": "FactVehicle.Max Price",
+              "nativeQueryRef": "Max Price"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactVehicle"
+                  }
+                },
+                "Property": "Price_Avg_USD"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110.07865804200094D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FactVehicle.Torque_Raw"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

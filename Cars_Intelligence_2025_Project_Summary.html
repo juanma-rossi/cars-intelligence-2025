@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cars Intelligence 2025 — Resumen del proyecto</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a20;--panel2:#1e232b;--text:#eef2f6;--muted:#aeb7c2;--line:#303641;--accent:#72d6c0;--ok:#79d99a;--warn:#f1c272}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Segoe UI,Arial,sans-serif;line-height:1.55}
+main{max-width:1150px;margin:auto;padding:36px 24px 60px} section{margin:30px 0}
+.hero,.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}
+.hero{padding:38px;background:linear-gradient(145deg,#181c23,#111318)}
+.kicker{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:40px;line-height:1.1;margin:10px 0} h2{font-size:25px;margin-bottom:12px} h3{font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.badge{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 9px;margin:3px;font-size:12px}
+.ok{color:var(--ok);font-weight:700}.warn{color:var(--warn);font-weight:700}.muted{color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);overflow:hidden}
+th,td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} th{background:var(--panel2);font-size:13px}
+pre{background:#0a0c10;border:1px solid var(--line);border-radius:12px;padding:15px;overflow:auto;font-family:Consolas,monospace;font-size:13px}
+code{background:#0a0c10;padding:2px 5px;border-radius:5px}
+@media(max-width:800px){.grid,.grid2{grid-template-columns:1fr}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<div class="kicker">Cars Intelligence 2025</div>
+<h1>Resumen del proyecto + Checkpoint 5</h1>
+<p class="muted">Estado consolidado del proyecto de Business Intelligence automotriz y próximos objetivos del dashboard.</p>
+<p class="ok">Checkpoint 4 — COMPLETO</p>
+</section>
+
+<section>
+<h2>1. Objetivo general</h2>
+<div class="card">
+<p>Transformar el dataset <strong>Cars Datasets (2025)</strong> en una experiencia de <strong>Automotive Market &amp; Performance Intelligence</strong>.</p>
+<p>El producto final no será un catálogo de autos, sino una interfaz analítica para explorar precio, prestaciones, motorización, combustible y posicionamiento relativo.</p>
+</div>
+</section>
+
+<section>
+<h2>2. Qué ya implementamos</h2>
+<table>
+<tr><th>Área</th><th>Estado</th><th>Implementación</th></tr>
+<tr><td>Repositorio</td><td class="ok">✓</td><td>Git/GitHub, estructura de carpetas, README y .gitignore.</td></tr>
+<tr><td>Power BI</td><td class="ok">✓</td><td>Proyecto PBIP con Report y Semantic Model.</td></tr>
+<tr><td>Staging</td><td class="ok">✓</td><td><code>stg_Cars_Raw</code> con datos Raw preservados.</td></tr>
+<tr><td>Precio</td><td class="ok">✓</td><td>Min/Max/Avg USD y bandera de rango.</td></tr>
+<tr><td>Horse Power</td><td class="ok">✓</td><td>Min/Max/Avg y manejo de rangos.</td></tr>
+<tr><td>Performance</td><td class="ok">✓</td><td>Speed, 0-100 y Torque normalizados.</td></tr>
+<tr><td>Seats</td><td class="ok">✓</td><td>Seats_Count y Seats_Layout sin perder el Raw.</td></tr>
+<tr><td>Fuel</td><td class="ok">✓</td><td>Fuel_Raw + Fuel_Group.</td></tr>
+<tr><td>CC/Battery</td><td class="ok">✓</td><td>Engine_Displacement_CC y Battery_Capacity_KWh.</td></tr>
+<tr><td>Data Quality</td><td class="ok">✓</td><td>Flags y conteo de incidencias.</td></tr>
+<tr><td>QA</td><td class="ok">✓</td><td>qa_Cars_Audit, qa_DuplicateVehicles y qa_DuplicateDetails.</td></tr>
+<tr><td>Modelo</td><td class="ok">✓</td><td>DimCompany, DimFuel, DimEngine → FactVehicle.</td></tr>
+<tr><td>Relaciones</td><td class="ok">✓</td><td>1:* / Single / Active.</td></tr>
+<tr><td>DAX</td><td class="ok">✓</td><td>Core KPIs, profiling estadístico y métricas de QA.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>3. Modelo semántico actual</h2>
+<pre>
+DimCompany  1 ─────── *  FactVehicle  * ─────── 1  DimFuel
+                              │
+                              *
+                              │
+                              1
+                         DimEngine
+
+_Measures = tabla aislada para lógica DAX
+</pre>
+<p><strong>FactVehicle:</strong> 1.218 filas y <code>Vehicle_ID</code> técnico único. <code>Vehicle_NaturalKey</code> tiene 1.209 valores distintos, generando 9 colisiones que se conservan como hallazgo de QA y no se eliminan automáticamente.</p>
+</section>
+
+<section>
+<h2>4. DAX ya construido</h2>
+<div class="grid">
+<div class="card"><h3>CORE</h3>
+<span class="badge">Vehicle Count</span><span class="badge">Company Count</span></div>
+<div class="card"><h3>PRICE</h3>
+<span class="badge">Average Price</span><span class="badge">Median Price</span><span class="badge">Min Price</span><span class="badge">Max Price</span></div>
+<div class="card"><h3>PERFORMANCE</h3>
+<span class="badge">Average HP</span><span class="badge">Average Speed</span><span class="badge">Average 0-100</span><span class="badge">Average Torque</span></div>
+<div class="card"><h3>PROFILE</h3>
+<span class="badge">P25/P75 Price</span><span class="badge">P25/P75 HP</span><span class="badge">P25/P75 Speed</span><span class="badge">P25/P75 0-100</span><span class="badge">P25/P75 Torque</span></div>
+<div class="card"><h3>DATA QUALITY</h3>
+<span class="badge">Data Quality Rate</span><span class="badge">Price Range %</span><span class="badge">Natural Key Count</span><span class="badge">Natural Key Collisions</span></div>
+</div>
+</section>
+
+<section>
+<h2>5. Objetivo del tablero final</h2>
+<div class="grid2">
+<div class="card"><h3>01 — MARKET OVERVIEW</h3><p>¿Cómo está compuesto el mercado?</p><p class="muted">KPIs, compañías, fuel mix, precio y panorama performance.</p></div>
+<div class="card"><h3>02 — PERFORMANCE LAB</h3><p>¿Qué vehículos destacan en prestaciones?</p><p class="muted">Performance Index, HP, velocidad, aceleración y torque.</p></div>
+<div class="card"><h3>03 — VALUE INTELLIGENCE</h3><p>¿Cómo se relacionan precio y prestaciones?</p><p class="muted">Value Index, cuadrantes y outliers.</p></div>
+<div class="card"><h3>04 — VEHICLE EXPLORER</h3><p>¿Cómo se compara un vehículo seleccionado?</p><p class="muted">Ficha dinámica HTML/SVG y benchmark contra mercado, marca y combustible.</p></div>
+</div>
+</section>
+
+<section>
+<h2>6. Checkpoint 5 — siguiente etapa</h2>
+<div class="card">
+<p class="warn">Objetivo principal: convertir el profiling estadístico en inteligencia analítica.</p>
+<ol>
+<li>Revisar P25/P50/P75 y extremos reales de HP, Speed, 0-100, Torque y Price.</li>
+<li>Seleccionar el método de normalización más robusto.</li>
+<li>Construir componentes de score 0–100.</li>
+<li>Construir <strong>Performance Index</strong>.</li>
+<li>Construir <strong>Value Index</strong>.</li>
+<li>Construir una posición relativa precio vs performance.</li>
+<li>Validar el resultado con filtros de Company, Fuel y Engine.</li>
+<li>Definir la información necesaria para la primera página ejecutiva.</li>
+</ol>
+</div>
+</section>
+
+<section>
+<h2>7. Arquitectura matemática prevista</h2>
+<pre>
+HorsePower ─────┐
+Speed ──────────┤
+0-100 sec ──────┤ → Normalización robusta → Component Scores → Performance Index 0–100
+Torque ─────────┘
+
+Performance Index + Relative Price → Value Index
+                              ↓
+                    Market Position
+</pre>
+<p>La fórmula definitiva todavía no está fijada: se determinará a partir de la distribución real del dataset, evitando pesos o límites arbitrarios.</p>
+</section>
+
+<section>
+<h2>8. Qué viene después</h2>
+<table>
+<tr><th>Checkpoint</th><th>Objetivo</th></tr>
+<tr><td>5</td><td>Performance Index + Value Index + Market Position.</td></tr>
+<tr><td>6</td><td>Design System: colores, tipografía, grid, navegación y tema.</td></tr>
+<tr><td>7</td><td>SVG dinámico: KPI bars, score rings, iconos y badges.</td></tr>
+<tr><td>8</td><td>HTML/CSS: cards de vehículo, comparación y narrativa.</td></tr>
+<tr><td>9</td><td>MCP: validación, consultas y workflow de desarrollo reproducible.</td></tr>
+<tr><td>10</td><td>Performance, documentación, screenshots y portfolio GitHub.</td></tr>
+</table>
+</section>
+
+<section>
+<h2>9. Principio rector</h2>
+<div class="card">
+<p><strong>DAX</strong> calcula el significado.</p>
+<p><strong>SVG</strong> construye la representación.</p>
+<p><strong>HTML/CSS</strong> construye la experiencia.</p>
+<p><strong>MCP</strong> ayuda a desarrollar y validar.</p>
+<p><strong>GitHub</strong> mantiene trazabilidad y reproducibilidad.</p>
+</div>
+</section>
+</main>
+</body>
+</html>

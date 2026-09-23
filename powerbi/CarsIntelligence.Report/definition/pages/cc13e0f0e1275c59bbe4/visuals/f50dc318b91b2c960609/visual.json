@@ -1,0 +1,141 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "f50dc318b91b2c960609",
+  "position": {
+    "x": 0,
+    "y": 752.50866594037814,
+    "z": 2,
+    "height": 285.9938595622462,
+    "width": 866.09487966722781
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Data Quality Rate %"
+                }
+              },
+              "queryRef": "FactVehicle.Data Quality Rate %",
+              "nativeQueryRef": "Data Quality Rate %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Price Range %"
+                }
+              },
+              "queryRef": "FactVehicle.Price Range %",
+              "nativeQueryRef": "Price Range %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Natural Key Count"
+                }
+              },
+              "queryRef": "FactVehicle.Natural Key Count",
+              "nativeQueryRef": "Natural Key Count"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Natural Key Collisions"
+                }
+              },
+              "queryRef": "FactVehicle.Natural Key Collisions",
+              "nativeQueryRef": "Natural Key Collisions"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactVehicle"
+                  }
+                },
+                "Property": "Data Quality Rate %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "FactVehicle.Natural Key Count"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

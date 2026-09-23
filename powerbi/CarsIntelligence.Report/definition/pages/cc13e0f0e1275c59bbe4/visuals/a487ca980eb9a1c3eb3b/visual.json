@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "a487ca980eb9a1c3eb3b",
+  "position": {
+    "x": 0,
+    "y": 394.5092601762899,
+    "z": 1,
+    "height": 285.9938595622462,
+    "width": 866.09487966722781
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Average HP"
+                }
+              },
+              "queryRef": "FactVehicle.Average HP",
+              "nativeQueryRef": "Average HP"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Average Speed"
+                }
+              },
+              "queryRef": "FactVehicle.Average Speed",
+              "nativeQueryRef": "Average Speed"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Average 0-100"
+                }
+              },
+              "queryRef": "FactVehicle.Average 0-100",
+              "nativeQueryRef": "Average 0-100 (s)",
+              "displayName": "Average 0-100 (s)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Average Torque"
+                }
+              },
+              "queryRef": "FactVehicle.Average Torque",
+              "nativeQueryRef": "Average Torque"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactVehicle"
+                  }
+                },
+                "Property": "Average HP"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
