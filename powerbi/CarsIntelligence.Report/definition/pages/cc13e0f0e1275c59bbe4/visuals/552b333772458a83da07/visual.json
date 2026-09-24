@@ -153,6 +153,20 @@
               },
               "queryRef": "FactVehicle.Max Price",
               "nativeQueryRef": "Max Price"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "Vehicle_ID"
+                }
+              },
+              "queryRef": "FactVehicle.Vehicle_ID",
+              "nativeQueryRef": "Vehicle_ID"
             }
           ]
         }
@@ -182,7 +196,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "110.07865804200094D"
+                  "Value": "140.60675922189594D"
                 }
               }
             }

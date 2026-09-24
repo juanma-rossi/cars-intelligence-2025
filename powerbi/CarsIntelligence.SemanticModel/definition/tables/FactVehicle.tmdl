@@ -371,113 +371,180 @@ table FactVehicle
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Score HP' =
+	measure 'Score HP' = ```
 			
-			VAR _hp = SELECTEDVALUE(FactVehicle[HorsePower_Avg])
-			VAR _total = CALCULATE(COUNTROWS(FactVehicle), ALLSELECTED(FactVehicle))
-			VAR _menorOIgual = CALCULATE(
-			    COUNTROWS(FactVehicle),
-			    ALLSELECTED(FactVehicle),
-			    FactVehicle[HorsePower_Avg] <= _hp
-			)
-			RETURN DIVIDE(_menorOIgual, _total) *100
+			    VAR _hp = SELECTEDVALUE(FactVehicle[HorsePower_Avg])
+			    VAR _totalValidos =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            NOT ISBLANK(FactVehicle[HorsePower_Avg])
+			        )
+			    VAR _menorOIgual =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            FactVehicle[HorsePower_Avg] <= _hp,
+			            NOT ISBLANK(FactVehicle[HorsePower_Avg])
+			        )
+			    RETURN
+			        IF(ISBLANK(_hp), BLANK(), DIVIDE(_menorOIgual, _totalValidos) * 100)
+			```
 		displayFolder: _SCORES
 		lineageTag: 5dd85dfd-6a67-41fc-ad7e-7cdcd9379a32
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Score Speed' =
+	measure 'Score Speed' = ```
 			
-			VAR _v = SELECTEDVALUE(FactVehicle[Speed_KMH])
-			VAR _total = CALCULATE(COUNTROWS(FactVehicle), ALLSELECTED(FactVehicle))
-			VAR _menorOIgual = CALCULATE(
-			    COUNTROWS(FactVehicle),
-			    ALLSELECTED(FactVehicle),
-			    FactVehicle[Speed_KMH] <= _v
-			)
-			RETURN DIVIDE(_menorOIgual, _total) *100
+			    VAR _v = SELECTEDVALUE(FactVehicle[Speed_KMH])
+			    VAR _totalValidos =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            NOT ISBLANK(FactVehicle[Speed_KMH])
+			        )
+			    VAR _menorOIgual =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            FactVehicle[Speed_KMH] <= _v,
+			            NOT ISBLANK(FactVehicle[Speed_KMH])
+			        )
+			    RETURN
+			        IF(ISBLANK(_v), BLANK(), DIVIDE(_menorOIgual, _totalValidos) * 100)
+			```
 		displayFolder: _SCORES
 		lineageTag: 837078f0-e035-434a-9a2d-9426bd01e151
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Score Aceleration' =
+	measure 'Score Acceleration' = ```
 			
-			VAR _t = SELECTEDVALUE(FactVehicle[Acceleration_0_100_Sec])
-			VAR _total = CALCULATE(COUNTROWS(FactVehicle), ALLSELECTED(FactVehicle))
-			VAR _mayorOIgual = CALCULATE(
-			    COUNTROWS(FactVehicle),
-			    ALLSELECTED(FactVehicle),
-			    FactVehicle[Acceleration_0_100_Sec] >= _t
-			)
-			RETURN DIVIDE(_mayorOIgual, _total) *100
+			    VAR _t = SELECTEDVALUE(FactVehicle[Acceleration_0_100_Sec])
+			    VAR _totalValidos =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])
+			        )
+			    VAR _mayorOIgual =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            FactVehicle[Acceleration_0_100_Sec] >= _t,
+			            NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])
+			        )
+			    RETURN
+			        IF(ISBLANK(_t), BLANK(), DIVIDE(_mayorOIgual, _totalValidos) * 100)
+			```
 		displayFolder: _SCORES
 		lineageTag: ac037663-eeb1-4c24-9a81-01bc1b7b81b5
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Score Torque' =
+	measure 'Score Torque' = ```
 			
-			VAR _tq = SELECTEDVALUE(FactVehicle[Torque_Avg_Nm])
-			VAR _total = CALCULATE(COUNTROWS(FactVehicle), ALLSELECTED(FactVehicle))
-			VAR _menorOIgual = CALCULATE(
-			    COUNTROWS(FactVehicle),
-			    ALLSELECTED(FactVehicle),
-			    FactVehicle[Torque_Avg_Nm] <= _tq
-			)
-			RETURN DIVIDE(_menorOIgual, _total) *100
+			    VAR _tq = SELECTEDVALUE(FactVehicle[Torque_Avg_Nm])
+			    VAR _totalValidos =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            NOT ISBLANK(FactVehicle[Torque_Avg_Nm])
+			        )
+			    VAR _menorOIgual =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            FactVehicle[Torque_Avg_Nm] <= _tq,
+			            NOT ISBLANK(FactVehicle[Torque_Avg_Nm])
+			        )
+			    RETURN
+			        IF(ISBLANK(_tq), BLANK(), DIVIDE(_menorOIgual, _totalValidos) * 100)
+			```
 		displayFolder: _SCORES
 		lineageTag: 8590f0fb-ef6c-4922-930e-70d4dca56b3f
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Performance INDEX' =
+	measure 'Performance Index' = ```
 			
-			AVERAGEX(
-			    {[Score HP],[Score Speed],[Score Aceleration],[Score Torque]},
-			    [Value]
-			)
+			    AVERAGEX(
+			        FILTER(
+			            {[Score HP], [Score Speed], [Score Acceleration], [Score Torque]},
+			            NOT ISBLANK([Value])
+			        ),
+			        [Value]
+			    )
+			```
 		displayFolder: _SCORES
 		lineageTag: a2259418-8104-4627-845b-05a81081761e
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Score Price (invertido)' =
+	measure 'Score Price (inverted)' = ```
 			
-			VAR _p = SELECTEDVALUE(FactVehicle[Price_Avg_USD])
-			VAR _total = CALCULATE(COUNTROWS(FactVehicle), ALLSELECTED(FactVehicle))
-			VAR _mayorOIgual = CALCULATE(
-			    COUNTROWS(FactVehicle), ALLSELECTED(FactVehicle),
-			    FactVehicle[Price_Avg_USD] >= _p
-			)
-			RETURN DIVIDE(_mayorOIgual, _total) * 100   -- barato = score alto
+			    VAR _p = SELECTEDVALUE(FactVehicle[Price_Avg_USD])
+			    VAR _totalValidos =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            NOT ISBLANK(FactVehicle[Price_Avg_USD])
+			        )
+			    VAR _mayorOIgual =
+			        CALCULATE(
+			            COUNTROWS(FactVehicle),
+			            ALLSELECTED(FactVehicle),
+			            FactVehicle[Price_Avg_USD] >= _p,
+			            NOT ISBLANK(FactVehicle[Price_Avg_USD])
+			        )
+			    RETURN
+			        IF(ISBLANK(_p), BLANK(), DIVIDE(_mayorOIgual, _totalValidos) * 100)
+			```
 		displayFolder: _SCORES
 		lineageTag: 4b271672-ed58-49f4-9073-825965ee7b87
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Value INDEX' =
+	measure 'Value Index' = ```
 			
-			50 + ([Performance INDEX] - [Score Price (invertido)]) / 2
+			    VAR _perf = [Performance Index]
+			    VAR _precioScore = [Score Price (Inverted)]
+			    RETURN
+			        IF(
+			            ISBLANK(_perf) || ISBLANK(_precioScore),
+			            BLANK(),
+			            50 + (_perf - _precioScore) / 2
+			        )
+			```
 		displayFolder: _SCORES
 		lineageTag: 5b264837-0afa-4a6e-9c44-0752874d2b15
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Market Position' =
+	measure 'Market Position' = ```
 			
-			VAR _perf = [Performance Index]
-			VAR _precio = [Score Price (invertido)]
-			RETURN
-			SWITCH(
-			    TRUE(),
-			    _perf >= 50 && _precio >= 50, "Best Value",
-			    _perf >= 50 && _precio < 50,  "Premium Performance",
-			    _perf < 50  && _precio >= 50, "Budget",
-			    "Overpriced"
-			)
+			    VAR _perf = [Performance Index]
+			    VAR _precio = [Score Price (Inverted)]
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            ISBLANK(_perf) || ISBLANK(_precio), "Datos insuficientes",
+			            _perf >= 50 && _precio >= 50, "Best Value",
+			            _perf >= 50 && _precio < 50,  "Premium Performance",
+			            _perf < 50  && _precio >= 50, "Budget",
+			            "Overpriced"
+			        )
+			```
 		displayFolder: _SCORES
 		lineageTag: 53cb5dfc-0225-4343-bbb4-b09b41880578
+
+	measure 'Vehiculos con Torque en blanco' =
+			
+			CALCULATE([Vehicle Count], ISBLANK(FactVehicle[Price_Avg_USD]))
+		formatString: 0
+		displayFolder: _SCORES
+		lineageTag: 9c87d816-f689-4730-94ef-7fa261810c70
 
 	column Vehicle_NaturalKey
 		dataType: string

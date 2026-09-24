@@ -1,18 +1,20 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
-  "name": "753eb2300e0dbe3030cc",
+  "name": "6789acb7b96d5b012882",
   "position": {
-    "x": 1300,
-    "y": 208,
-    "z": 10,
-    "height": 150,
-    "width": 268
+    "x": 1590.0715990453461,
+    "y": 207.73269689737472,
+    "z": 11,
+    "height": 161.909307875895,
+    "width": 267.30310262529832,
+    "tabOrder": 1
   },
   "visual": {
-    "visualType": "cardVisual",
+    "visualType": "card",
+    "autoSelectVisualType": true,
     "query": {
       "queryState": {
-        "Data": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -22,11 +24,11 @@
                       "Entity": "FactVehicle"
                     }
                   },
-                  "Property": "Performance Index"
+                  "Property": "Vehiculos con Torque en blanco"
                 }
               },
-              "queryRef": "FactVehicle.Performance INDEX",
-              "nativeQueryRef": "Performance Index"
+              "queryRef": "FactVehicle.Vehiculos con Torque en blanco",
+              "nativeQueryRef": "Vehiculos con Torque en blanco"
             }
           ]
         }
@@ -41,7 +43,7 @@
                     "Entity": "FactVehicle"
                   }
                 },
-                "Property": "Performance Index"
+                "Property": "Vehiculos con Torque en blanco"
               }
             },
             "direction": "Descending"
