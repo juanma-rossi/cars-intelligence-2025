@@ -668,11 +668,22 @@ table stg_Cars_Raw
 				in
 				    List.Count(Issues)),
 				    #"Added Custom17" = Table.AddColumn(#"Added Custom16", "Vehicle_ID", each Text.Combine(
-				    {
-				        Text.Trim([Company]),
-				        Text.Trim([Car_Name]),
-				        Text.Trim([Engine_Raw])
-				    },
+				    List.Transform(
+				        {
+				            [Company],
+				            [Car_Name],
+				            [Engine_Raw],
+				            [CC_Battery_Raw],
+				            [HorsePower_Raw],
+				            [Speed_Raw],
+				            [Acceleration_Raw],
+				            [Price_Raw],
+				            [Fuel_Raw],
+				            [Seats_Raw],
+				            [Torque_Raw]
+				        },
+				        each if _ = null then "" else Text.Trim(_)
+				    ),
 				    "|"
 				)),
 				    #"Added Custom18" = Table.AddColumn(#"Added Custom17", "HorsePower_Min", each let
@@ -757,7 +768,8 @@ table stg_Cars_Raw
 				    #"Removed Columns2" = Table.RemoveColumns(#"Reordered Columns2",{"HP_Is_Range"}),
 				    #"Changed Type9" = Table.TransformColumnTypes(#"Removed Columns2",{{"Seats_Layout", type text}, {"DataQuality_Flag", type text}}),
 				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type9",{{"Vehicle_ID", "Vehicle_NaturalKey"}}),
-				    #"Added Index" = Table.AddIndexColumn(#"Renamed Columns1", "Index", 1, 1, Int64.Type),
+				    #"Removed Duplicate Vehicles" = Table.Distinct(#"Renamed Columns1", {"Vehicle_NaturalKey"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Duplicate Vehicles", "Index", 1, 1, Int64.Type),
 				    #"Renamed Columns2" = Table.RenameColumns(#"Added Index",{{"Index", "Vehicle_ID"}}),
 				    #"Uppercased Text" = Table.TransformColumns(#"Renamed Columns2",{{"Company", Text.Upper, type text}}),
 				    #"Added Custom21" = Table.AddColumn(#"Uppercased Text", "Engine_Key", each if [Engine_Raw] = null then

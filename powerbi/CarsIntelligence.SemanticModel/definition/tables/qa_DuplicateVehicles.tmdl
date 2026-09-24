@@ -9,15 +9,26 @@ table qa_DuplicateVehicles
 
 		annotation SummarizationSetBy = Automatic
 
+	column Row_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 7daf2a87-f891-40c5-a2a2-5d1d447377bc
+		summarizeBy: sum
+		sourceColumn: Row_Count
+
+		annotation SummarizationSetBy = Automatic
+
 	partition qa_DuplicateVehicles = m
 		mode: import
 		queryGroup: Qa
 		source =
 				let
 				    Source = stg_Cars_Raw,
-				    #"Selected Columns" = Table.SelectColumns(Source, {"Vehicle_NaturalKey"})
+				    #"Selected Columns" = Table.SelectColumns(Source, {"Vehicle_NaturalKey"}),
+				    #"Grouped Rows" = Table.Group(#"Selected Columns", {"Vehicle_NaturalKey"}, {{"Row_Count", each Table.RowCount(_), Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Grouped Rows", each [Row_Count] > 1)
 				in
-				    #"Selected Columns"
+				    #"Filtered Rows"
 
 	annotation PBI_NavigationStepName = Navigation
 

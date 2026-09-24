@@ -263,15 +263,25 @@ table qa_DuplicateDetails
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'qa_DuplicateVehicles.Row_Count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f07a1e0-bd8d-48f8-81b5-17570a4bc52c
+		summarizeBy: sum
+		sourceColumn: qa_DuplicateVehicles.Row_Count
+
+		annotation SummarizationSetBy = Automatic
+
 	partition qa_DuplicateDetails = m
 		mode: import
 		queryGroup: Qa
 		source =
 				let
 				    Source = stg_Cars_Raw,
-				    #"Merged Queries" = Table.NestedJoin(Source, {"Vehicle_NaturalKey"}, qa_DuplicateVehicles, {"Vehicle_NaturalKey"}, "qa_DuplicateVehicles", JoinKind.LeftOuter)
+				    #"Merged Queries" = Table.NestedJoin(Source, {"Vehicle_NaturalKey"}, qa_DuplicateVehicles, {"Vehicle_NaturalKey"}, "qa_DuplicateVehicles", JoinKind.Inner),
+				    #"Expanded qa_DuplicateVehicles" = Table.ExpandTableColumn(#"Merged Queries", "qa_DuplicateVehicles", {"Row_Count"}, {"qa_DuplicateVehicles.Row_Count"})
 				in
-				    #"Merged Queries"
+				    #"Expanded qa_DuplicateVehicles"
 
 	annotation PBI_NavigationStepName = Navigation
 
