@@ -10,3 +10,31 @@ relationship AutoDetected_9ccc7f6e-880b-45ca-a43b-21a3b3d3f733
 	fromColumn: FactVehicle.Engine_Key
 	toColumn: DimEngine.Engine_Key
 
+relationship AutoDetected_3077df04-c6ed-4e89-892a-5cf727748d0b
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: qa_Cars_Audit.Vehicle_ID
+	toColumn: stg_Cars_Raw.Vehicle_ID
+
+relationship AutoDetected_1c89f27b-0cae-431d-ad33-126488248394
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: qa_Cars_Audit.Vehicle_ID
+	toColumn: FactVehicle.Vehicle_ID
+
+relationship AutoDetected_aaa01308-42b0-4363-affa-55626edb02bb
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: qa_Cars_Audit.Vehicle_ID
+	toColumn: qa_DuplicateDetails.Vehicle_ID
+
+relationship AutoDetected_0b0dd7ac-7aee-47fa-b951-d13678b56b8e
+	isActive: false
+	fromColumn: stg_Cars_Raw.Engine_Key
+	toColumn: DimEngine.Engine_Key
+
+relationship AutoDetected_0da585e4-d2cf-462d-9752-2d24a7a8f92c
+	isActive: false
+	fromColumn: qa_DuplicateDetails.Engine_Key
+	toColumn: DimEngine.Engine_Key
+

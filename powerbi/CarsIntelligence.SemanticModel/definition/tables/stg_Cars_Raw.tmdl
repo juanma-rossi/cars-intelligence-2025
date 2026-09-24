@@ -33,38 +33,6 @@ table stg_Cars_Raw
 
 		annotation SummarizationSetBy = Automatic
 
-	column HorsePower_Raw
-		dataType: string
-		lineageTag: 787213c8-78b7-4437-a5a4-e106c4c94c2b
-		summarizeBy: none
-		sourceColumn: HorsePower_Raw
-
-		annotation SummarizationSetBy = Automatic
-
-	column Speed_Raw
-		dataType: string
-		lineageTag: 97d7c6e7-6e91-4500-9a80-589dad2afbfd
-		summarizeBy: none
-		sourceColumn: Speed_Raw
-
-		annotation SummarizationSetBy = Automatic
-
-	column Acceleration_Raw
-		dataType: string
-		lineageTag: f7560c28-704e-4aca-83a1-152544ff9623
-		summarizeBy: none
-		sourceColumn: Acceleration_Raw
-
-		annotation SummarizationSetBy = Automatic
-
-	column Price_Raw
-		dataType: string
-		lineageTag: c469ee40-da00-424d-9550-005988067a67
-		summarizeBy: none
-		sourceColumn: Price_Raw
-
-		annotation SummarizationSetBy = Automatic
-
 	column Fuel_Raw
 		dataType: string
 		lineageTag: 6d8aa7dd-a0ea-4c38-aa5a-bd03801d820b
@@ -278,21 +246,20 @@ table stg_Cars_Raw
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column HP_Is_Range
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
-		lineageTag: 0deb7ada-ac5d-481f-b470-99f006dc501e
-		summarizeBy: none
-		sourceColumn: HP_Is_Range
-
-		annotation SummarizationSetBy = Automatic
-
 	column Vehicle_ID
 		dataType: int64
 		formatString: 0
 		lineageTag: 3aa9a8e8-543f-44d2-988b-124b9fa10bd7
-		summarizeBy: count
+		summarizeBy: none
 		sourceColumn: Vehicle_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Engine_Key
+		dataType: string
+		lineageTag: 8079ecd4-eed3-4e96-84c7-943d77bb8ef4
+		summarizeBy: none
+		sourceColumn: Engine_Key
 
 		annotation SummarizationSetBy = Automatic
 
@@ -301,7 +268,7 @@ table stg_Cars_Raw
 		queryGroup: 'Main Querys'
 		source = ```
 				let
-				  Source = Csv.Document(File.Contents("C:\Users\Juanma\Desktop\cars-intelligence-2025\data\raw\Cars Datasets 2025.csv"), [Delimiter = ",", Columns = 11, QuoteStyle = QuoteStyle.None]),
+				  Source = Csv.Document(File.Contents(pDataFolder & "\Cars Datasets 2025.csv"),[Delimiter=",", Columns=11, QuoteStyle=QuoteStyle.None]),
 				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Company Names", type text}, {"Cars Names", type text}, {"Engines", type text}, {"CC/Battery Capacity", type text}, {"HorsePower", type text}, {"Total Speed", type text}, {"Performance(0 - 100 )KM/H", type text}, {"Cars Prices", type text}, {"Fuel Types", type text}, {"Seats", type text}, {"Torque", type text}}),
 				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Company Names", "Company"}, {"Cars Names", "Car_Name"}, {"Engines", "Engine_Raw"}, {"CC/Battery Capacity", "CC_Battery_Raw"}, {"HorsePower", "HorsePower_Raw"}, {"Total Speed", "Speed_Raw"}, {"Performance(0 - 100 )KM/H", "Acceleration_Raw"}, {"Cars Prices", "Price_Raw"}, {"Fuel Types", "Fuel_Raw"}, {"Seats", "Seats_Raw"}, {"Torque", "Torque_Raw"}}),
@@ -782,10 +749,27 @@ table stg_Cars_Raw
 				    else List.Max(Numbers)),
 				    #"Added Custom20" = Table.AddColumn(#"Added Custom19", "HP_Is_Range", each [HorsePower_Min] <> [HorsePower_Max]),
 				    #"Changed Type8" = Table.TransformColumnTypes(#"Added Custom20",{{"HP_Is_Range", type logical}, {"HorsePower_Max", type number}, {"HorsePower_Min", type number}, {"Quality_Issue_Count", Int64.Type}, {"Engine_Displacement_CC", type number}, {"Battery_Capacity_KWh", type number}}),
-				    #"Added Index" = Table.AddIndexColumn(#"Changed Type8", "Index", 1, 1, Int64.Type),
-				    #"Renamed Columns1" = Table.RenameColumns(#"Added Index",{{"Vehicle_ID", "Vehicle_NaturalKey"}, {"Index", "Vehicle_ID"}})
+				    #"Reordered Columns" = Table.ReorderColumns(#"Changed Type8",{"Vehicle_ID", "Company", "Car_Name", "Engine_Raw", "CC_Battery_Raw", "Engine_Displacement_CC", "Battery_Capacity_KWh", "HorsePower_Raw", "Speed_KMH", "Speed_Raw", "Acceleration_Raw", "Price_Raw", "HorsePower_Min", "HorsePower_Max", "HorsePower_Avg", "Acceleration_0_100_Sec", "Price_Min_USD", "Price_Max_USD", "Price_Avg_USD", "Price_Is_Range", "Fuel_Raw", "Fuel_Group", "Seats_Raw", "Seats_Count", "Seats_Layout", "Torque_Raw", "Torque_Min_Nm", "Torque_Max_Nm", "Torque_Avg_Nm", "DataQuality_Flag", "Quality_Issue_Count", "HP_Is_Range"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Reordered Columns",{"HorsePower_Raw", "Speed_Raw"}),
+				    #"Reordered Columns1" = Table.ReorderColumns(#"Removed Columns",{"Vehicle_ID", "Company", "Car_Name", "Engine_Raw", "CC_Battery_Raw", "Engine_Displacement_CC", "Battery_Capacity_KWh", "Speed_KMH", "Acceleration_0_100_Sec", "Acceleration_Raw", "Price_Raw", "HorsePower_Min", "HorsePower_Max", "HorsePower_Avg", "Price_Min_USD", "Price_Max_USD", "Price_Avg_USD", "Price_Is_Range", "Fuel_Raw", "Fuel_Group", "Seats_Raw", "Seats_Count", "Seats_Layout", "Torque_Raw", "Torque_Min_Nm", "Torque_Max_Nm", "Torque_Avg_Nm", "DataQuality_Flag", "Quality_Issue_Count", "HP_Is_Range"}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Reordered Columns1",{"Acceleration_Raw", "Price_Raw"}),
+				    #"Reordered Columns2" = Table.ReorderColumns(#"Removed Columns1",{"Vehicle_ID", "Company", "Car_Name", "Engine_Raw", "CC_Battery_Raw", "Engine_Displacement_CC", "Battery_Capacity_KWh", "HorsePower_Min", "HorsePower_Max", "HorsePower_Avg", "Speed_KMH", "Acceleration_0_100_Sec", "Price_Min_USD", "Price_Max_USD", "Price_Avg_USD", "Price_Is_Range", "Fuel_Raw", "Fuel_Group", "Seats_Raw", "Seats_Count", "Seats_Layout", "Torque_Raw", "Torque_Min_Nm", "Torque_Max_Nm", "Torque_Avg_Nm", "DataQuality_Flag", "Quality_Issue_Count", "HP_Is_Range"}),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Reordered Columns2",{"HP_Is_Range"}),
+				    #"Changed Type9" = Table.TransformColumnTypes(#"Removed Columns2",{{"Seats_Layout", type text}, {"DataQuality_Flag", type text}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type9",{{"Vehicle_ID", "Vehicle_NaturalKey"}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Renamed Columns1", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Added Index",{{"Index", "Vehicle_ID"}}),
+				    #"Uppercased Text" = Table.TransformColumns(#"Renamed Columns2",{{"Company", Text.Upper, type text}}),
+				    #"Added Custom21" = Table.AddColumn(#"Uppercased Text", "Engine_Key", each if [Engine_Raw] = null then
+				    null
+				else
+				    Text.Upper(
+				        Text.Trim(
+				            Text.Clean([Engine_Raw])
+				        )
+				    ))
 				in
-				    #"Renamed Columns1"
+				    #"Added Custom21"
 				```
 
 	annotation PBI_NavigationStepName = Navigation

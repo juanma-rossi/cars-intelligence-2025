@@ -48,3 +48,10 @@ expression fx_ParseRangeNumber =
 
 	annotation PBI_ResultType = Function
 
+expression pDataFolder = "C:\Users\Juanma\Desktop\cars-intelligence-2025\data\raw" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 39481921-9f58-4a5f-badf-35bd69783ca7
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+
