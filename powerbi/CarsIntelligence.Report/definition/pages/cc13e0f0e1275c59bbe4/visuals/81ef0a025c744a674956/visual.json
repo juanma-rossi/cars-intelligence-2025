@@ -19,7 +19,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Vehicle Count"
@@ -33,7 +33,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimCompany"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Company Count"
@@ -47,7 +47,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Average Price"
@@ -61,7 +61,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Median Price"
@@ -80,7 +80,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "FactVehicle"
+                    "Entity": "_Measures"
                   }
                 },
                 "Property": "Vehicle Count"

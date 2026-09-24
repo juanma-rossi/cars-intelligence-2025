@@ -4609,7 +4609,7 @@ cultureInfo en-US
 			    "fact_vehicle.vehicle_rows": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Vehicle Rows"
 			        }
 			      },
@@ -4731,7 +4731,7 @@ cultureInfo en-US
 			    "fact_vehicle.vehicle_count": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Vehicle Count"
 			        }
 			      },
@@ -4757,7 +4757,7 @@ cultureInfo en-US
 			    "fact_vehicle.distinct_NaturalKey": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Distinct NaturalKey"
 			        }
 			      },
@@ -4773,7 +4773,7 @@ cultureInfo en-US
 			    "fact_vehicle.median_price": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Median Price"
 			        }
 			      },
@@ -4895,7 +4895,7 @@ cultureInfo en-US
 			    "fact_vehicle.average_price": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Average Price"
 			        }
 			      },
@@ -5017,7 +5017,7 @@ cultureInfo en-US
 			    "fact_vehicle.min_price": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Min Price"
 			        }
 			      },
@@ -5139,7 +5139,7 @@ cultureInfo en-US
 			    "fact_vehicle.max_price": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Max Price"
 			        }
 			      },
@@ -5261,7 +5261,7 @@ cultureInfo en-US
 			    "fact_vehicle.average_HP": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Average HP"
 			        }
 			      },
@@ -5283,7 +5283,7 @@ cultureInfo en-US
 			    "fact_vehicle.median_HP": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Median HP"
 			        }
 			      },
@@ -5305,7 +5305,7 @@ cultureInfo en-US
 			    "fact_vehicle.min_HP": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Min HP"
 			        }
 			      },
@@ -5337,7 +5337,7 @@ cultureInfo en-US
 			    "fact_vehicle.max_HP": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Max HP"
 			        }
 			      },
@@ -5369,7 +5369,7 @@ cultureInfo en-US
 			    "fact_vehicle.average_speed": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Average Speed"
 			        }
 			      },
@@ -5491,7 +5491,7 @@ cultureInfo en-US
 			    "fact_vehicle.median_speed": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Median Speed"
 			        }
 			      },
@@ -5613,7 +5613,7 @@ cultureInfo en-US
 			    "fact_vehicle.min_speed": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Min Speed"
 			        }
 			      },
@@ -5735,7 +5735,7 @@ cultureInfo en-US
 			    "fact_vehicle.max_speed": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Max Speed"
 			        }
 			      },
@@ -5857,7 +5857,7 @@ cultureInfo en-US
 			    "fact_vehicle.average_0100": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Average 0-100"
 			        }
 			      },
@@ -5889,7 +5889,7 @@ cultureInfo en-US
 			    "fact_vehicle.median_0100": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Median 0-100"
 			        }
 			      },
@@ -5911,7 +5911,7 @@ cultureInfo en-US
 			    "fact_vehicle.min_0100": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Min 0-100"
 			        }
 			      },
@@ -5953,7 +5953,7 @@ cultureInfo en-US
 			    "fact_vehicle.average_torque": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Average Torque"
 			        }
 			      },
@@ -6075,7 +6075,7 @@ cultureInfo en-US
 			    "fact_vehicle.median_torque": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Median Torque"
 			        }
 			      },
@@ -6197,7 +6197,7 @@ cultureInfo en-US
 			    "fact_vehicle.min_torque": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Min Torque"
 			        }
 			      },
@@ -6319,7 +6319,7 @@ cultureInfo en-US
 			    "fact_vehicle.max_torque": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Max Torque"
 			        }
 			      },
@@ -6441,7 +6441,7 @@ cultureInfo en-US
 			    "fact_vehicle.vehicles_with_issues": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Vehicles with Issues"
 			        }
 			      },
@@ -6563,7 +6563,7 @@ cultureInfo en-US
 			    "fact_vehicle.data_quality_rate_": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Data Quality Rate %"
 			        }
 			      },
@@ -6669,7 +6669,7 @@ cultureInfo en-US
 			    "fact_vehicle.price_range_vehicles": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Price Range Vehicles"
 			        }
 			      },
@@ -6797,7 +6797,7 @@ cultureInfo en-US
 			    "fact_vehicle.price_range_": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Price Range %"
 			        }
 			      },
@@ -6833,7 +6833,7 @@ cultureInfo en-US
 			    "fact_vehicle.natural_key_count": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Natural Key Count"
 			        }
 			      },
@@ -6875,7 +6875,7 @@ cultureInfo en-US
 			    "fact_vehicle.natural_key_collisions": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Natural Key Collisions"
 			        }
 			      },
@@ -7003,7 +7003,7 @@ cultureInfo en-US
 			    "fact_vehicle.natural_key_collision_": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "FactVehicle",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Natural Key Collision %"
 			        }
 			      },
@@ -7267,7 +7267,7 @@ cultureInfo en-US
 			    "dim_company.company_count": {
 			      "Definition": {
 			        "Binding": {
-			          "ConceptualEntity": "DimCompany",
+			          "ConceptualEntity": "_Measures",
 			          "ConceptualProperty": "Company Count"
 			        }
 			      },

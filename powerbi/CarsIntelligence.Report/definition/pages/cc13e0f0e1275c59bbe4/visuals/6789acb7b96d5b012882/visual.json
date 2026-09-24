@@ -21,7 +21,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Vehiculos con Torque en blanco"
@@ -40,7 +40,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "FactVehicle"
+                    "Entity": "_Measures"
                   }
                 },
                 "Property": "Vehiculos con Torque en blanco"

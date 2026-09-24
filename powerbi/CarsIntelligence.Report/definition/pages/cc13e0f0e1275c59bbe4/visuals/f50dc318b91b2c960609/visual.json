@@ -19,7 +19,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Data Quality Rate %"
@@ -33,7 +33,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Price Range %"
@@ -47,7 +47,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Natural Key Count"
@@ -61,7 +61,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Natural Key Collisions"
@@ -80,7 +80,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "FactVehicle"
+                    "Entity": "_Measures"
                   }
                 },
                 "Property": "Data Quality Rate %"

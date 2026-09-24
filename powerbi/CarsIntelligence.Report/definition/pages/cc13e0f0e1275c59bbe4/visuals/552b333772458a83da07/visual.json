@@ -89,7 +89,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Min Price"
@@ -103,7 +103,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "P25 Price"
@@ -117,7 +117,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Median Price"
@@ -131,7 +131,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "P75 Price"
@@ -145,7 +145,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Max Price"

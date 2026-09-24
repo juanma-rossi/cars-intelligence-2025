@@ -1,13 +1,6 @@
 table DimCompany
 	lineageTag: d6c6dce4-d930-4167-b5cd-5e906bd552ec
 
-	measure 'Company Count' =
-			
-			DISTINCTCOUNT(FactVehicle[Company])
-		formatString: 0
-		displayFolder: _CORE
-		lineageTag: 4a821ea8-6668-4e0b-baf3-7bbca8534167
-
 	column Company
 		dataType: string
 		lineageTag: 7e663693-2e55-487a-86d9-e08bfa7bdf6b

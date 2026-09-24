@@ -19,7 +19,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Performance Index"
@@ -38,7 +38,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "FactVehicle"
+                    "Entity": "_Measures"
                   }
                 },
                 "Property": "Performance Index"

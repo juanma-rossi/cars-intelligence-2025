@@ -32,6 +32,7 @@ ref table DimEngine
 ref table qa_Cars_Audit
 ref table qa_DuplicateVehicles
 ref table qa_DuplicateDetails
+ref table _Measures
 
 ref cultureInfo en-US
 

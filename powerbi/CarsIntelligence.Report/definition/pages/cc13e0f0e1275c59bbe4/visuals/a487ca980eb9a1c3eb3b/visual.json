@@ -19,7 +19,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Average HP"
@@ -33,7 +33,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Average Speed"
@@ -47,7 +47,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Average 0-100"
@@ -62,7 +62,7 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "FactVehicle"
+                      "Entity": "_Measures"
                     }
                   },
                   "Property": "Average Torque"
@@ -81,7 +81,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "FactVehicle"
+                    "Entity": "_Measures"
                   }
                 },
                 "Property": "Average HP"
