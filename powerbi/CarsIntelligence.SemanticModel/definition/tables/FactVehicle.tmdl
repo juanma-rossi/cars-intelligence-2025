@@ -408,7 +408,7 @@ table FactVehicle
 			VAR _mayorOIgual = CALCULATE(
 			    COUNTROWS(FactVehicle),
 			    ALLSELECTED(FactVehicle),
-			    FactVehicle[Acceleration_0_100_Sec] <= _t
+			    FactVehicle[Acceleration_0_100_Sec] >= _t
 			)
 			RETURN DIVIDE(_mayorOIgual, _total) *100
 		displayFolder: _SCORES
