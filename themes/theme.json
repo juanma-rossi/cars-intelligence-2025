@@ -1,0 +1,68 @@
+{
+  "name": "Cars Intelligence 2025",
+  "dataColors": [
+    "#72D6C0",
+    "#4C6FFF",
+    "#F1C272",
+    "#F17272",
+    "#79D99A",
+    "#8AA6C1",
+    "#C792EA",
+    "#5B6472"
+  ],
+  "background": "#171A20",
+  "foreground": "#EEF2F6",
+  "tableAccent": "#72D6C0",
+  "good": "#79D99A",
+  "bad": "#F17272",
+  "neutral": "#F1C272",
+  "maximum": "#72D6C0",
+  "center": "#8AA6C1",
+  "minimum": "#1E232B",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 16,
+      "color": "#EEF2F6"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#EEF2F6"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#AEB7C2"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "color": { "solid": { "color": "#171A20" } },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#303641" } },
+            "radius": 12
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": { "solid": { "color": "#0F1115" } },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

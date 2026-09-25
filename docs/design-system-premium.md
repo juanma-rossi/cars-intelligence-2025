@@ -28,7 +28,32 @@ Este sistema traslada al dashboard el lenguaje visual de los HMI automotivos de 
 
 **Tipografía:** Segoe UI ya cubre bien el eje "geométrica + legible", pero se añade una regla de **peso variable por jerarquía de dato** (inspirado en Porsche): el número del KPI siempre en Semibold/Bold grande, la unidad y el contexto siempre en peso regular y tamaño reducido — nunca ambos al mismo peso, así el ojo va directo al dato.
 
-**Espaciado y radios:** escala de 4px base (4/8/12/16/24/32). Radios: 8px controles pequeños, 12px tarjetas, 18px tarjetas hero — sin cambios respecto al Checkpoint 6, pero ahora se suma el **hexágono como forma de contenedor alternativa** para KPIs destacados (Performance Index, Value Index), reservado solo para esos dos, para que mantenga estatus de "elemento especial" y no se banalice.
+**Espaciado y radios:** escala de 4px base (4/8/12/16/24/32). *(Los radios 8/12/18px de la propuesta original quedaron superados por el cambio de canvas a Full HD — ver valores vigentes en "Grid de implementación" abajo.)* Se suma el **hexágono como forma de contenedor alternativa** para KPIs destacados (Performance Index, Value Index), reservado solo para esos dos, para que mantenga estatus de "elemento especial" y no se banalice.
+
+**Grid de implementación (Power BI, Full HD 1920×1080):**
+
+El canvas real del proyecto quedó en 1920×1080 (no 1280×720 como en la propuesta inicial del Checkpoint 6), lo que implica un factor de escala de **1.5x** sobre todos los valores de espaciado y tipografía — no solo sobre las posiciones. Estos son los valores vigentes, y los que hay que usar de acá en adelante para cualquier tarjeta o componente nuevo:
+
+| Elemento | Valor |
+|---|---|
+| Canvas | 1920 × 1080px |
+| Zona de header (`panel2`) | 0,0 — 1920 × 96 |
+| Título de página | 36,24 — 600 × 48 |
+| Navegador de páginas | 1050,18 — 825 × 60 |
+| Margen de contenido | 36,132 — 1848 × 912 |
+| Gutter entre tarjetas | 21px |
+| Radio — tarjeta estándar | 18px |
+| Radio — tarjeta hero/hexágono | 27px |
+
+**Tipografía (escalada 1.5x):**
+
+| Rol | Antes (1280×720) | Vigente (1920×1080) |
+|---|---|---|
+| Título de página | 16–20px | 24–30px |
+| Header de tarjeta | 12px | 18px |
+| Label/valor secundario | 10px | 15px |
+
+**Páginas del reporte:** `01_MarketOverview`, `02_PerformanceLab`, `03_ValueIntelligence`, `04_VehicleExplorer` comparten header/nav pixel-idéntico (construidas por duplicación de una página maestra, nunca rehechas a mano una por una). Existe además `_QA_DAX_Profiling` — página de depuración interna, oculta de la navegación pública (clic derecho → Ocultar página) y con prefijo `_` para diferenciarla de las páginas de producto en el panel de Power BI Desktop. No hereda el grid de arriba: mantiene su tamaño y layout libres, ya que no forma parte de la experiencia narrativa del dashboard.
 
 **Sombras/elevación:** 3 niveles únicamente — plano (sin sombra, contenido de fondo), elevado (`0 4px 12px rgba(0,0,0,0.4)`, tarjetas estándar), flotante (`0 8px 24px rgba(114,214,192,0.15)` — sombra tintada con el acento, no negra, para las tarjetas hexagonales destacadas).
 
