@@ -263,6 +263,118 @@ table FactVehicle
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Score HP (Static)' =
+			
+			VAR _hp = FactVehicle[HorsePower_Avg]
+			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[HorsePower_Avg])))
+			VAR _menorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[HorsePower_Avg] <= _hp && NOT ISBLANK(FactVehicle[HorsePower_Avg])))
+			RETURN IF(ISBLANK(_hp), BLANK(), DIVIDE(_menorOIgual, _total) * 100)
+		lineageTag: 15061a47-f9fa-487c-b110-248fe495198c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Score Speed (Static)' =
+			
+			VAR _v = FactVehicle[Speed_KMH]
+			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[Speed_KMH])))
+			VAR _menorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Speed_KMH] <= _v && NOT ISBLANK(FactVehicle[Speed_KMH])))
+			RETURN IF(ISBLANK(_v), BLANK(), DIVIDE(_menorOIgual, _total) * 100)
+		lineageTag: b069b3f3-2c5f-4969-86d5-77a590a67288
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Score Acceleration (Static)' =
+			
+			VAR _t = FactVehicle[Acceleration_0_100_Sec]
+			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])))
+			VAR _mayorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Acceleration_0_100_Sec] >= _t && NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])))
+			RETURN IF(ISBLANK(_t), BLANK(), DIVIDE(_mayorOIgual, _total) * 100)
+		lineageTag: 1b780cf4-b0c8-47d4-b97b-a0b2d930ec50
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Score Torque (Static)' =
+			
+			VAR _tq = FactVehicle[Torque_Avg_Nm]
+			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[Torque_Avg_Nm])))
+			VAR _menorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Torque_Avg_Nm] <= _tq && NOT ISBLANK(FactVehicle[Torque_Avg_Nm])))
+			RETURN IF(ISBLANK(_tq), BLANK(), DIVIDE(_menorOIgual, _total) * 100)
+		lineageTag: 03533749-df2a-4599-abf4-a5af0951c507
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Score Price Inverted (Static)' =
+			
+			VAR _p = FactVehicle[Price_Avg_USD]
+			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[Price_Avg_USD])))
+			VAR _mayorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Price_Avg_USD] >= _p && NOT ISBLANK(FactVehicle[Price_Avg_USD])))
+			RETURN IF(ISBLANK(_p), BLANK(), DIVIDE(_mayorOIgual, _total) * 100)
+		lineageTag: 424f6dc9-f6b1-48e7-9f47-40ab478ad911
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Performance Index (Static)' =
+			
+			AVERAGEX(
+			    FILTER(
+			        {FactVehicle[Score HP (Static)], FactVehicle[Score Speed (Static)], FactVehicle[Score Acceleration (Static)], FactVehicle[Score Torque (Static)]},
+			        NOT ISBLANK([Value])
+			    ),
+			    [Value]
+			)
+		lineageTag: 93dd25ef-0889-41d7-ad4a-eae495dd30c5
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Value Index (Static)' =
+			
+			IF(
+			    ISBLANK(FactVehicle[Performance Index (Static)]) || ISBLANK(FactVehicle[Score Price Inverted (Static)]),
+			    BLANK(),
+			    50 + (FactVehicle[Performance Index (Static)] - FactVehicle[Score Price Inverted (Static)]) / 2
+			)
+		lineageTag: e829b76c-bb23-49ea-b8f8-e0a4e280472b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Market Position (Static)' =
+			
+			VAR _perf = FactVehicle[Performance Index (Static)]
+			VAR _precio = FactVehicle[Score Price Inverted (Static)]
+			RETURN
+			SWITCH(TRUE(),
+			    ISBLANK(_perf) || ISBLANK(_precio), "Datos insuficientes",
+			    _perf >= 50 && _precio >= 50, "Best Value",
+			    _perf >= 50 && _precio < 50, "Premium Performance",
+			    _perf < 50 && _precio >= 50, "Budget",
+			    "Overpriced"
+			)
+		lineageTag: 032211e5-5154-4463-87c8-ebe5da57774f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition FactVehicle = m
 		mode: import
 		queryGroup: 'Main Querys'

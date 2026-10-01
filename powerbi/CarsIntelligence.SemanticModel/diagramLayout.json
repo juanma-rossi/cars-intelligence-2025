@@ -10,8 +10,8 @@
       "nodes": [
         {
           "location": {
-            "x": 1136,
-            "y": 56.25
+            "x": 840.0400390798319,
+            "y": 0
           },
           "nodeIndex": "stg_Cars_Raw",
           "nodeLineageTag": "350e3cc5-bb52-4d6f-9b7d-e50b56212372",
@@ -24,7 +24,7 @@
         {
           "location": {
             "x": 0,
-            "y": 142.25
+            "y": 0
           },
           "nodeIndex": "DimCompany",
           "nodeLineageTag": "d6c6dce4-d930-4167-b5cd-5e906bd552ec",
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 284,
-            "y": 118.25
+            "x": 258.63200334969986,
+            "y": 0
           },
           "nodeIndex": "DimEngine",
           "nodeLineageTag": "866604e2-bb92-4ecd-92fb-0a0dd2f5df3c",
@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 548.26933593865533,
-            "y": 114.74733538037219
+            "x": 511.626674110444,
+            "y": 0
           },
           "nodeIndex": "DimFuel",
           "nodeLineageTag": "23db38ff-e5fa-42d2-806b-24d815c048a6",
@@ -63,7 +63,7 @@
         {
           "location": {
             "x": 0,
-            "y": 390.2619558956182
+            "y": 264.8313057913565
           },
           "nodeIndex": "FactVehicle",
           "nodeLineageTag": "efbb30da-6fcb-4c55-a447-465d482075fc",
@@ -75,8 +75,8 @@
         },
         {
           "location": {
-            "x": 1420,
-            "y": 56.25
+            "x": 1101.4907087240097,
+            "y": 0
           },
           "nodeIndex": "qa_Cars_Audit",
           "nodeLineageTag": "eaf5f064-f24f-4f7a-ab98-1edaa42dcfcf",
@@ -88,8 +88,8 @@
         },
         {
           "location": {
-            "x": 2038,
-            "y": 173.96064452142855
+            "x": 1485.5414062823531,
+            "y": 145.77398157665064
           },
           "nodeIndex": "qa_DuplicateDetails",
           "nodeLineageTag": "2066e395-7b0b-424e-88a6-948e3a74ea3f",
@@ -101,8 +101,8 @@
         },
         {
           "location": {
-            "x": 1754,
-            "y": 259.96064452142855
+            "x": 1191.6760742516808,
+            "y": 692.62592072376958
           },
           "nodeIndex": "qa_DuplicateVehicles",
           "nodeLineageTag": "95d993b4-0b2a-4b5a-8707-16df3fb728ce",
@@ -114,10 +114,11 @@
         },
         {
           "location": {
-            "x": 2322,
-            "y": 235.75597794780913
+            "x": 1489.0840777247372,
+            "y": 503.52927592319924
           },
           "nodeIndex": "_Measures",
+          "nodeLineageTag": "66686c36-ce4b-4a35-afab-593bdbf724c9",
           "size": {
             "height": 200,
             "width": 234

@@ -553,6 +553,24 @@ table _Measures
 		displayFolder: _SCORES
 		lineageTag: 53cb5dfc-0225-4343-bbb4-b09b41880578
 
+	measure 'Performance Index (AVG Market)' =
+			
+			AVERAGEX(
+			    ALLSELECTED(FactVehicle),
+			    [Performance Index]
+			)
+		displayFolder: _SCORES
+		lineageTag: 1b136b96-e076-4314-9b8c-9296a05970ac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '''Debug - Vehicle ID Visto''' =
+			
+			CALCULATE(MAX(FactVehicle[Vehicle_ID]))
+		formatString: 0
+		displayFolder: _SCORES
+		lineageTag: 76d5bfa1-4517-4d55-b968-ffa40261f23d
+
 	column Value
 		isHidden
 		formatString: 0
