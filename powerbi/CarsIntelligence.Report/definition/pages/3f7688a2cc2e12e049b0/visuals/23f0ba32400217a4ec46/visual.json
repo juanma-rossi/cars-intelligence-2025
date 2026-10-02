@@ -41,7 +41,8 @@
                 }
               },
               "queryRef": "FactVehicle.Car_Name",
-              "nativeQueryRef": "Car_Name"
+              "nativeQueryRef": "Car",
+              "displayName": "Car"
             },
             {
               "field": {
@@ -55,7 +56,8 @@
                 }
               },
               "queryRef": "Sum(FactVehicle.Price_Avg_USD)",
-              "nativeQueryRef": "Price_Avg_USD"
+              "nativeQueryRef": "Price",
+              "displayName": "Price"
             },
             {
               "field": {
@@ -69,7 +71,8 @@
                 }
               },
               "queryRef": "_Measures.Performance Index",
-              "nativeQueryRef": "Performance Index"
+              "nativeQueryRef": "Performance",
+              "displayName": "Performance"
             },
             {
               "field": {
@@ -83,7 +86,8 @@
                 }
               },
               "queryRef": "FactVehicle.Engine_Raw",
-              "nativeQueryRef": "Engine_Raw"
+              "nativeQueryRef": "Engine",
+              "displayName": "Engine"
             },
             {
               "field": {
@@ -97,7 +101,8 @@
                 }
               },
               "queryRef": "FactVehicle.Market Position (Static)",
-              "nativeQueryRef": "Market Position (Static)"
+              "nativeQueryRef": "Market",
+              "displayName": "Market"
             },
             {
               "field": {
@@ -111,11 +116,27 @@
                 }
               },
               "queryRef": "Sum(FactVehicle.Value Index (Static))",
-              "nativeQueryRef": "Value Index (Static)"
+              "nativeQueryRef": "Value Index",
+              "displayName": "Value Index"
             }
           ]
         }
       }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "title": [

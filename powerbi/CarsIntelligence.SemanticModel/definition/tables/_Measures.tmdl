@@ -380,7 +380,10 @@ table _Measures
 
 	measure 'Vehiculos con Torque en blanco' =
 			
-			CALCULATE([Vehicle Count], ISBLANK(FactVehicle[Price_Avg_USD]))
+			CALCULATE(
+			    [Vehicle Count],
+			    ISBLANK(FactVehicle[Torque_Avg_Nm])
+			)
 		formatString: 0
 		displayFolder: _SCORES
 		lineageTag: 9c87d816-f689-4730-94ef-7fa261810c70
