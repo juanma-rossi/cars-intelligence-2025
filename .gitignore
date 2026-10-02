@@ -26,4 +26,4 @@ Thumbs.db
 .env
 *.secret
 
-data/raw/*
+data/raw/*.csv
