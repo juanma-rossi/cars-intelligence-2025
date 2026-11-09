@@ -1,0 +1,51 @@
+table DimPriceSegment
+	lineageTag: 9f41b7c2-3e18-4d62-8c1a-75e9d40b8a12
+
+	column Segment_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a18c4d9-5b3f-4e11-9c2d-84f7a30c6e51
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Segment_ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segment_Name
+		dataType: string
+		lineageTag: 7b32d8e1-9c4a-4f22-8d3e-61a5b90d4c72
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Segment_Name]
+		sortByColumn: Segment_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price_Band_Label
+		dataType: string
+		lineageTag: 5c94e1f3-2d8b-4a33-9e4f-12b6c80e3d94
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Price_Band_Label]
+		sortByColumn: Segment_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPriceSegment = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Segment_ID", INTEGER,
+				    "Segment_Name", STRING,
+				    "Price_Band_Label", STRING,
+				    {
+				        { 1, "Budget", "< $30k" },
+				        { 2, "Mass Market", "$30k – $60k" },
+				        { 3, "Premium", "$60k – $120k" },
+				        { 4, "Luxury & Sport", "$120k – $300k" },
+				        { 5, "Exotic & Hypercar", "$300k+" }
+				    }
+				)
+
+	annotation PBI_Id = d482a91bc3054e179f6a82b1c40e5d73
+

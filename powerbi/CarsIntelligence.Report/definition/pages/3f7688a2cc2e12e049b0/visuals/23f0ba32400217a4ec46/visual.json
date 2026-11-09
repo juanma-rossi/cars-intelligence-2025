@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "23f0ba32400217a4ec46",
   "position": {
-    "x": 1282,
-    "y": 303,
-    "z": 10000,
-    "height": 741.17647058823536,
-    "width": 602,
-    "tabOrder": 10000
+    "x": 1440,
+    "y": 270,
+    "z": 9000,
+    "height": 774,
+    "width": 444,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "tableEx",
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "FactVehicle.Company",
-              "nativeQueryRef": "Company"
+              "nativeQueryRef": "Brand",
+              "displayName": "Brand"
             },
             {
               "field": {
@@ -41,8 +42,23 @@
                 }
               },
               "queryRef": "FactVehicle.Car_Name",
-              "nativeQueryRef": "Car",
-              "displayName": "Car"
+              "nativeQueryRef": "Model",
+              "displayName": "Model"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactVehicle"
+                    }
+                  },
+                  "Property": "HorsePower_Avg"
+                }
+              },
+              "queryRef": "FactVehicle.HorsePower_Avg",
+              "nativeQueryRef": "HP",
+              "displayName": "HP"
             },
             {
               "field": {
@@ -55,9 +71,9 @@
                   "Property": "Price_Avg_USD"
                 }
               },
-              "queryRef": "Sum(FactVehicle.Price_Avg_USD)",
-              "nativeQueryRef": "Price",
-              "displayName": "Price"
+              "queryRef": "FactVehicle.Price_Avg_USD",
+              "nativeQueryRef": "MSRP",
+              "displayName": "MSRP"
             },
             {
               "field": {
@@ -67,67 +83,114 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Performance Index"
+                  "Property": "Value Index"
                 }
               },
-              "queryRef": "_Measures.Performance Index",
-              "nativeQueryRef": "Performance",
-              "displayName": "Performance"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactVehicle"
-                    }
-                  },
-                  "Property": "Engine_Raw"
-                }
-              },
-              "queryRef": "FactVehicle.Engine_Raw",
-              "nativeQueryRef": "Engine",
-              "displayName": "Engine"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactVehicle"
-                    }
-                  },
-                  "Property": "Market Position (Static)"
-                }
-              },
-              "queryRef": "FactVehicle.Market Position (Static)",
-              "nativeQueryRef": "Market",
-              "displayName": "Market"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "FactVehicle"
-                    }
-                  },
-                  "Property": "Value Index (Static)"
-                }
-              },
-              "queryRef": "Sum(FactVehicle.Value Index (Static))",
-              "nativeQueryRef": "Value Index",
-              "displayName": "Value Index"
+              "queryRef": "_Measures.Value Index",
+              "nativeQueryRef": "Value Score",
+              "displayName": "Value"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Value Index"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
       }
     },
     "objects": {
-      "total": [
+      "grid": [
         {
           "properties": {
-            "totals": {
+            "gridVertical": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridHorizontal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F1F5F9'"
+                    }
+                  }
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "4D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F172A'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAFC'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Bold'', wf_segoe-ui_bold, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9.5D"
+                }
+              }
+            },
+            "wordWrap": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -136,13 +199,143 @@
             }
           }
         }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAFC'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorPrimary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E293B'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E293B'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, sans-serif'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9.5D"
+                }
+              }
+            },
+            "wordWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "_Measures"
+                            }
+                          },
+                          "Property": "Value Index"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient2": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#F1F5F9'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#93C5FD'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "_Measures.Value Index"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
       "title": [
         {
           "properties": {
-            "titleWrap": {
+            "show": {
               "expr": {
                 "Literal": {
                   "Value": "true"
@@ -152,14 +345,32 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Vehicle Count'"
+                  "Value": "'Top Value Leaders'"
                 }
               }
             },
-            "show": {
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#0F172A'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI Bold'', wf_segoe-ui_bold, sans-serif'"
                 }
               }
             }
@@ -172,20 +383,39 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
-            }
-          }
-        }
-      ],
-      "border": [
-        {
-          "properties": {
-            "radius": {
+            },
+            "text": {
               "expr": {
                 "Literal": {
-                  "Value": "18D"
+                  "Value": "'Top 10 Models Ranked by Value Index (0-100)'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#64748B'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, sans-serif'"
                 }
               }
             }
@@ -201,6 +431,175 @@
                   "Value": "true"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E2E8F0'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#CBD5E1'"
+                    }
+                  }
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BottomRight'"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "80D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "16D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "visualHeader": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           }
         }
@@ -211,156 +610,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "775240f30860be960db3",
-        "ordinal": 0,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FactVehicle"
-              }
-            },
-            "Property": "Car_Name"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "9017bc5f159628a80aaa",
-        "ordinal": 1,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FactVehicle"
-              }
-            },
-            "Property": "Company"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f92a033c066a63a7720e",
-        "ordinal": 2,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures"
-              }
-            },
-            "Property": "Performance Index"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "6834e438c82035dd7ad4",
-        "ordinal": 3,
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "FactVehicle"
-                  }
-                },
-                "Property": "Price_Avg_USD"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced",
-        "howCreated": "User"
-      },
-      {
-        "name": "76b81842b43017c35da3",
-        "ordinal": 4,
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_Measures"
-              }
-            },
-            "Property": "Value Index"
-          }
-        },
-        "type": "Advanced",
-        "howCreated": "User"
-      },
-      {
-        "name": "2592b2240c0e961b9b9c",
-        "ordinal": 5,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FactVehicle"
-              }
-            },
-            "Property": "Engine_Raw"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "19a0936101079c947358",
-        "ordinal": 6,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FactVehicle"
-              }
-            },
-            "Property": "Price_Avg_USD"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "5239d5f091d17bb049ee",
-        "ordinal": 7,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FactVehicle"
-              }
-            },
-            "Property": "Market Position (Static)"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "e66a3a5de6022bd468ee",
-        "ordinal": 8,
-        "field": {
-          "Aggregation": {
-            "Expression": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "FactVehicle"
-                  }
-                },
-                "Property": "Value Index (Static)"
-              }
-            },
-            "Function": 0
-          }
-        },
-        "type": "Advanced",
-        "howCreated": "User"
-      },
-      {
-        "name": "edcf646b025747298353",
-        "ordinal": 9,
+        "name": "Filter_Best_Value",
         "field": {
           "Column": {
             "Expression": {
@@ -410,27 +660,10 @@
               }
             }
           ]
-        },
-        "howCreated": "User"
+        }
       },
       {
-        "name": "8e04aae7810b58e2e290",
-        "ordinal": 10,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FactVehicle"
-              }
-            },
-            "Property": "Value Index (Static)"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c220e2679caeab0026c0",
-        "ordinal": 11,
+        "name": "Filter_Top10_ValueIndex",
         "field": {
           "Column": {
             "Expression": {
@@ -475,23 +708,18 @@
                       {
                         "Direction": 2,
                         "Expression": {
-                          "Aggregation": {
+                          "Measure": {
                             "Expression": {
-                              "Column": {
-                                "Expression": {
-                                  "SourceRef": {
-                                    "Source": "f"
-                                  }
-                                },
-                                "Property": "Value Index (Static)"
+                              "SourceRef": {
+                                "Entity": "_Measures"
                               }
                             },
-                            "Function": 0
+                            "Property": "Value Index"
                           }
                         }
                       }
                     ],
-                    "Top": 5
+                    "Top": 10
                   }
                 }
               },
@@ -528,10 +756,8 @@
               }
             }
           ]
-        },
-        "howCreated": "User"
+        }
       }
-    ],
-    "filterSortOrder": "Custom"
+    ]
   }
 }

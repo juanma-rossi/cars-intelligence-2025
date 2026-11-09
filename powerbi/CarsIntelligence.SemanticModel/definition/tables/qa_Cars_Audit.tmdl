@@ -1,4 +1,5 @@
 table qa_Cars_Audit
+	isHidden
 	lineageTag: eaf5f064-f24f-4f7a-ab98-1edaa42dcfcf
 
 	column Vehicle_NaturalKey

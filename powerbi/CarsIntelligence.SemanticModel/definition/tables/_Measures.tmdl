@@ -4,14 +4,14 @@ table _Measures
 	measure 'Company Count' =
 			
 			DISTINCTCOUNT(FactVehicle[Company])
-		formatString: 0
+		formatString: #,0
 		displayFolder: _CORE
 		lineageTag: 4a821ea8-6668-4e0b-baf3-7bbca8534167
 
 	measure 'Vehicle Count' =
 			
 			DISTINCTCOUNT(FactVehicle[Vehicle_ID])
-		formatString: 0
+		formatString: #,0
 		displayFolder: _CORE
 		lineageTag: 07f702f1-7c4c-4b96-8756-45dad203df87
 
@@ -29,7 +29,7 @@ table _Measures
 	measure 'Distinct NaturalKey' =
 			
 			DISTINCTCOUNT(FactVehicle[Vehicle_NaturalKey])
-		formatString: 0
+		formatString: #,0
 		displayFolder: _DATA_QUALITY
 		lineageTag: 849b4900-793f-49a9-8258-1a0d63ae4131
 
@@ -47,7 +47,7 @@ table _Measures
 	measure 'Natural Key Collisions' =
 			
 			[Vehicle Count] - [Natural Key Count]
-		formatString: 0
+		formatString: #,0
 		displayFolder: _DATA_QUALITY
 		lineageTag: 412e631f-1c95-4606-9872-4a00e468ec9d
 
@@ -56,7 +56,7 @@ table _Measures
 			DISTINCTCOUNT(
 			    FactVehicle[Vehicle_NaturalKey]
 			)
-		formatString: 0
+		formatString: #,0
 		displayFolder: _DATA_QUALITY
 		lineageTag: 49e0274e-8bd4-4775-b332-ceaf512d7aed
 
@@ -75,16 +75,16 @@ table _Measures
 			
 			CALCULATE(
 			    [Vehicle Count],
-			    FactVehicle[Price_Is_Range] = TRUE()
+			    KEEPFILTERS(FactVehicle[Price_Is_Range] = TRUE())
 			)
-		formatString: 0
+		formatString: #,0
 		displayFolder: _DATA_QUALITY
 		lineageTag: af7bb964-9d06-4ab6-a4dc-c642cb432c1e
 
 	measure 'Vehicle Rows' =
 			
 			COUNTROWS(FactVehicle)
-		formatString: 0
+		formatString: #,0
 		displayFolder: _DATA_QUALITY
 		lineageTag: 07767128-b2b8-4351-8218-7e3420c82aef
 
@@ -92,131 +92,114 @@ table _Measures
 			
 			CALCULATE(
 			    [Vehicle Count],
-			    FactVehicle[DataQuality_Flag] <> "OK"
+			    KEEPFILTERS(FactVehicle[DataQuality_Flag] <> "OK")
 			)
-		formatString: 0
+		formatString: #,0
 		displayFolder: _DATA_QUALITY
 		lineageTag: 104ca47d-db0c-4bc1-9728-1e357b21b2c3
 
 	measure 'Min Torque' =
 			
 			MIN ( FactVehicle[Torque_Avg_Nm] )
+		formatString: #,0" Nm"
 		displayFolder: _PERFORMANCE
 		lineageTag: 8e66b2ef-7cfe-45f5-b401-eaa41cad5aa1
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Min Speed' =
 			
 			MIN(FactVehicle[Speed_KMH])
+		formatString: #,0" km/h"
 		displayFolder: _PERFORMANCE
 		lineageTag: 31a50a77-11cd-4751-b1d4-84f1215ada2c
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Min HP' =
 			
 			MIN(FactVehicle[HorsePower_Avg])
+		formatString: #,0
 		displayFolder: _PERFORMANCE
 		lineageTag: c4b150d0-b40a-4041-bce3-662677fab4eb
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Min 0-100' =
 			
 			MIN(FactVehicle[Acceleration_0_100_Sec])
+		formatString: 0.0" s"
 		displayFolder: _PERFORMANCE
 		lineageTag: 00a20a08-e5de-49ee-880a-16769680e58d
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Median Torque' =
 			
 			MEDIAN ( FactVehicle[Torque_Avg_Nm] )
+		formatString: #,0" Nm"
 		displayFolder: _PERFORMANCE
 		lineageTag: 8972af6d-f7de-4060-8e9e-35a9f4db1f73
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Median Speed' =
 			
 			MEDIAN(FactVehicle[Speed_KMH])
+		formatString: #,0" km/h"
 		displayFolder: _PERFORMANCE
 		lineageTag: ffc1f1d8-74da-41dd-b1ae-ce3ad1d23da3
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Median HP' =
 			
 			MEDIAN(FactVehicle[HorsePower_Avg])
+		formatString: #,0
 		displayFolder: _PERFORMANCE
 		lineageTag: 1e7e3c82-6133-4388-9c23-677c01d6bc3b
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Median 0-100' =
 			
 			MEDIAN(FactVehicle[Acceleration_0_100_Sec])
+		formatString: 0.0" s"
 		displayFolder: _PERFORMANCE
 		lineageTag: 26d12192-ba4a-40d4-89ca-c6cdabc62a30
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Max Torque' =
 			
 			MAX ( FactVehicle[Torque_Avg_Nm] )
+		formatString: #,0" Nm"
 		displayFolder: _PERFORMANCE
 		lineageTag: fc7725f9-f91c-4a47-9d2f-209de2e22364
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Max Speed' =
 			
 			MAX(FactVehicle[Speed_KMH])
+		formatString: #,0" km/h"
 		displayFolder: _PERFORMANCE
 		lineageTag: 1b2188ba-1add-4e24-824f-260d2127c268
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Max HP' =
 			
 			MAX(FactVehicle[HorsePower_Avg])
+		formatString: #,0
 		displayFolder: _PERFORMANCE
 		lineageTag: 5ae76bb2-2aa4-415f-bb17-f367c9a77406
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Average Torque' =
 			
 			AVERAGE ( FactVehicle[Torque_Avg_Nm] )
-		formatString: 0
+		formatString: #,0" Nm"
 		displayFolder: _PERFORMANCE
 		lineageTag: 548da329-bc4c-4f09-8f80-d7c9f1bf1ef8
-
-		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Average Speed' =
 			
 			AVERAGE(FactVehicle[Speed_KMH])
-		formatString: 0
+		formatString: #,0" km/h"
 		displayFolder: _PERFORMANCE
 		lineageTag: 757b3179-0470-4da1-96dd-ebe2cca754d0
-
-		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Average HP' =
 			
 			AVERAGE (FactVehicle[HorsePower_Avg])
-		formatString: 0
+		formatString: #,0
 		displayFolder: _PERFORMANCE
 		lineageTag: cf8cc606-d617-4ca6-b07d-ad4fe3421f33
-
-		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Average 0-100' =
 			
 			AVERAGE(FactVehicle[Acceleration_0_100_Sec])
-		formatString: 0.0
+		formatString: 0.0" s"
 		displayFolder: _PERFORMANCE
 		lineageTag: 0a283bed-7801-4773-97af-53e25d765065
 
@@ -259,43 +242,40 @@ table _Measures
 	measure 'P25 Acceleration' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[Acceleration_0_100_Sec],
 			    0.25
 			)
+		formatString: 0.0
 		displayFolder: _PROFILE
 		lineageTag: 73691d63-3023-4b3a-b4aa-26acc419a51d
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'P75 Torque' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[Torque_Avg_Nm],
 			    0.75
 			)
+		formatString: #,0
 		displayFolder: _PROFILE
 		lineageTag: 6a9bea33-4de6-40f6-88fb-59df0da02c02
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'P75 Speed' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[Speed_KMH],
 			    0.75
 			)
+		formatString: #,0
 		displayFolder: _PROFILE
 		lineageTag: fcb92bb1-17ba-42c4-b451-1151cac07e02
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'P75 Price' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[Price_Avg_USD],
 			    0.75
 			)
@@ -308,55 +288,51 @@ table _Measures
 	measure 'P75 HP' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[HorsePower_Avg],
 			    0.75
 			)
+		formatString: #,0
 		displayFolder: _PROFILE
 		lineageTag: 43f81981-8ea2-4f84-91a0-31b17f08a5fe
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'P75 Acceleration' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[Acceleration_0_100_Sec],
 			    0.75
 			)
+		formatString: 0.0
 		displayFolder: _PROFILE
 		lineageTag: c3cd5528-63df-49a2-b8a3-316a07f683a3
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'P25 Torque' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[Torque_Avg_Nm],
 			    0.25
 			)
+		formatString: #,0
 		displayFolder: _PROFILE
 		lineageTag: 29d62ffd-1ee9-4ae3-9add-7d550576a1c4
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'P25 Speed' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[Speed_KMH],
 			    0.25
 			)
+		formatString: #,0
 		displayFolder: _PROFILE
 		lineageTag: 30f35861-1a08-491d-941e-c2f1c52b2342
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'P25 Price' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[Price_Avg_USD],
 			    0.25
 			)
@@ -369,14 +345,13 @@ table _Measures
 	measure 'P25 HP' =
 			
 			PERCENTILEX.INC(
-			    ALL(FactVehicle),
+			    ALLSELECTED(FactVehicle),
 			    FactVehicle[HorsePower_Avg],
 			    0.25
 			)
+		formatString: #,0
 		displayFolder: _PROFILE
 		lineageTag: fd4f70fe-8912-4dbb-8ba8-cc64329260b3
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Vehiculos con Torque en blanco' =
 			
@@ -384,172 +359,207 @@ table _Measures
 			    [Vehicle Count],
 			    ISBLANK(FactVehicle[Torque_Avg_Nm])
 			)
-		formatString: 0
+		formatString: #,0
 		displayFolder: _SCORES
 		lineageTag: 9c87d816-f689-4730-94ef-7fa261810c70
 
 	measure 'Value Index' = ```
 			
-			    VAR _perf = [Performance Index]
-			    VAR _precioScore = [Score Price (Inverted)]
-			    RETURN
-			        IF(
-			            ISBLANK(_perf) || ISBLANK(_precioScore),
-			            BLANK(),
-			            50 + (_perf - _precioScore) / 2
-			        )
+			    IF(
+			        HASONEVALUE(FactVehicle[Vehicle_ID]),
+			        VAR _perf = [Performance Index]
+			        VAR _priceScore = [Score Price (inverted)]
+			        RETURN
+			            IF(
+			                ISBLANK(_perf) || ISBLANK(_priceScore),
+			                BLANK(),
+			                (_perf + _priceScore) / 2
+			            ),
+			        AVERAGE(FactVehicle[Value Index (Static)])
+			    )
 			```
+		formatString: 0.0
 		displayFolder: _SCORES
 		lineageTag: 5b264837-0afa-4a6e-9c44-0752874d2b15
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Score Torque' = ```
 			
-			    VAR _tq = SELECTEDVALUE(FactVehicle[Torque_Avg_Nm])
-			    VAR _totalValidos =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            NOT ISBLANK(FactVehicle[Torque_Avg_Nm])
-			        )
-			    VAR _menorOIgual =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            FactVehicle[Torque_Avg_Nm] <= _tq,
-			            NOT ISBLANK(FactVehicle[Torque_Avg_Nm])
-			        )
-			    RETURN
-			        IF(ISBLANK(_tq), BLANK(), DIVIDE(_menorOIgual, _totalValidos) * 100)
+			    IF(
+			        HASONEVALUE(FactVehicle[Vehicle_ID]),
+			        VAR _tq = SELECTEDVALUE(FactVehicle[Torque_Avg_Nm])
+			        VAR _validCount =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                NOT ISBLANK(FactVehicle[Torque_Avg_Nm])
+			            )
+			        VAR _lessOrEqual =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                FactVehicle[Torque_Avg_Nm] <= _tq,
+			                NOT ISBLANK(FactVehicle[Torque_Avg_Nm])
+			            )
+			        RETURN
+			            IF(ISBLANK(_tq), BLANK(), DIVIDE(_lessOrEqual, _validCount) * 100),
+			        AVERAGE(FactVehicle[Score Torque (Static)])
+			    )
 			```
+		formatString: 0.0
 		displayFolder: _SCORES
 		lineageTag: 8590f0fb-ef6c-4922-930e-70d4dca56b3f
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Score Price (inverted)' = ```
 			
-			    VAR _p = SELECTEDVALUE(FactVehicle[Price_Avg_USD])
-			    VAR _totalValidos =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            NOT ISBLANK(FactVehicle[Price_Avg_USD])
-			        )
-			    VAR _mayorOIgual =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            FactVehicle[Price_Avg_USD] >= _p,
-			            NOT ISBLANK(FactVehicle[Price_Avg_USD])
-			        )
-			    RETURN
-			        IF(ISBLANK(_p), BLANK(), DIVIDE(_mayorOIgual, _totalValidos) * 100)
+			    IF(
+			        HASONEVALUE(FactVehicle[Vehicle_ID]),
+			        VAR _p = SELECTEDVALUE(FactVehicle[Price_Avg_USD])
+			        VAR _validCount =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                NOT ISBLANK(FactVehicle[Price_Avg_USD])
+			            )
+			        VAR _greaterOrEqual =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                FactVehicle[Price_Avg_USD] >= _p,
+			                NOT ISBLANK(FactVehicle[Price_Avg_USD])
+			            )
+			        RETURN
+			            IF(ISBLANK(_p), BLANK(), DIVIDE(_greaterOrEqual, _validCount) * 100),
+			        AVERAGE(FactVehicle[Score Price Inverted (Static)])
+			    )
 			```
+		formatString: 0.0
 		displayFolder: _SCORES
 		lineageTag: 4b271672-ed58-49f4-9073-825965ee7b87
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Score Speed' = ```
 			
-			    VAR _v = SELECTEDVALUE(FactVehicle[Speed_KMH])
-			    VAR _totalValidos =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            NOT ISBLANK(FactVehicle[Speed_KMH])
-			        )
-			    VAR _menorOIgual =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            FactVehicle[Speed_KMH] <= _v,
-			            NOT ISBLANK(FactVehicle[Speed_KMH])
-			        )
-			    RETURN
-			        IF(ISBLANK(_v), BLANK(), DIVIDE(_menorOIgual, _totalValidos) * 100)
+			    IF(
+			        HASONEVALUE(FactVehicle[Vehicle_ID]),
+			        VAR _v = SELECTEDVALUE(FactVehicle[Speed_KMH])
+			        VAR _validCount =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                NOT ISBLANK(FactVehicle[Speed_KMH])
+			            )
+			        VAR _lessOrEqual =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                FactVehicle[Speed_KMH] <= _v,
+			                NOT ISBLANK(FactVehicle[Speed_KMH])
+			            )
+			        RETURN
+			            IF(ISBLANK(_v), BLANK(), DIVIDE(_lessOrEqual, _validCount) * 100),
+			        AVERAGE(FactVehicle[Score Speed (Static)])
+			    )
 			```
+		formatString: 0.0
 		displayFolder: _SCORES
 		lineageTag: 837078f0-e035-434a-9a2d-9426bd01e151
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Score HP' = ```
 			
-			    VAR _hp = SELECTEDVALUE(FactVehicle[HorsePower_Avg])
-			    VAR _totalValidos =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            NOT ISBLANK(FactVehicle[HorsePower_Avg])
-			        )
-			    VAR _menorOIgual =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            FactVehicle[HorsePower_Avg] <= _hp,
-			            NOT ISBLANK(FactVehicle[HorsePower_Avg])
-			        )
-			    RETURN
-			        IF(ISBLANK(_hp), BLANK(), DIVIDE(_menorOIgual, _totalValidos) * 100)
+			    IF(
+			        HASONEVALUE(FactVehicle[Vehicle_ID]),
+			        VAR _hp = SELECTEDVALUE(FactVehicle[HorsePower_Avg])
+			        VAR _validCount =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                NOT ISBLANK(FactVehicle[HorsePower_Avg])
+			            )
+			        VAR _lessOrEqual =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                FactVehicle[HorsePower_Avg] <= _hp,
+			                NOT ISBLANK(FactVehicle[HorsePower_Avg])
+			            )
+			        RETURN
+			            IF(ISBLANK(_hp), BLANK(), DIVIDE(_lessOrEqual, _validCount) * 100),
+			        AVERAGE(FactVehicle[Score HP (Static)])
+			    )
 			```
+		formatString: 0.0
 		displayFolder: _SCORES
 		lineageTag: 5dd85dfd-6a67-41fc-ad7e-7cdcd9379a32
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Score Acceleration' = ```
 			
-			    VAR _t = SELECTEDVALUE(FactVehicle[Acceleration_0_100_Sec])
-			    VAR _totalValidos =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])
-			        )
-			    VAR _mayorOIgual =
-			        CALCULATE(
-			            COUNTROWS(FactVehicle),
-			            ALLSELECTED(FactVehicle),
-			            FactVehicle[Acceleration_0_100_Sec] >= _t,
-			            NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])
-			        )
-			    RETURN
-			        IF(ISBLANK(_t), BLANK(), DIVIDE(_mayorOIgual, _totalValidos) * 100)
+			    IF(
+			        HASONEVALUE(FactVehicle[Vehicle_ID]),
+			        VAR _t = SELECTEDVALUE(FactVehicle[Acceleration_0_100_Sec])
+			        VAR _validCount =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])
+			            )
+			        VAR _greaterOrEqual =
+			            CALCULATE(
+			                COUNTROWS(FactVehicle),
+			                ALLSELECTED(FactVehicle),
+			                FactVehicle[Acceleration_0_100_Sec] >= _t,
+			                NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])
+			            )
+			        RETURN
+			            IF(ISBLANK(_t), BLANK(), DIVIDE(_greaterOrEqual, _validCount) * 100),
+			        AVERAGE(FactVehicle[Score Acceleration (Static)])
+			    )
 			```
+		formatString: 0.0
 		displayFolder: _SCORES
 		lineageTag: ac037663-eeb1-4c24-9a81-01bc1b7b81b5
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	measure 'Performance Index' = ```
 			
-			    AVERAGEX(
-			        FILTER(
-			            {[Score HP], [Score Speed], [Score Acceleration], [Score Torque]},
-			            NOT ISBLANK([Value])
-			        ),
-			        [Value]
+			    IF(
+			        HASONEVALUE(FactVehicle[Vehicle_ID]),
+			        VAR _sHP = [Score HP]
+			        VAR _sAcc = [Score Acceleration]
+			        VAR _sSpd = [Score Speed]
+			        VAR _sTrq = [Score Torque]
+			        VAR _validCount =
+			            IF(NOT ISBLANK(_sHP), 1, 0) +
+			            IF(NOT ISBLANK(_sAcc), 1, 0) +
+			            IF(NOT ISBLANK(_sSpd), 1, 0) +
+			            IF(NOT ISBLANK(_sTrq), 1, 0)
+			        VAR _wSum =
+			            IF(NOT ISBLANK(_sHP), 0.30, 0) +
+			            IF(NOT ISBLANK(_sAcc), 0.30, 0) +
+			            IF(NOT ISBLANK(_sSpd), 0.20, 0) +
+			            IF(NOT ISBLANK(_sTrq), 0.20, 0)
+			        VAR _weightedScore =
+			            COALESCE(_sHP, 0) * 0.30 +
+			            COALESCE(_sAcc, 0) * 0.30 +
+			            COALESCE(_sSpd, 0) * 0.20 +
+			            COALESCE(_sTrq, 0) * 0.20
+			        RETURN
+			            IF(_validCount < 3 || _wSum = 0, BLANK(), DIVIDE(_weightedScore, _wSum)),
+			        AVERAGE(FactVehicle[Performance Index (Static)])
 			    )
 			```
+		formatString: 0.0
 		displayFolder: _SCORES
 		lineageTag: a2259418-8104-4627-845b-05a81081761e
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Market Position' = ```
 			
 			    VAR _perf = [Performance Index]
-			    VAR _precio = [Score Price (Inverted)]
+			    VAR _price = [Score Price (inverted)]
 			    RETURN
 			        SWITCH(
 			            TRUE(),
-			            ISBLANK(_perf) || ISBLANK(_precio), "Datos insuficientes",
-			            _perf >= 50 && _precio >= 50, "Best Value",
-			            _perf >= 50 && _precio < 50,  "Premium Performance",
-			            _perf < 50  && _precio >= 50, "Budget",
+			            ISBLANK(_perf) || ISBLANK(_price), "Insufficient Data",
+			            _perf >= 50 && _price >= 50, "Best Value",
+			            _perf >= 50 && _price < 50,  "Premium Performance",
+			            _perf < 50  && _price >= 50, "Budget",
 			            "Overpriced"
 			        )
 			```
@@ -557,26 +567,259 @@ table _Measures
 		lineageTag: 53cb5dfc-0225-4343-bbb4-b09b41880578
 
 	measure 'Performance Index (AVG Market)' =
-			
-			AVERAGEX(
-			    ALLSELECTED(FactVehicle),
-			    [Performance Index]
+			CALCULATE(
+				AVERAGE(FactVehicle[Performance Index (Static)]),
+				REMOVEFILTERS(DimCompany),
+				REMOVEFILTERS(DimPriceSegment),
+				REMOVEFILTERS(DimFuel),
+				REMOVEFILTERS(FactVehicle[Company]),
+				REMOVEFILTERS(FactVehicle[Segment_ID]),
+				REMOVEFILTERS(FactVehicle[Fuel_Group]),
+				REMOVEFILTERS(FactVehicle[Car_Name]),
+				REMOVEFILTERS(FactVehicle[Vehicle Display Name])
 			)
+		formatString: 0.0
 		displayFolder: _SCORES
 		lineageTag: 1b136b96-e076-4314-9b8c-9296a05970ac
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure '''Debug - Vehicle ID Visto''' =
 			
 			CALCULATE(MAX(FactVehicle[Vehicle_ID]))
-		formatString: 0
+		formatString: #,0
 		displayFolder: _SCORES
 		lineageTag: 76d5bfa1-4517-4d55-b968-ffa40261f23d
 
+	measure 'HP per 10k USD' =
+			CALCULATE(
+				AVERAGEX(
+					FactVehicle,
+					DIVIDE(FactVehicle[HorsePower_Avg], DIVIDE(FactVehicle[Price_Avg_USD], 10000))
+				),
+				KEEPFILTERS(NOT ISBLANK(FactVehicle[Price_Avg_USD])),
+				KEEPFILTERS(FactVehicle[Price_Avg_USD] > 0)
+			)
+		formatString: #,##0.0
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc01
+
+	measure 'Price per HP' =
+			CALCULATE(
+				AVERAGEX(
+					FactVehicle,
+					DIVIDE(FactVehicle[Price_Avg_USD], FactVehicle[HorsePower_Avg])
+				),
+				KEEPFILTERS(NOT ISBLANK(FactVehicle[HorsePower_Avg])),
+				KEEPFILTERS(FactVehicle[HorsePower_Avg] > 0)
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc02
+
+	measure 'Specific Output (HP/L)' =
+			
+			AVERAGE(FactVehicle[Specific Output (HP per L)])
+		formatString: #,##0.0" HP/L"
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc03
+
+	measure 'EV Power Density (HP/kWh)' =
+			CALCULATE(
+				AVERAGEX(
+					FactVehicle,
+					DIVIDE(FactVehicle[HorsePower_Avg], FactVehicle[Battery_Capacity_KWh])
+				),
+				KEEPFILTERS(NOT ISBLANK(FactVehicle[Battery_Capacity_KWh])),
+				KEEPFILTERS(FactVehicle[Battery_Capacity_KWh] > 0)
+			)
+		formatString: #,##0.0" HP/kWh"
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc04
+
+	measure 'Electrified Share %' =
+			
+			VAR _elec =
+			    CALCULATE(
+			        [Vehicle Count],
+			        KEEPFILTERS(FactVehicle[Fuel_Group] IN { "Electric", "Plug-in Hybrid", "Hybrid", "Hydrogen" })
+			    )
+			RETURN
+			    DIVIDE(_elec, [Vehicle Count], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc05
+
+	measure 'Hedonic Fair Price' =
+			
+			AVERAGE(FactVehicle[Hedonic Fair Price (USD)])
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc06
+
+	measure 'Hedonic Price Gap %' =
+			
+			AVERAGE(FactVehicle[Hedonic Residual %])
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc07
+
+	measure 'Underpriced Gems Count' =
+			
+			CALCULATE(
+			    [Vehicle Count],
+			    KEEPFILTERS(FactVehicle[Hedonic Residual %] <= -0.15)
+			)
+		formatString: #,0
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc08
+
+	measure 'Overpriced Risk Count' =
+			
+			CALCULATE(
+			    [Vehicle Count],
+			    KEEPFILTERS(FactVehicle[Hedonic Residual %] >= 0.15)
+			)
+		formatString: #,0
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc09
+
+	measure 'Best Value Vehicles Count' =
+			
+			CALCULATE(
+			    [Vehicle Count],
+			    KEEPFILTERS(FactVehicle[Market Position (Static)] = "Best Value")
+			)
+		formatString: #,0
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc10
+
+	measure 'Best Value Share %' =
+			
+			DIVIDE([Best Value Vehicles Count], [Vehicle Count], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: _INTELLIGENCE
+		lineageTag: 91a2b3c4-d5e6-4789-8012-3456789abc11
+
+	measure 'Performance Index vs Market' =
+			VAR _curr = [Performance Index]
+			VAR _bench = [Performance Index (AVG Market)]
+			RETURN
+			IF(ISBLANK(_curr) || ISBLANK(_bench), BLANK(), _curr - _bench)
+		formatString: +0.0;-0.0;0.0
+		displayFolder: _SCORES
+		lineageTag: b101a201-3c01-4d01-9e01-100000000001
+
+	measure 'Value Index (AVG Market)' =
+			CALCULATE(
+				AVERAGE(FactVehicle[Value Index (Static)]),
+				REMOVEFILTERS(DimCompany),
+				REMOVEFILTERS(DimPriceSegment),
+				REMOVEFILTERS(DimFuel),
+				REMOVEFILTERS(FactVehicle[Company]),
+				REMOVEFILTERS(FactVehicle[Segment_ID]),
+				REMOVEFILTERS(FactVehicle[Fuel_Group]),
+				REMOVEFILTERS(FactVehicle[Car_Name]),
+				REMOVEFILTERS(FactVehicle[Vehicle Display Name])
+			)
+		formatString: 0.0
+		displayFolder: _SCORES
+		lineageTag: b101a201-3c01-4d01-9e01-100000000002
+
+	measure 'Value Index vs Market' =
+			VAR _curr = [Value Index]
+			VAR _bench = [Value Index (AVG Market)]
+			RETURN
+			IF(ISBLANK(_curr) || ISBLANK(_bench), BLANK(), _curr - _bench)
+		formatString: +0.0;-0.0;0.0
+		displayFolder: _SCORES
+		lineageTag: b101a201-3c01-4d01-9e01-100000000003
+
+	measure 'Median Price (All Market)' =
+			CALCULATE(
+				MEDIAN(FactVehicle[Price_Avg_USD]),
+				REMOVEFILTERS(DimCompany),
+				REMOVEFILTERS(DimPriceSegment),
+				REMOVEFILTERS(DimFuel),
+				REMOVEFILTERS(FactVehicle[Company]),
+				REMOVEFILTERS(FactVehicle[Segment_ID]),
+				REMOVEFILTERS(FactVehicle[Fuel_Group])
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: _PRICE
+		lineageTag: b101a201-3c01-4d01-9e01-100000000004
+
+	measure 'Median Price vs Market %' =
+			VAR _curr = [Median Price]
+			VAR _mkt = [Median Price (All Market)]
+			RETURN
+			DIVIDE(_curr - _mkt, _mkt)
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: _PRICE
+		lineageTag: b101a201-3c01-4d01-9e01-100000000005
+
+	measure 'Catalog Share %' =
+			VAR _selected = [Vehicle Count]
+			VAR _allMarket =
+				CALCULATE(
+					[Vehicle Count],
+					REMOVEFILTERS(DimCompany),
+					REMOVEFILTERS(DimPriceSegment),
+					REMOVEFILTERS(DimFuel),
+					REMOVEFILTERS(FactVehicle[Company]),
+					REMOVEFILTERS(FactVehicle[Segment_ID]),
+					REMOVEFILTERS(FactVehicle[Fuel_Group])
+				)
+			RETURN
+			DIVIDE(_selected, _allMarket, 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: _CORE
+		lineageTag: b101a201-3c01-4d01-9e01-100000000006
+
+	measure 'Pure EV Share %' =
+			VAR _total = [Vehicle Count]
+			VAR _ev =
+				CALCULATE(
+					[Vehicle Count],
+					KEEPFILTERS(FactVehicle[Fuel_Group] = "Electric")
+				)
+			RETURN
+			DIVIDE(_ev, _total, 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: _INTELLIGENCE
+		lineageTag: b101a201-3c01-4d01-9e01-100000000007
+
+	measure 'Cumulative Brand Share %' =
+			VAR _currentBrandVehicles = [Vehicle Count]
+			VAR _allBrandTotal =
+				CALCULATE(
+					[Vehicle Count],
+					ALLSELECTED(DimCompany)
+				)
+			VAR _cumulativeVehicles =
+				SUMX(
+					FILTER(
+						ALLSELECTED(DimCompany[Company]),
+						[Vehicle Count] >= _currentBrandVehicles
+					),
+					[Vehicle Count]
+				)
+			RETURN
+			DIVIDE(_cumulativeVehicles, _allBrandTotal, 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: _INTELLIGENCE
+		lineageTag: b101a201-3c01-4d01-9e01-100000000008
+
+	measure 'Missing Torque Vehicles' =
+			CALCULATE(
+				COUNTROWS(FactVehicle),
+				ISBLANK(FactVehicle[Torque_Avg_Nm])
+			)
+		formatString: #,0
+		displayFolder: _DATA_QUALITY
+		lineageTag: b101a201-3c01-4d01-9e01-100000000009
+
 	column Value
 		isHidden
-		formatString: 0
+		formatString: #,0
 		lineageTag: e5245da3-0b6b-4aa0-add6-c78fc1c2dc96
 		summarizeBy: sum
 		isNameInferred

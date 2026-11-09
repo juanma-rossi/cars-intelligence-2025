@@ -44,100 +44,100 @@ table FactVehicle
 	column Engine_Displacement_CC
 		dataType: double
 		lineageTag: dccf51b9-97d1-413c-9981-165ca1636983
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Engine_Displacement_CC
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Battery_Capacity_KWh
 		dataType: double
 		lineageTag: 40cf2aa9-180f-4f93-9e4d-540dd70d1552
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Battery_Capacity_KWh
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column HorsePower_Min
 		dataType: double
 		lineageTag: 24529417-8a52-468a-9aa7-644c4923ad13
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: HorsePower_Min
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column HorsePower_Max
 		dataType: double
 		lineageTag: 816a9634-2771-4fb9-a51a-63de4fdeb18a
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: HorsePower_Max
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column HorsePower_Avg
 		dataType: double
 		lineageTag: a8e58c96-ff8b-4fff-b5f3-1678b2c32c45
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: HorsePower_Avg
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Speed_KMH
 		dataType: double
 		lineageTag: 4b4624d1-a27b-4533-9828-8d5ee43702a0
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Speed_KMH
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Acceleration_0_100_Sec
 		dataType: double
 		lineageTag: 43eb5cf3-4e77-44ab-b704-1f4fd858b863
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Acceleration_0_100_Sec
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Price_Min_USD
 		dataType: double
 		lineageTag: a16e661c-fae1-4f68-a147-51dc56d035e4
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Price_Min_USD
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Price_Max_USD
 		dataType: double
 		lineageTag: 18b9a35d-8652-4cad-930e-920dd194771a
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Price_Max_USD
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Price_Avg_USD
 		dataType: double
 		lineageTag: a08228c2-de78-450c-9a2c-ddc2d2cfbe14
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Price_Avg_USD
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -178,10 +178,10 @@ table FactVehicle
 		dataType: int64
 		formatString: 0
 		lineageTag: 99274145-35c2-423b-ba52-4587d445e372
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: Seats_Count
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	column Seats_Layout
 		dataType: string
@@ -202,30 +202,30 @@ table FactVehicle
 	column Torque_Min_Nm
 		dataType: double
 		lineageTag: e43d3f9c-716a-415e-a97f-7e24a193e23a
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Torque_Min_Nm
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Torque_Max_Nm
 		dataType: double
 		lineageTag: 243f844a-d447-49c0-a700-6fde5557c1f6
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Torque_Max_Nm
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column Torque_Avg_Nm
 		dataType: double
 		lineageTag: 585acedf-c33c-4997-917f-83fc2439d645
-		summarizeBy: sum
+		summarizeBy: average
 		sourceColumn: Torque_Avg_Nm
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -267,12 +267,12 @@ table FactVehicle
 			
 			VAR _hp = FactVehicle[HorsePower_Avg]
 			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[HorsePower_Avg])))
-			VAR _menorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[HorsePower_Avg] <= _hp && NOT ISBLANK(FactVehicle[HorsePower_Avg])))
-			RETURN IF(ISBLANK(_hp), BLANK(), DIVIDE(_menorOIgual, _total) * 100)
+			VAR _lessOrEqual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[HorsePower_Avg] <= _hp && NOT ISBLANK(FactVehicle[HorsePower_Avg])))
+			RETURN IF(ISBLANK(_hp), BLANK(), DIVIDE(_lessOrEqual, _total) * 100)
 		lineageTag: 15061a47-f9fa-487c-b110-248fe495198c
-		summarizeBy: sum
+		summarizeBy: average
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -280,12 +280,12 @@ table FactVehicle
 			
 			VAR _v = FactVehicle[Speed_KMH]
 			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[Speed_KMH])))
-			VAR _menorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Speed_KMH] <= _v && NOT ISBLANK(FactVehicle[Speed_KMH])))
-			RETURN IF(ISBLANK(_v), BLANK(), DIVIDE(_menorOIgual, _total) * 100)
+			VAR _lessOrEqual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Speed_KMH] <= _v && NOT ISBLANK(FactVehicle[Speed_KMH])))
+			RETURN IF(ISBLANK(_v), BLANK(), DIVIDE(_lessOrEqual, _total) * 100)
 		lineageTag: b069b3f3-2c5f-4969-86d5-77a590a67288
-		summarizeBy: sum
+		summarizeBy: average
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -293,12 +293,12 @@ table FactVehicle
 			
 			VAR _t = FactVehicle[Acceleration_0_100_Sec]
 			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])))
-			VAR _mayorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Acceleration_0_100_Sec] >= _t && NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])))
-			RETURN IF(ISBLANK(_t), BLANK(), DIVIDE(_mayorOIgual, _total) * 100)
+			VAR _greaterOrEqual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Acceleration_0_100_Sec] >= _t && NOT ISBLANK(FactVehicle[Acceleration_0_100_Sec])))
+			RETURN IF(ISBLANK(_t), BLANK(), DIVIDE(_greaterOrEqual, _total) * 100)
 		lineageTag: 1b780cf4-b0c8-47d4-b97b-a0b2d930ec50
-		summarizeBy: sum
+		summarizeBy: average
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -306,12 +306,12 @@ table FactVehicle
 			
 			VAR _tq = FactVehicle[Torque_Avg_Nm]
 			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[Torque_Avg_Nm])))
-			VAR _menorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Torque_Avg_Nm] <= _tq && NOT ISBLANK(FactVehicle[Torque_Avg_Nm])))
-			RETURN IF(ISBLANK(_tq), BLANK(), DIVIDE(_menorOIgual, _total) * 100)
+			VAR _lessOrEqual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Torque_Avg_Nm] <= _tq && NOT ISBLANK(FactVehicle[Torque_Avg_Nm])))
+			RETURN IF(ISBLANK(_tq), BLANK(), DIVIDE(_lessOrEqual, _total) * 100)
 		lineageTag: 03533749-df2a-4599-abf4-a5af0951c507
-		summarizeBy: sum
+		summarizeBy: average
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -319,28 +319,42 @@ table FactVehicle
 			
 			VAR _p = FactVehicle[Price_Avg_USD]
 			VAR _total = COUNTROWS(FILTER(ALL(FactVehicle), NOT ISBLANK(FactVehicle[Price_Avg_USD])))
-			VAR _mayorOIgual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Price_Avg_USD] >= _p && NOT ISBLANK(FactVehicle[Price_Avg_USD])))
-			RETURN IF(ISBLANK(_p), BLANK(), DIVIDE(_mayorOIgual, _total) * 100)
+			VAR _greaterOrEqual = COUNTROWS(FILTER(ALL(FactVehicle), FactVehicle[Price_Avg_USD] >= _p && NOT ISBLANK(FactVehicle[Price_Avg_USD])))
+			RETURN IF(ISBLANK(_p), BLANK(), DIVIDE(_greaterOrEqual, _total) * 100)
 		lineageTag: 424f6dc9-f6b1-48e7-9f47-40ab478ad911
-		summarizeBy: sum
+		summarizeBy: average
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column 'Performance Index (Static)' =
 			
-			AVERAGEX(
-			    FILTER(
-			        {FactVehicle[Score HP (Static)], FactVehicle[Score Speed (Static)], FactVehicle[Score Acceleration (Static)], FactVehicle[Score Torque (Static)]},
-			        NOT ISBLANK([Value])
-			    ),
-			    [Value]
-			)
+			VAR _sHP = FactVehicle[Score HP (Static)]
+			VAR _sAcc = FactVehicle[Score Acceleration (Static)]
+			VAR _sSpd = FactVehicle[Score Speed (Static)]
+			VAR _sTrq = FactVehicle[Score Torque (Static)]
+			VAR _validCount =
+			    IF(NOT ISBLANK(_sHP), 1, 0) +
+			    IF(NOT ISBLANK(_sAcc), 1, 0) +
+			    IF(NOT ISBLANK(_sSpd), 1, 0) +
+			    IF(NOT ISBLANK(_sTrq), 1, 0)
+			VAR _wSum =
+			    IF(NOT ISBLANK(_sHP), 0.30, 0) +
+			    IF(NOT ISBLANK(_sAcc), 0.30, 0) +
+			    IF(NOT ISBLANK(_sSpd), 0.20, 0) +
+			    IF(NOT ISBLANK(_sTrq), 0.20, 0)
+			VAR _weightedScore =
+			    coalesce(_sHP, 0) * 0.30 +
+			    coalesce(_sAcc, 0) * 0.30 +
+			    coalesce(_sSpd, 0) * 0.20 +
+			    coalesce(_sTrq, 0) * 0.20
+			RETURN
+			IF(_validCount < 3 || _wSum = 0, BLANK(), DIVIDE(_weightedScore, _wSum))
 		lineageTag: 93dd25ef-0889-41d7-ad4a-eae495dd30c5
-		summarizeBy: sum
+		summarizeBy: average
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -349,31 +363,119 @@ table FactVehicle
 			IF(
 			    ISBLANK(FactVehicle[Performance Index (Static)]) || ISBLANK(FactVehicle[Score Price Inverted (Static)]),
 			    BLANK(),
-			    50 + (FactVehicle[Performance Index (Static)] - FactVehicle[Score Price Inverted (Static)]) / 2
+			    (FactVehicle[Performance Index (Static)] + FactVehicle[Score Price Inverted (Static)]) / 2
 			)
 		lineageTag: e829b76c-bb23-49ea-b8f8-e0a4e280472b
-		summarizeBy: sum
+		summarizeBy: average
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column 'Market Position (Static)' =
 			
 			VAR _perf = FactVehicle[Performance Index (Static)]
-			VAR _precio = FactVehicle[Score Price Inverted (Static)]
+			VAR _price = FactVehicle[Score Price Inverted (Static)]
 			RETURN
 			SWITCH(TRUE(),
-			    ISBLANK(_perf) || ISBLANK(_precio), "Datos insuficientes",
-			    _perf >= 50 && _precio >= 50, "Best Value",
-			    _perf >= 50 && _precio < 50, "Premium Performance",
-			    _perf < 50 && _precio >= 50, "Budget",
+			    ISBLANK(_perf) || ISBLANK(_price), "Insufficient Data",
+			    _perf >= 50 && _price >= 50, "Best Value",
+			    _perf >= 50 && _price < 50, "Premium Performance",
+			    _perf < 50 && _price >= 50, "Budget",
 			    "Overpriced"
 			)
 		lineageTag: 032211e5-5154-4463-87c8-ebe5da57774f
 		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
+
+	column Segment_ID =
+			
+			VAR _p = FactVehicle[Price_Avg_USD]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    ISBLANK(_p), BLANK(),
+			    _p < 30000, 1,
+			    _p < 60000, 2,
+			    _p < 120000, 3,
+			    _p < 300000, 4,
+			    5
+			)
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c18a9e2-7b31-4f88-9d1a-52e7c30b6a94
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+	column 'Vehicle Display Name' =
+			
+			FactVehicle[Company] & " " & FactVehicle[Car_Name] & " (" & FactVehicle[Engine_Raw] & ")"
+		dataType: string
+		lineageTag: 6e29b4f1-8c42-4d99-8a2b-73f8d40c5b82
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vehicle Scope Status' =
+			
+			VAR _car = UPPER(FactVehicle[Car_Name])
+			VAR _comp = UPPER(FactVehicle[Company])
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    CONTAINSSTRING(_car, "(TRUCK)") || CONTAINSSTRING(_car, "FIGHTER") || CONTAINSSTRING(_car, "CANTER") || CONTAINSSTRING(_car, "COASTER") || CONTAINSSTRING(_car, "BONGO TRUCK") || (_comp = "VOLVO" && (LEFT(_car, 8) = "VOLVO FH" || LEFT(_car, 8) = "VOLVO FM" || LEFT(_car, 8) = "VOLVO VN" || LEFT(_car, 9) = "VOLVO VHD" || LEFT(_car, 8) = "VOLVO FE")), "Commercial Truck / Bus",
+			    CONTAINSSTRING(_car, "CONCEPT") || CONTAINSSTRING(_car, "(RACE CAR)") || CONTAINSSTRING(_car, "787B") || CONTAINSSTRING(_car, "BOLIDE"), "Concept / Track-Only",
+			    "2025 Production Vehicle"
+			)
+		dataType: string
+		lineageTag: 8f31c5a2-9d53-4e10-9b3c-84a9e50d4c71
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Specific Output (HP per L)' =
+			
+			IF(
+			    ISBLANK(FactVehicle[HorsePower_Avg]) || ISBLANK(FactVehicle[Engine_Displacement_CC]) || FactVehicle[Engine_Displacement_CC] <= 0,
+			    BLANK(),
+			    DIVIDE(FactVehicle[HorsePower_Avg], FactVehicle[Engine_Displacement_CC] / 1000)
+			)
+		dataType: double
+		formatString: 0.0
+		lineageTag: 1a42d6b3-0e64-4f21-8c4d-95b0f60e3d62
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+	column 'Hedonic Fair Price (USD)' =
+			
+			IF(
+			    ISBLANK(FactVehicle[HorsePower_Avg]) || ISBLANK(FactVehicle[Speed_KMH]) || FactVehicle[HorsePower_Avg] <= 0,
+			    BLANK(),
+			    EXP(4.1775 + 0.9967 * LN(FactVehicle[HorsePower_Avg]) + 0.0053 * FactVehicle[Speed_KMH])
+			)
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 3b53e7c4-1f75-4a32-9d5e-06c1a70f2e53
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
+
+	column 'Hedonic Residual %' =
+			
+			IF(
+			    ISBLANK(FactVehicle[Price_Avg_USD]) || ISBLANK(FactVehicle[Hedonic Fair Price (USD)]) || FactVehicle[Hedonic Fair Price (USD)] <= 0,
+			    BLANK(),
+			    DIVIDE(FactVehicle[Price_Avg_USD] - FactVehicle[Hedonic Fair Price (USD)], FactVehicle[Hedonic Fair Price (USD)])
+			)
+		dataType: double
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 5d64f8d5-2a86-4b43-8e6f-17d2b80a1f44
+		summarizeBy: average
+
+		annotation SummarizationSetBy = User
 
 	partition FactVehicle = m
 		mode: import

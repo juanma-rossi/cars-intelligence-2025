@@ -1,4 +1,5 @@
 table qa_DuplicateDetails
+	isHidden
 	lineageTag: 2066e395-7b0b-424e-88a6-948e3a74ea3f
 
 	column Vehicle_NaturalKey
