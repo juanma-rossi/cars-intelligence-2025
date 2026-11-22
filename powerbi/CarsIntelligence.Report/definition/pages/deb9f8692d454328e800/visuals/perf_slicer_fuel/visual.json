@@ -329,24 +329,24 @@
                 }
               }
             },
-            "blur": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "85D"
+                }
+              }
+            },
+            "shadowBlur": {
               "expr": {
                 "Literal": {
                   "Value": "4D"
                 }
               }
             },
-            "distance": {
+            "shadowDistance": {
               "expr": {
                 "Literal": {
                   "Value": "1D"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "85D"
                 }
               }
             }

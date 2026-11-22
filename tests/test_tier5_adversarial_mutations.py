@@ -21,14 +21,16 @@ class TestTier5AdversarialMutations(unittest.TestCase):
     """Adversarial mutation test suite stress-testing verify_report.py sensitivity."""
 
     def setUp(self):
-        # Create an isolated temporary copy of powerbi/ and scripts/
+        # Create an isolated temporary copy of powerbi/, scripts/, and html/
         self.temp_dir = tempfile.mkdtemp(prefix="adversarial_test_")
         self.temp_powerbi = os.path.join(self.temp_dir, "powerbi")
         self.temp_scripts = os.path.join(self.temp_dir, "scripts")
-        
+        self.temp_html = os.path.join(self.temp_dir, "html")
+
         shutil.copytree(os.path.join(REPO_ROOT, "powerbi"), self.temp_powerbi)
         shutil.copytree(os.path.join(REPO_ROOT, "scripts"), self.temp_scripts)
-        
+        shutil.copytree(os.path.join(REPO_ROOT, "html"), self.temp_html)
+
         self.page2_dir = os.path.join(
             self.temp_powerbi,
             "CarsIntelligence.Report",
@@ -60,7 +62,8 @@ class TestTier5AdversarialMutations(unittest.TestCase):
         """Verify that an unmodified copy of the repository passes 100% with exit code 0."""
         res = self.run_temp_verifier()
         self.assertEqual(res.returncode, 0, f"Baseline verification must pass with exit code 0. Output:\n{res.stdout}\n{res.stderr}")
-        self.assertIn("26 PASSED | 0 FAILED | 0 WARNINGS", res.stdout)
+        self.assertIn("55 PASSED | 0 FAILED | 0 WARNINGS", res.stdout)
+        self.assertIn("[PASS] Home Portal Canvas Resolution", res.stdout)
         self.assertIn("[PASS] Performance Lab Canvas Resolution", res.stdout)
         self.assertIn("[PASS] Performance Lab Visual Count", res.stdout)
         self.assertIn("[PASS] Performance Lab Bounds Compliance", res.stdout)
@@ -70,6 +73,9 @@ class TestTier5AdversarialMutations(unittest.TestCase):
         self.assertIn("[PASS] Performance Lab TableEx Top N", res.stdout)
         self.assertIn("[PASS] Performance Lab Data Bindings", res.stdout)
         self.assertIn("[PASS] Performance Lab Zero SVG", res.stdout)
+        self.assertIn("[PASS] Value Intelligence Data Bindings", res.stdout)
+        self.assertIn("[PASS] Vehicle Explorer Data Bindings", res.stdout)
+        self.assertIn("[PASS] Landing Page Portal Integrity", res.stdout)
 
     # -------------------------------------------------------------------------
     # Mutation a: Off-canvas visual (x + width > 1920 or y + height > 1080)

@@ -21,6 +21,7 @@ from tests.test_tier1_features import TestTier1Features
 from tests.test_tier2_boundaries import TestTier2Boundaries
 from tests.test_tier3_combinations import TestTier3Combinations
 from tests.test_tier4_scenarios import TestTier4Scenarios
+from tests.test_pages_and_intro import TestPagesAndIntro
 
 FEATURE_MAP = {
     1: "Purge Legacy SVG Measures",
@@ -99,9 +100,10 @@ def run_suite(verbosity=1, tier_filter=None, feature_filter=None) -> int:
         2: ("Tier 2: Boundary & Corner Cases", TestTier2Boundaries),
         3: ("Tier 3: Cross-Feature Combinations (Pairwise)", TestTier3Combinations),
         4: ("Tier 4: Real-World Application Scenarios", TestTier4Scenarios),
+        5: ("Tier 5: Pages 00/03/04 & Introductory Portal", TestPagesAndIntro),
     }
 
-    selected_tiers = [tier_filter] if tier_filter else [1, 2, 3, 4]
+    selected_tiers = [tier_filter] if tier_filter else [1, 2, 3, 4, 5]
 
     tier_results = {}
 
@@ -195,7 +197,7 @@ def run_suite(verbosity=1, tier_filter=None, feature_filter=None) -> int:
 def main():
     parser = argparse.ArgumentParser(description="Cars Intelligence 2025 E2E Test Suite Runner")
     parser.add_argument("-v", "--verbose", action="store_true", help="Detailed verbose output")
-    parser.add_argument("--tier", type=int, choices=[1, 2, 3, 4], help="Run only specified tier")
+    parser.add_argument("--tier", type=int, choices=[1, 2, 3, 4, 5], help="Run only specified tier")
     parser.add_argument("--feature", type=int, choices=list(FEATURE_MAP.keys()), help="Filter by feature number (1-25)")
     args = parser.parse_args()
 

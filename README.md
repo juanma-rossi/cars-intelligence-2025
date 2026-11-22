@@ -10,18 +10,18 @@ Transformar el dataset crudo en una interfaz de **Automotive Market & Performanc
 
 ## Estado actual
 
-🟢 **Checkpoints 1–5 completos** · 🚧 Checkpoint 6 (Design System) en progreso
+🟢 **Checkpoints 1–8 completos** (`00_Home` en tema claro minimalista, 4 hojas analíticas Power BI `1920×1080`, Portal Web `html/index.html` y validación automatizada al 100%)
 
 | Checkpoint | Objetivo | Estado |
 |---|---|---|
 | 1 | Repositorio, estructura PBIP, staging inicial | ✅ |
 | 2 | Limpieza y normalización (Price, HP, Performance, Seats, Fuel, CC/Battery) | ✅ |
-| 3 | Modelo dimensional (`DimCompany`, `DimFuel`, `DimEngine` → `FactVehicle`) | ✅ |
+| 3 | Modelo dimensional (`DimCompany`, `DimFuel`, `DimEngine`, `DimPriceSegment` → `FactVehicle`) | ✅ |
 | 4 | Auditoría de calidad de datos (`qa_Cars_Audit`, detección de duplicados) | ✅ |
-| 5 | Scores de rendimiento y valor (`Performance Index`, `Value Index`, `Market Position`) | ✅ |
-| 6 | Design System: tema importado, canvas Full HD, 4 páginas con header/nav consistente, `01_MarketOverview` construida (KPIs, fuel mix, scatter precio/rendimiento, Top 5 Best Value) | 🚧 En progreso |
-| 7 | Componentes SVG dinámicos (KPI bars, score rings, nav hexagonal, badges) | ⬜ |
-| 8 | HTML/CSS: fichas de vehículo, comparación, narrativa | ⬜ |
+| 5 | Scores de rendimiento y valor (`Performance Index`, `Value Index`, `Market Position`) y regresión hedónica | ✅ |
+| 6 | Design System y 5 páginas Power BI (`00_Home` tema claro minimalista con `actionButton` + `01_MarketOverview`, `02_PerformanceLab`, `03_ValueIntelligence`, `04_VehicleExplorer` en Bento Grid `1920×1080`) | ✅ |
+| 7 | Verificación automatizada PBIR (`scripts/verify_report.py`, 55 checks) y suite E2E multi-página (`tests/`, 322 tests) | ✅ |
+| 8 | Portal introductorio HTML/CSS (`html/index.html`) estilo Obsidian Dark Luxury con fotos reales de autos, resumen BI y links a las 4 hojas | ✅ |
 | 9 | MCP: validación de modelo y flujo de desarrollo reproducible | ⬜ |
 | 10 | Performance, documentación final, screenshots, portafolio | ⬜ |
 
@@ -79,6 +79,23 @@ Durante el Checkpoint 4/5 se auditó la clave de identidad de vehículo (`Vehicl
 Fuente: [Cars Datasets (2025) — Kaggle](https://www.kaggle.com/datasets/abdulmalik1518/cars-datasets-2025)
 Columnas originales: Company, Car Name, Engine, CC/Battery Capacity, HorsePower, Total Speed, Performance (0-100 km/h), Price, Fuel Type, Seats, Torque.
 
+## Páginas del reporte y portal introductorio
+
+- **Portal Web Introductorio:** [`html/index.html`](html/index.html) — landing page en estética *Obsidian Dark Luxury* con resumen ejecutivo del BI completo, galería de vehículos reales con telemetría verificada, inspector de blueprint y enlaces directos a las 4 hojas analíticas.
+- **`00_Home`** (`a001c6b7a0e103746570`) — portada minimalista en tema claro (`#F8FAFC` / `#FFFFFF`) estilo web moderno con 12 visuales nativos (0 gráficos saturados), 4 KPIs globales, resumen de arquitectura y 4 tarjetas interactivas (`actionButton` con `PageNavigation`) + `pageNavigator` para viajar directamente a cada módulo.
+- **`01_MarketOverview`** (`3f7688a2cc2e12e049b0`) — panorama de catálogo, segmentos de precio, mix de motorización y posicionamiento general.
+- **`02_PerformanceLab`** (`deb9f8692d454328e800`) — dinámica de tren motriz, telemetría de pista (`HP`, `Speed`, `0-100`, `Torque`) y `Performance Index`.
+- **`03_ValueIntelligence`** (`c033c6b7a0e103746573`) — retorno por dólar (`HP per 10k USD`, `Price per HP`), modelo econométrico de `Hedonic Fair Price` y gemas subvaluadas (`459` vehículos con brecha $\le -15\%$).
+- **`04_VehicleExplorer`** (`d044c6b7a0e103746574`) — explorador granular por vehículo/marca, eficiencia (`Specific Output`, `EV Power Density`) y dossier maestro de especificaciones.
+
+## Verificación y pruebas automatizadas
+
+```bash
+python scripts/verify_report.py      # 55 checks de esquema PBIR, UTF-8 sin BOM, bindings DAX y colisiones
+python tests/run_e2e_tests.py        # Suite E2E de 5 niveles (309 tests)
+python -m pytest tests/ -q           # Suite completa con mutaciones adversariales (322 tests)
+```
+
 ## Próximos pasos
 
-Ver tabla de checkpoints arriba. Con `01_MarketOverview` construida, sigue completar `02_PerformanceLab`, `03_ValueIntelligence` y `04_VehicleExplorer` sobre el mismo esqueleto, y luego el nav hexagonal en SVG (Checkpoint 7) como primer componente de identidad visual propia.
+Abrir `powerbi/CarsIntelligence.pbip` en Power BI Desktop para revisión visual final y captura de screenshots (Checkpoints 9–10).

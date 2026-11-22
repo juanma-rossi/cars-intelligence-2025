@@ -164,6 +164,12 @@ def check_file_encodings(reporter, repo_root):
                         extra_flt = set(flt_obj.keys()) - allowed_flt
                         if extra_flt:
                             json_parse_failures.append(f"{rel}: unexpected filter[{f_idx}] property {sorted(extra_flt)}")
+                ds_items = parsed_json.get("visual", {}).get("visualContainerObjects", {}).get("dropShadow", [])
+                allowed_ds = {"show", "color", "position", "preset", "angle", "shadowDistance", "shadowBlur", "shadowSpread", "transparency"}
+                for ds_idx, ds_obj in enumerate(ds_items):
+                    extra_ds = set(ds_obj.get("properties", {}).keys()) - allowed_ds
+                    if extra_ds:
+                        json_parse_failures.append(f"{rel}: unexpected dropShadow[{ds_idx}] property {sorted(extra_ds)}")
         except UnicodeDecodeError:
             reporter.log_fail("JSON UTF-8 Valid", f"{rel} is not valid UTF-8")
         except json.JSONDecodeError as jde:
@@ -377,14 +383,34 @@ def check_market_overview_visuals(reporter, repo_root, model_tables):
         reporter.log_fail("Visual Data Bindings", f"Binding failures detected: {binding_errors}")
 
 
-def check_performance_lab_visuals(reporter, repo_root, model_tables):
-    """Validate 02_PerformanceLab visual types, canvas layout bounds, collisions, conditional formatting, and bindings."""
-    page_dir = os.path.join(repo_root, "powerbi/CarsIntelligence.Report/definition/pages/deb9f8692d454328e800")
+def _extract_bindings(obj, vdir, vtype, bindings_to_check):
+    """Recursively extract (vdir, vtype, btype, entity, property) references from visual JSON."""
+    if isinstance(obj, dict):
+        if "Measure" in obj and isinstance(obj["Measure"], dict):
+            m = obj["Measure"]
+            prop = m.get("Property")
+            ent = m.get("Expression", {}).get("SourceRef", {}).get("Entity")
+            bindings_to_check.append((vdir, vtype, "Measure", ent, prop))
+        elif "Column" in obj and isinstance(obj["Column"], dict):
+            c = obj["Column"]
+            prop = c.get("Property")
+            ent = c.get("Expression", {}).get("SourceRef", {}).get("Entity")
+            bindings_to_check.append((vdir, vtype, "Column", ent, prop))
+        for val in obj.values():
+            _extract_bindings(val, vdir, vtype, bindings_to_check)
+    elif isinstance(obj, list):
+        for item in obj:
+            _extract_bindings(item, vdir, vtype, bindings_to_check)
+
+
+def _validate_page_common(reporter, repo_root, model_tables, page_id, display_name, label_prefix, expected_count, expected_types):
+    """Shared validator for canvas 1920x1080, count, bounds, collisions, visual types, bindings, and zero SVG."""
+    page_dir = os.path.join(repo_root, f"powerbi/CarsIntelligence.Report/definition/pages/{page_id}")
     page_json_path = os.path.join(page_dir, "page.json")
 
     if not os.path.exists(page_json_path):
-        reporter.log_fail("Performance Lab Page", f"page.json not found for deb9f8692d454328e800 at {page_json_path}")
-        return
+        reporter.log_fail(f"{label_prefix} Page", f"page.json not found for {page_id} at {page_json_path}")
+        return None, []
 
     with open(page_json_path, "r", encoding="utf-8") as f:
         page_data = json.load(f)
@@ -392,37 +418,21 @@ def check_performance_lab_visuals(reporter, repo_root, model_tables):
     canvas_width = page_data.get("width")
     canvas_height = page_data.get("height")
     if canvas_width == 1920 and canvas_height == 1080:
-        reporter.log_pass("Performance Lab Canvas Resolution", "Page 02_PerformanceLab canvas is strictly 1920x1080")
+        reporter.log_pass(f"{label_prefix} Canvas Resolution", f"Page {display_name} canvas is strictly 1920x1080")
     else:
-        reporter.log_fail("Performance Lab Canvas Resolution", f"Canvas is {canvas_width}x{canvas_height}, expected 1920x1080")
+        reporter.log_fail(f"{label_prefix} Canvas Resolution", f"Canvas is {canvas_width}x{canvas_height}, expected 1920x1080")
 
     visual_files = glob.glob(os.path.join(page_dir, "visuals/*/visual.json"))
-    expected_count = 15
     if len(visual_files) == expected_count:
-        reporter.log_pass("Performance Lab Visual Count", f"Exactly {len(visual_files)} visual containers on 02_PerformanceLab")
+        reporter.log_pass(f"{label_prefix} Visual Count", f"Exactly {len(visual_files)} visual containers on {display_name}")
     else:
-        reporter.log_fail("Performance Lab Visual Count", f"Expected {expected_count} visual containers, found {len(visual_files)}")
-
-    expected_types = {
-        "cardVisual": 4,
-        "slicer": 4,
-        "gauge": 1,
-        "clusteredBarChart": 1,
-        "scatterChart": 1,
-        "pivotTable": 1,
-        "tableEx": 1,
-        "textbox": 1,
-        "pageNavigator": 1
-    }
+        reporter.log_fail(f"{label_prefix} Visual Count", f"Expected {expected_count} visual containers, found {len(visual_files)}")
 
     actual_types = {}
     bindings_to_check = []
-    has_pivot_gradient = False
-    pivot_gradient_target = None
-    has_table_top_n = False
-    table_top_n_target = None
     bounds_violations = []
     bounding_boxes = []
+    loaded_visuals = []
 
     for vf in visual_files:
         vdir = os.path.basename(os.path.dirname(vf))
@@ -431,88 +441,44 @@ def check_performance_lab_visuals(reporter, repo_root, model_tables):
         v = vdata.get("visual", {})
         vtype = v.get("visualType", "unknown")
         actual_types[vtype] = actual_types.get(vtype, 0) + 1
+        loaded_visuals.append((vdir, vtype, vdata))
 
-        # Check visual bounds
         pos = vdata.get("position", {})
         x, y = pos.get("x", 0), pos.get("y", 0)
         w, h = pos.get("width", 0), pos.get("height", 0)
         if x < 0 or y < 0 or (x + w > 1920) or (y + h > 1080):
             bounds_violations.append(f"Visual {vdir} [{vtype}]: pos=({x},{y}), size=({w}x{h}), bounds=({x+w},{y+h})")
         bounding_boxes.append((vdir, vtype, x, y, x + w, y + h))
-
-        # Check pivotTable linearGradient2
-        if vtype == "pivotTable":
-            v_str = json.dumps(vdata)
-            if "linearGradient2" in v_str and "FillRule" in v_str:
-                has_pivot_gradient = True
-                if "Average HP" in v_str:
-                    pivot_gradient_target = "Average HP"
-
-        # Check tableEx Top N
-        if vtype == "tableEx":
-            v_str = json.dumps(vdata)
-            if '"type": "TopN"' in v_str or '"type":"TopN"' in v_str:
-                has_table_top_n = True
-                if "Performance Index" in v_str:
-                    table_top_n_target = "Performance Index"
-
-        # Extract bindings
-        def extract_refs(obj):
-            if isinstance(obj, dict):
-                if "Measure" in obj and isinstance(obj["Measure"], dict):
-                    m = obj["Measure"]
-                    prop = m.get("Property")
-                    ent = m.get("Expression", {}).get("SourceRef", {}).get("Entity")
-                    bindings_to_check.append((vdir, vtype, "Measure", ent, prop))
-                elif "Column" in obj and isinstance(obj["Column"], dict):
-                    c = obj["Column"]
-                    prop = c.get("Property")
-                    ent = c.get("Expression", {}).get("SourceRef", {}).get("Entity")
-                    bindings_to_check.append((vdir, vtype, "Column", ent, prop))
-                for val in obj.values():
-                    extract_refs(val)
-            elif isinstance(obj, list):
-                for item in obj:
-                    extract_refs(item)
-
-        extract_refs(vdata)
+        _extract_bindings(vdata, vdir, vtype, bindings_to_check)
 
     if not bounds_violations:
-        reporter.log_pass("Performance Lab Bounds Compliance", "All 15 visual containers strictly lie within 1920x1080 bounds")
+        reporter.log_pass(f"{label_prefix} Bounds Compliance", f"All {len(visual_files)} visual containers strictly lie within 1920x1080 bounds")
     else:
-        reporter.log_fail("Performance Lab Bounds Compliance", f"Visual bounds violations: {bounds_violations}")
+        reporter.log_fail(f"{label_prefix} Bounds Compliance", f"Visual bounds violations: {bounds_violations}")
 
-    # Pairwise bounding-box collisions check
     collision_errors = []
     for i in range(len(bounding_boxes)):
         for j in range(i + 1, len(bounding_boxes)):
             b1 = bounding_boxes[i]
             b2 = bounding_boxes[j]
-            overlap = (b1[2] < b2[4] and b2[2] < b1[4] and b1[3] < b2[5] and b2[3] < b1[5])
-            if overlap:
+            if b1[2] < b2[4] and b2[2] < b1[4] and b1[3] < b2[5] and b2[3] < b1[5]:
                 collision_errors.append(f"Overlap between {b1[0]} [{b1[1]}] and {b2[0]} [{b2[1]}]")
 
     if not collision_errors:
-        reporter.log_pass("Performance Lab Zero Collisions", "Zero pairwise bounding-box collisions across all 15 visuals")
+        reporter.log_pass(f"{label_prefix} Zero Collisions", f"Zero pairwise bounding-box collisions across all {len(visual_files)} visuals")
     else:
-        reporter.log_fail("Performance Lab Zero Collisions", f"Collisions detected: {collision_errors}")
+        reporter.log_fail(f"{label_prefix} Zero Collisions", f"Collisions detected: {collision_errors}")
 
     if actual_types == expected_types:
-        reporter.log_pass("Performance Lab Visual Types", f"100% match of native visual types: {actual_types}")
+        reporter.log_pass(f"{label_prefix} Visual Types", f"100% match of native visual types: {actual_types}")
     else:
-        reporter.log_fail("Performance Lab Visual Types", f"Mismatch in visual types: expected {expected_types}, got {actual_types}")
+        reporter.log_fail(f"{label_prefix} Visual Types", f"Mismatch in visual types: expected {expected_types}, got {actual_types}")
 
-    if has_pivot_gradient and pivot_gradient_target == "Average HP":
-        reporter.log_pass("Performance Lab PivotTable Gradient", f"Native linearGradient2 conditional formatting confirmed on {pivot_gradient_target}")
-    else:
-        reporter.log_fail("Performance Lab PivotTable Gradient", "PivotTable lacks native linearGradient2 conditional formatting on Average HP")
+    return page_data, loaded_visuals, bindings_to_check, page_dir
 
-    if has_table_top_n and table_top_n_target == "Performance Index":
-        reporter.log_pass("Performance Lab TableEx Top N", f"Top N filter configuration confirmed targeting {table_top_n_target}")
-    else:
-        reporter.log_fail("Performance Lab TableEx Top N", "TableEx lacks Top N filter configuration targeting Performance Index")
 
-    # Validate bindings against semantic model
+def _finalize_bindings_and_svg(reporter, repo_root, model_tables, page_dir, display_name, label_prefix, bindings_to_check):
+    """Validate visual data bindings and zero SVG references for a page."""
     binding_errors = []
     for vdir, vtype, btype, ent, prop in bindings_to_check:
         if not ent or not prop:
@@ -526,28 +492,174 @@ def check_performance_lab_visuals(reporter, repo_root, model_tables):
                 binding_errors.append(f"Visual {vdir} [{vtype}]: Missing column '{prop}' in table '{ent}'")
 
     if not binding_errors:
-        reporter.log_pass("Performance Lab Data Bindings", f"100% of visual data bindings ({len(bindings_to_check)} refs) resolve in TMDL model with zero broken references")
+        reporter.log_pass(f"{label_prefix} Data Bindings", f"100% of visual data bindings ({len(bindings_to_check)} refs) resolve in TMDL model with zero broken references")
     else:
-        reporter.log_fail("Performance Lab Data Bindings", f"Binding failures detected: {binding_errors}")
+        reporter.log_fail(f"{label_prefix} Data Bindings", f"Binding failures detected: {binding_errors}")
 
-    # Check zero legacy SVG or data-URIs on Page 02
-    page2_files = glob.glob(os.path.join(page_dir, "**/*"), recursive=True)
+    page_files = glob.glob(os.path.join(page_dir, "**/*"), recursive=True)
     svg_keywords = ["<svg", "data:image/svg", "imagecontrol"]
-    page2_svg_hits = []
-    for f in page2_files:
+    page_svg_hits = []
+    for f in page_files:
         if os.path.isfile(f):
             try:
                 with open(f, "r", encoding="utf-8") as fh:
                     c = fh.read().lower()
                 for kw in svg_keywords:
                     if kw in c:
-                        page2_svg_hits.append(f"{os.path.relpath(f, repo_root)} matched '{kw}'")
+                        page_svg_hits.append(f"{os.path.relpath(f, repo_root)} matched '{kw}'")
             except Exception:
                 pass
-    if not page2_svg_hits:
-        reporter.log_pass("Performance Lab Zero SVG", "Zero legacy SVG measures, columns, data-URIs, or image controls on 02_PerformanceLab")
+    if not page_svg_hits:
+        reporter.log_pass(f"{label_prefix} Zero SVG", f"Zero legacy SVG measures, columns, data-URIs, or image controls on {display_name}")
     else:
-        reporter.log_fail("Performance Lab Zero SVG", f"Lingering SVG references on Page 02: {page2_svg_hits}")
+        reporter.log_fail(f"{label_prefix} Zero SVG", f"Lingering SVG references on {display_name}: {page_svg_hits}")
+
+
+def check_bento_page_visuals(reporter, repo_root, model_tables, page_id, display_name, label_prefix, pivot_target, top_n_target):
+    """Validate a 1920x1080 Automotive Studio Bento Grid page: bounds, collisions, types, gradient, Top N, bindings, and zero SVG."""
+    expected_types = {
+        "cardVisual": 4,
+        "slicer": 4,
+        "gauge": 1,
+        "clusteredBarChart": 1,
+        "scatterChart": 1,
+        "pivotTable": 1,
+        "tableEx": 1,
+        "textbox": 1,
+        "pageNavigator": 1
+    }
+    res = _validate_page_common(reporter, repo_root, model_tables, page_id, display_name, label_prefix, 15, expected_types)
+    if res[0] is None:
+        return
+    _, loaded_visuals, bindings_to_check, page_dir = res
+
+    has_pivot_gradient = False
+    pivot_gradient_target = None
+    has_table_top_n = False
+    table_top_n_target = None
+
+    for _, vtype, vdata in loaded_visuals:
+        if vtype == "pivotTable":
+            v_str = json.dumps(vdata)
+            if "linearGradient2" in v_str and "FillRule" in v_str:
+                has_pivot_gradient = True
+                if pivot_target in v_str:
+                    pivot_gradient_target = pivot_target
+
+        if vtype == "tableEx":
+            v_str = json.dumps(vdata)
+            if '"type": "TopN"' in v_str or '"type":"TopN"' in v_str:
+                has_table_top_n = True
+                if top_n_target in v_str:
+                    table_top_n_target = top_n_target
+
+    if has_pivot_gradient and pivot_gradient_target == pivot_target:
+        reporter.log_pass(f"{label_prefix} PivotTable Gradient", f"Native linearGradient2 conditional formatting confirmed on {pivot_gradient_target}")
+    else:
+        reporter.log_fail(f"{label_prefix} PivotTable Gradient", f"PivotTable lacks native linearGradient2 conditional formatting on {pivot_target}")
+
+    if has_table_top_n and table_top_n_target == top_n_target:
+        reporter.log_pass(f"{label_prefix} TableEx Top N", f"Top N filter configuration confirmed targeting {table_top_n_target}")
+    else:
+        reporter.log_fail(f"{label_prefix} TableEx Top N", f"TableEx lacks Top N filter configuration targeting {top_n_target}")
+
+    _finalize_bindings_and_svg(reporter, repo_root, model_tables, page_dir, display_name, label_prefix, bindings_to_check)
+
+
+def check_home_portal_visuals(reporter, repo_root, model_tables):
+    """Validate 00_Home Light Theme minimal web-style portal page: 12 visuals, 4 PageNavigation buttons, #F8FAFC canvas, bindings, zero SVG."""
+    expected_types = {
+        "textbox": 3,
+        "pageNavigator": 1,
+        "cardVisual": 4,
+        "actionButton": 4,
+    }
+    res = _validate_page_common(
+        reporter, repo_root, model_tables,
+        page_id="a001c6b7a0e103746570",
+        display_name="00_Home",
+        label_prefix="Home Portal",
+        expected_count=12,
+        expected_types=expected_types,
+    )
+    if res[0] is None:
+        return
+    page_data, loaded_visuals, bindings_to_check, page_dir = res
+
+    bg_val = page_data.get("objects", {}).get("background", [{}])[0].get("properties", {}).get("color", {}).get("solid", {}).get("color", {}).get("expr", {}).get("Literal", {}).get("Value")
+    if bg_val == "'#F8FAFC'":
+        reporter.log_pass("Home Portal Light Theme", "00_Home uses Light Enterprise canvas (#F8FAFC) matching the rest of the BI report")
+    else:
+        reporter.log_fail("Home Portal Light Theme", f"Expected #F8FAFC canvas on 00_Home, got {bg_val}")
+
+    expected_targets = {"3f7688a2cc2e12e049b0", "deb9f8692d454328e800", "c033c6b7a0e103746573", "d044c6b7a0e103746574"}
+    found_targets = set()
+    for _, vtype, vdata in loaded_visuals:
+        if vtype == "actionButton":
+            links = vdata.get("visual", {}).get("visualContainerObjects", {}).get("visualLink", [])
+            for lk in links:
+                props = lk.get("properties", {})
+                ltype = props.get("type", {}).get("expr", {}).get("Literal", {}).get("Value", "").strip("'")
+                nav_sec = props.get("navigationSection", {}).get("expr", {}).get("Literal", {}).get("Value", "").strip("'")
+                if ltype == "PageNavigation" and nav_sec:
+                    found_targets.add(nav_sec)
+
+    if found_targets == expected_targets:
+        reporter.log_pass("Home Portal Page Navigation Buttons", "All 4 actionButtons link via PageNavigation to Pages 01-04")
+    else:
+        reporter.log_fail("Home Portal Page Navigation Buttons", f"Expected targets {sorted(expected_targets)}, found {sorted(found_targets)}")
+
+    _finalize_bindings_and_svg(reporter, repo_root, model_tables, page_dir, "00_Home", "Home Portal", bindings_to_check)
+
+
+def check_performance_lab_visuals(reporter, repo_root, model_tables):
+    """Validate 02_PerformanceLab visual types, canvas layout bounds, collisions, conditional formatting, and bindings."""
+    check_bento_page_visuals(
+        reporter,
+        repo_root,
+        model_tables,
+        page_id="deb9f8692d454328e800",
+        display_name="02_PerformanceLab",
+        label_prefix="Performance Lab",
+        pivot_target="Average HP",
+        top_n_target="Performance Index",
+    )
+
+
+def check_landing_page(reporter, repo_root):
+    """Validate introductory landing page html/index.html encoding, links to all 4 BI pages, and real car images."""
+    landing_path = os.path.join(repo_root, "html", "index.html")
+    if not os.path.isfile(landing_path):
+        reporter.log_fail("Landing Page UTF-8 No-BOM", f"Landing page not found at {landing_path}")
+        reporter.log_fail("Landing Page Portal Integrity", "Landing page missing")
+        return
+
+    with open(landing_path, "rb") as fh:
+        raw = fh.read()
+    if raw.startswith(b"\xef\xbb\xbf"):
+        reporter.log_fail("Landing Page UTF-8 No-BOM", "BOM detected in html/index.html")
+    else:
+        try:
+            text = raw.decode("utf-8")
+            reporter.log_pass("Landing Page UTF-8 No-BOM", "html/index.html is strictly UTF-8 without BOM")
+        except UnicodeDecodeError as exc:
+            reporter.log_fail("Landing Page UTF-8 No-BOM", f"Invalid UTF-8 in html/index.html: {exc}")
+            return
+
+    required_tokens = [
+        "00_Home",
+        "01_MarketOverview",
+        "02_PerformanceLab",
+        "03_ValueIntelligence",
+        "04_VehicleExplorer",
+        "CarsIntelligence.pbip",
+        "<img",
+    ]
+    missing = [tok for tok in required_tokens if tok not in text]
+    if not missing:
+        reporter.log_pass("Landing Page Portal Integrity", "html/index.html includes real vehicle images and links to all 4 BI pages + PBIP")
+    else:
+        reporter.log_fail("Landing Page Portal Integrity", f"Missing required portal references in html/index.html: {missing}")
 
 
 def check_theme_compliance(reporter, repo_root):
@@ -612,9 +724,27 @@ def main():
     check_file_encodings(reporter, REPO_ROOT)
     check_svg_removals(reporter, REPO_ROOT)
     model_tables = load_semantic_model(REPO_ROOT)
+    check_home_portal_visuals(reporter, REPO_ROOT, model_tables)
     check_market_overview_visuals(reporter, REPO_ROOT, model_tables)
     check_performance_lab_visuals(reporter, REPO_ROOT, model_tables)
+    check_bento_page_visuals(
+        reporter, REPO_ROOT, model_tables,
+        page_id="c033c6b7a0e103746573",
+        display_name="03_ValueIntelligence",
+        label_prefix="Value Intelligence",
+        pivot_target="Value Index",
+        top_n_target="Value Index",
+    )
+    check_bento_page_visuals(
+        reporter, REPO_ROOT, model_tables,
+        page_id="d044c6b7a0e103746574",
+        display_name="04_VehicleExplorer",
+        label_prefix="Vehicle Explorer",
+        pivot_target="Performance Index",
+        top_n_target="Performance Index",
+    )
     check_theme_compliance(reporter, REPO_ROOT)
+    check_landing_page(reporter, REPO_ROOT)
     success = reporter.summary()
     sys.exit(0 if success else 1)
 

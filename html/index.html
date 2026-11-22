@@ -1,0 +1,1252 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cars Intelligence 2025 — Automotive Intelligence</title>
+  <meta name="description" content="Portal ejecutivo oscuro de Cars Intelligence 2025: 1.214 vehículos reales auditados, 62 medidas DAX, precios hedónicos y acceso interactivo a las 4 hojas del Power BI.">
+  <style>
+    :root {
+      --bg-pure: #000000;
+      --bg-canvas: #050608;
+      --bg-card: #0B0D12;
+      --bg-card-hover: #141720;
+      --border-hairline: rgba(255, 255, 255, 0.14);
+      --border-bright: rgba(255, 255, 255, 0.48);
+      --text-primary: #F8FAFC;
+      --text-secondary: #A1A1AA;
+      --text-muted: #71717A;
+      --accent-silver: #E4E4E7;
+      --accent-ice: #38BDF8;
+      --accent-emerald: #10B981;
+      --accent-amber: #F59E0B;
+      --accent-rose: #FB7185;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --font-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: Consolas, "Cascadia Code", monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-pure);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--bg-pure);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      background: #FFFFFF;
+      color: #000000;
+      padding: 10px 16px;
+      z-index: 1000;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .skip-link:focus { left: 0; }
+
+    /* Minimalist Luxury Top Navigation */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 28px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-group.right {
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 180ms ease;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus-visible,
+    .nav-link.active {
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .brand-wordmark {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-bright);
+      background: transparent;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 180ms ease;
+    }
+
+    .pill-btn:hover,
+    .pill-btn:focus-visible {
+      background: #FFFFFF;
+      color: #000000;
+      border-color: #FFFFFF;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .pill-btn.sm {
+      padding: 7px 16px;
+      font-size: 12px;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px 88px;
+    }
+
+    /* Hero Showroom Section — Obsidian Dark Luxury Aesthetic */
+    .hero {
+      padding: 58px 0 42px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-title {
+      margin: 0 auto 14px;
+      font-size: clamp(40px, 6.4vw, 80px);
+      font-weight: 400;
+      letter-spacing: -0.035em;
+      line-height: 1.04;
+      color: #ECEEF2;
+      max-width: 16ch;
+    }
+
+    .hero-subtitle {
+      margin: 0 auto 28px;
+      max-width: 58ch;
+      color: var(--text-secondary);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .hero-stage {
+      position: relative;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 36px;
+    }
+
+    .hero-rail-left {
+      position: absolute;
+      left: 0;
+      top: 16%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-rail-left::after {
+      content: "";
+      width: 1px;
+      height: 110px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    .hero-rail-right {
+      position: absolute;
+      right: 0;
+      top: 16%;
+      color: var(--text-muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-car-frame {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000000;
+      aspect-ratio: 21 / 9;
+    }
+
+    .hero-car-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 58%;
+      filter: contrast(1.08) brightness(0.86);
+      display: block;
+    }
+
+    .hero-car-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center, rgba(0,0,0,0) 42%, rgba(0,0,0,0.88) 100%),
+        linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 24%, rgba(0,0,0,0) 68%, rgba(0,0,0,0.96) 100%);
+      pointer-events: none;
+    }
+
+    .hero-kpi-bar {
+      margin: 26px auto 0;
+      max-width: 1040px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .hero-kpi {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      text-align: left;
+    }
+
+    .hero-kpi-val {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+
+    .hero-kpi-lbl {
+      margin-top: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    /* Section Headings */
+    .section {
+      padding: 64px 0 12px;
+    }
+
+    .section-centered {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .section-centered h2 {
+      margin: 0 0 10px;
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .section-centered p {
+      margin: 0 auto;
+      max-width: 60ch;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    /* 4-Page Numbered Luxury Cards (01 - 04) */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .module-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+    }
+
+    .module-card:hover,
+    .module-card:focus-visible {
+      background: var(--bg-card-hover);
+      border-color: var(--border-bright);
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    .module-num {
+      font-size: 26px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .module-card h3 {
+      margin: 4px 0 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .module-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .module-meta {
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--accent-silver);
+    }
+
+    /* Editorial BI Split + Banner */
+    .editorial-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .editorial-split h2 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .editorial-split p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .showroom-banner {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+      aspect-ratio: 21 / 8;
+      background: #08090C;
+      margin-bottom: 26px;
+    }
+
+    .showroom-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.08) brightness(0.75);
+      display: block;
+    }
+
+    .showroom-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.75) 100%);
+      pointer-events: none;
+    }
+
+    .showroom-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .formula-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .formula-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 18px;
+    }
+
+    .formula-card h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .formula-card p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .formula-code {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #050608;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #D4D4D8;
+      overflow-x: auto;
+    }
+
+    /* Interactive Blueprint Inspector */
+    .inspector-shell {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .tablist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-hairline);
+      background: #07080B;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-hairline);
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 160ms ease;
+    }
+
+    .tab-btn[aria-selected="true"] {
+      background: #FFFFFF;
+      color: #000000;
+      border-color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .tab-panel {
+      display: none;
+      padding: 26px;
+    }
+
+    .tab-panel.active {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+
+    .tab-panel h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .spec-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .spec-list li {
+      padding: 10px 14px;
+      background: #07080B;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .spec-list li strong { color: var(--text-primary); }
+    .spec-list code {
+      font-family: var(--font-mono);
+      color: #E4E4E7;
+      font-size: 12px;
+    }
+
+    .contract-panel {
+      background: #050608;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contract-panel h4 {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .contract-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12.5px;
+    }
+
+    .contract-row span { color: var(--text-secondary); }
+    .contract-row code { font-family: var(--font-mono); color: var(--text-primary); }
+
+    /* Find Your Exclusive Model — 3x2 Real Car Grid */
+    .fleet-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .car-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .car-card:hover {
+      border-color: var(--border-bright);
+      transform: translateY(-2px);
+    }
+
+    .car-img-wrap {
+      aspect-ratio: 16 / 10;
+      background: #07080B;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .car-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 320ms ease;
+    }
+
+    .car-card:hover .car-img-wrap img {
+      transform: scale(1.03);
+    }
+
+    .car-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .car-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .car-specs {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .car-footer {
+      margin-top: auto;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .car-price {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+    }
+
+    .car-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+    }
+
+    .car-tag.under { color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.35); }
+    .car-tag.over { color: var(--accent-rose); border-color: rgba(251, 113, 133, 0.35); }
+
+    /* Bottom Journey Banner */
+    .journey-banner {
+      margin-top: 56px;
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+      background: #08090C;
+      min-height: 250px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .journey-banner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.34;
+      filter: grayscale(40%) contrast(1.1);
+    }
+
+    .journey-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.9) 100%);
+    }
+
+    .journey-content {
+      position: relative;
+      z-index: 2;
+      max-width: 560px;
+    }
+
+    .journey-content h2 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 400;
+    }
+
+    .journey-content p {
+      margin: 0 0 22px;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .img-fallback-overlay {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-secondary);
+      background: #0B0D12;
+      font-size: 13px;
+    }
+
+    footer {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    footer a:hover { color: #FFFFFF; }
+
+    @media (max-width: 1024px) {
+      .module-grid { grid-template-columns: repeat(2, 1fr); }
+      .fleet-grid { grid-template-columns: repeat(2, 1fr); }
+      .formula-strip, .editorial-split, .tab-panel.active { grid-template-columns: 1fr; }
+      .hero-rail-left, .hero-rail-right { display: none; }
+      .hero-stage { padding: 0; }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner { grid-template-columns: 1fr; text-align: center; }
+      .nav-group, .nav-group.right { justify-content: center; flex-wrap: wrap; gap: 14px; }
+      .hero-kpi-bar, .module-grid, .fleet-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <nav class="nav-group" aria-label="Navegación principal izquierda">
+        <a class="nav-link active" href="#top">Home</a>
+        <a class="nav-link" href="#pages-hub">4 Hojas BI</a>
+        <a class="nav-link" href="#overview">Arquitectura</a>
+      </nav>
+
+      <a class="brand-wordmark" href="#top">Cars Intelligence</a>
+
+      <nav class="nav-group right" aria-label="Navegación principal derecha">
+        <a class="nav-link" href="#fleet">Catálogo 2025</a>
+        <a class="nav-link" href="#inspector">Blueprint</a>
+        <a class="pill-btn sm" href="../powerbi/CarsIntelligence.pbip">Abrir .pbip</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Showroom -->
+    <section id="top" class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="hero-title">Automotive Intelligence</h1>
+      <p class="hero-subtitle">
+        Explora 1.214 vehículos reales de 2025 en una experiencia BI de precisión: telemetría de pista, precios hedónicos y 62 medidas DAX distribuidas en 4 hojas analíticas + portada ejecutiva <code>00_Home</code>.
+      </p>
+      <div class="hero-actions">
+        <a class="pill-btn" href="#pages-hub">Explorar las 4 Hojas</a>
+        <a class="pill-btn" href="../powerbi/CarsIntelligence.pbip">Abrir Power BI Desktop</a>
+      </div>
+
+      <div class="hero-stage">
+        <div class="hero-rail-left" aria-hidden="true">01</div>
+        <div class="hero-rail-right" aria-hidden="true">Dataset Edition 2025</div>
+        <div class="hero-car-frame">
+          <img
+            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=85"
+            alt="Vehículo deportivo oscuro en estudio minimalista"
+            fetchpriority="high"
+            data-fallback-src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Ferrari_SF90_Stradale.jpg"
+            data-fallback-label="Cars Intelligence 2025 · Automotive Intelligence"
+          >
+        </div>
+      </div>
+
+      <div class="hero-kpi-bar" aria-label="KPIs globales del modelo">
+        <div class="hero-kpi">
+          <div class="hero-kpi-val">1,214</div>
+          <div class="hero-kpi-lbl">Vehículos Auditados</div>
+        </div>
+        <div class="hero-kpi">
+          <div class="hero-kpi-val">32</div>
+          <div class="hero-kpi-lbl">Marcas OEM Globales</div>
+        </div>
+        <div class="hero-kpi">
+          <div class="hero-kpi-val">15.8%</div>
+          <div class="hero-kpi-lbl">Flota Electrificada</div>
+        </div>
+        <div class="hero-kpi">
+          <div class="hero-kpi-val">459</div>
+          <div class="hero-kpi-lbl">Gemas Hedónicas (≤ -15%)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Hojas del BI (Estilo Tarjetas Numeradas 01-04) -->
+    <section id="pages-hub" class="section" aria-labelledby="hub-title">
+      <div class="section-centered">
+        <h2 id="hub-title">Las 4 Hojas Analíticas del BI</h2>
+        <p>
+          Cada módulo responde una dimensión clave del mercado automotriz sobre una grilla Full HD 1920×1080 100% nativa. Haz clic en cualquiera para inspeccionar su estructura o abrir su definición PBIP.
+        </p>
+      </div>
+
+      <div class="module-grid">
+        <a id="page-01" class="module-card" href="#inspector" data-select-tab="tab-01">
+          <span class="module-num">01</span>
+          <h3>Market Overview</h3>
+          <p>Composición del catálogo (1.214 modelos), precio mediano ($42,795), mix eléctrico y mapa de posicionamiento.</p>
+          <div class="module-meta">
+            <span>01_MarketOverview</span>
+            <span>Explorar →</span>
+          </div>
+        </a>
+
+        <a id="page-02" class="module-card" href="#inspector" data-select-tab="tab-02">
+          <span class="module-num">02</span>
+          <h3>Performance Lab</h3>
+          <p>Telemetría pura: potencia (306 HP), velocidad punta (217 km/h), sprint 0–100 km/h y Top 10 líderes de pista.</p>
+          <div class="module-meta">
+            <span>02_PerformanceLab</span>
+            <span>Explorar →</span>
+          </div>
+        </a>
+
+        <a id="page-03" class="module-card" href="#inspector" data-select-tab="tab-03">
+          <span class="module-num">03</span>
+          <h3>Value Intelligence</h3>
+          <p>Arbitraje por Precio Justo Hedónico, retorno HP/$10k USD, costo por caballo de fuerza y 459 gemas subvaluadas.</p>
+          <div class="module-meta">
+            <span>03_ValueIntelligence</span>
+            <span>Explorar →</span>
+          </div>
+        </a>
+
+        <a id="page-04" class="module-card" href="#inspector" data-select-tab="tab-04">
+          <span class="module-num">04</span>
+          <h3>Vehicle Explorer</h3>
+          <p>Consulta unitaria por vehículo y marca, eficiencia HP/L y HP/kWh, cuadrante multi-score y dossier de especificaciones.</p>
+          <div class="module-meta">
+            <span>04_VehicleExplorer</span>
+            <span>Explorar →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Detalle del BI Completo -->
+    <section id="overview" class="section" aria-labelledby="overview-title">
+      <div class="editorial-split">
+        <h2 id="overview-title">Arquitectura Integral de Business Intelligence Automotriz</h2>
+        <p>
+          <strong>Cars Intelligence 2025</strong> combina ingeniería de datos reproducible en Power BI (PBIP + TMDL) con un motor matemático de percentiles y regresión hedónica, sincronizado visualmente entre este portal y la portada interactiva <code>00_Home</code>.
+        </p>
+      </div>
+
+      <div class="showroom-banner">
+        <img
+          src="https://images.unsplash.com/photo-1704476944918-c1258561ebb9?auto=format&fit=crop&w=1400&q=85"
+          alt="Automóvil de lujo negro en estudio oscuro"
+          loading="lazy"
+          data-fallback-src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Bugatti_Chiron.jpg"
+          data-fallback-label="Cars Intelligence 2025 · Star Schema & Hedonic Engine"
+        >
+        <div class="showroom-overlay">
+          <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#A1A1AA;">PBIP + TMDL · 100% Native Visuals</span>
+          <div style="max-width:460px;">
+            <strong style="font-size:18px;font-weight:500;display:block;margin-bottom:4px;">De 1.218 registros crudos a 1.214 vehículos auditados</strong>
+            <span style="font-size:13px;color:#CBD5E1;">0 colisiones de clave natural · 62 medidas DAX centralizadas · Validación automatizada con 322 pruebas E2E.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula-strip">
+        <article class="formula-card">
+          <h4>Esquema en Estrella</h4>
+          <p>Única fuente <code>stg_Cars_Raw</code> conectada 1:* a <code>DimCompany</code>, <code>DimFuel</code>, <code>DimEngine</code> y <code>DimPriceSegment</code>.</p>
+          <code class="formula-code">FactVehicle (1,214) → 4 Dimensiones + _Measures</code>
+        </article>
+        <article class="formula-card">
+          <h4>Motor de Percentiles (0–100)</h4>
+          <p>Evaluación ponderada en contexto activo (<code>ALLSELECTED</code>) y columnas estáticas para rankings Top N nativos.</p>
+          <code class="formula-code">Perf = 0.30·HP + 0.30·Acc + 0.20·Vmax + 0.20·Nm</code>
+        </article>
+        <article class="formula-card">
+          <h4>Precio Justo Hedónico</h4>
+          <p>Regresión log-lineal que mide sobreprecio o descuento real respecto a las prestaciones entregadas.</p>
+          <code class="formula-code">FairUSD = exp(4.1775 + 0.9967·ln(HP) + 0.0053·Vmax)</code>
+        </article>
+      </div>
+    </section>
+
+    <!-- Inspector Interactivo de las Hojas -->
+    <section id="inspector" class="section" aria-labelledby="inspector-title">
+      <div class="section-centered">
+        <h2 id="inspector-title">Inspector Interactivo de Páginas PBIP</h2>
+        <p>Revisa los visuales, slicers y medidas DAX de la portada <code>00_Home</code> y de cada una de las 4 hojas analíticas.</p>
+      </div>
+
+      <div class="inspector-shell">
+        <div class="tablist" role="tablist" aria-label="Selector de hoja Power BI">
+          <button class="tab-btn" role="tab" id="tab-00" aria-selected="false" aria-controls="panel-00">00_Home</button>
+          <button class="tab-btn" role="tab" id="tab-01" aria-selected="true" aria-controls="panel-01">01_MarketOverview</button>
+          <button class="tab-btn" role="tab" id="tab-02" aria-selected="false" aria-controls="panel-02">02_PerformanceLab</button>
+          <button class="tab-btn" role="tab" id="tab-03" aria-selected="false" aria-controls="panel-03">03_ValueIntelligence</button>
+          <button class="tab-btn" role="tab" id="tab-04" aria-selected="false" aria-controls="panel-04">04_VehicleExplorer</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-00" aria-labelledby="tab-00">
+          <div>
+            <h3>00_Home — Portada Interactiva Obsidian</h3>
+            <p style="color:var(--text-secondary);font-size:14px;margin:0;">Réplica resumida y oscura de este portal dentro de Power BI Desktop con botones nativos de navegación hacia las 4 hojas.</p>
+            <ul class="spec-list">
+              <li><strong>4 KPI Cards Oscuros:</strong> <code>Vehicle Count</code>, <code>Company Count</code>, <code>Electrified Share %</code> y <code>Underpriced Gems Count</code>.</li>
+              <li><strong>4 Tarjetas Botón (<code>actionButton</code>):</strong> Acceso interactivo <code>PageNavigation</code> hacia <code>01_MarketOverview</code>, <code>02_PerformanceLab</code>, <code>03_ValueIntelligence</code> y <code>04_VehicleExplorer</code>.</li>
+              <li><strong>Resumen Ejecutivo + Telemetría Viva:</strong> Síntesis del proyecto BI + Gauge <code>Value Index</code> + Barras de <code>Vehicle Count</code> por segmento.</li>
+            </ul>
+          </div>
+          <aside class="contract-panel">
+            <h4>Definición PBIP · 00_Home</h4>
+            <div class="contract-row"><span>ID de Página</span><code>a001c6b7a0e103746570</code></div>
+            <div class="contract-row"><span>Tema Visual</span><code>Obsidian Dark (#050608)</code></div>
+            <div class="contract-row"><span>Visuales Nativos</span><code>14 contenedores (0 colisiones)</code></div>
+            <div class="contract-row"><span>Navegación</span><code>4 actionButtons + pageNavigator</code></div>
+            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/a001c6b7a0e103746570/page.json">Ver page.json</a>
+          </aside>
+        </div>
+
+        <div class="tab-panel active" role="tabpanel" id="panel-01" aria-labelledby="tab-01">
+          <div>
+            <h3>01_MarketOverview — Panorama de Mercado</h3>
+            <p style="color:var(--text-secondary);font-size:14px;margin:0;">Lectura macro de catálogo, dispersión de precios, penetración eléctrica y líderes Best Value.</p>
+            <ul class="spec-list">
+              <li><strong>KPIs:</strong> <code>Vehicle Count</code>, <code>Median Price</code>, <code>Electrified Share %</code>, <code>Best Value Share %</code>.</li>
+              <li><strong>Matriz &amp; Cockpit:</strong> Heatmap <code>Segment_Name</code> × <code>Fuel_Group</code>, Gauge <code>Performance Index</code> y barras <code>Average HP</code>.</li>
+              <li><strong>Dispersión &amp; Ranking:</strong> <code>Average Price</code> vs. <code>Average HP</code> (≤ $200k) y Top 10 <em>Best Value</em>.</li>
+            </ul>
+          </div>
+          <aside class="contract-panel">
+            <h4>Definición PBIP · Hoja 01</h4>
+            <div class="contract-row"><span>ID de Página</span><code>3f7688a2cc2e12e049b0</code></div>
+            <div class="contract-row"><span>Canvas</span><code>1920 × 1080 FitToPage</code></div>
+            <div class="contract-row"><span>Visuales Nativos</span><code>15 contenedores</code></div>
+            <div class="contract-row"><span>Filtros</span><code>Segment · Fuel · Brand · Scope</code></div>
+            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/3f7688a2cc2e12e049b0/page.json">Ver page.json</a>
+          </aside>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-02" aria-labelledby="tab-02">
+          <div>
+            <h3>02_PerformanceLab — Dinámica y Pista</h3>
+            <p style="color:var(--text-secondary);font-size:14px;margin:0;">Análisis de potencia, velocidad máxima, aceleración 0–100 km/h y par motor por tecnología.</p>
+            <ul class="spec-list">
+              <li><strong>KPIs:</strong> <code>Average HP</code>, <code>Average Speed</code>, <code>Average 0-100</code>, <code>Average Torque</code>.</li>
+              <li><strong>Matriz &amp; Cockpit:</strong> Pivot <code>Average HP</code> por tren motriz, Gauge <code>Performance Index</code> y barras sprint 0–100.</li>
+              <li><strong>Dinámica &amp; Ranking:</strong> Scatter <code>Average HP</code> vs. <code>Average Speed</code> y Top 10 <code>Performance Index</code>.</li>
+            </ul>
+          </div>
+          <aside class="contract-panel">
+            <h4>Definición PBIP · Hoja 02</h4>
+            <div class="contract-row"><span>ID de Página</span><code>deb9f8692d454328e800</code></div>
+            <div class="contract-row"><span>Canvas</span><code>1920 × 1080 FitToPage</code></div>
+            <div class="contract-row"><span>Visuales Nativos</span><code>15 contenedores</code></div>
+            <div class="contract-row"><span>Filtros</span><code>Segment · Fuel · Brand · Scope</code></div>
+            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/deb9f8692d454328e800/page.json">Ver page.json</a>
+          </aside>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-03" aria-labelledby="tab-03">
+          <div>
+            <h3>03_ValueIntelligence — Valor y Precio Hedónico</h3>
+            <p style="color:var(--text-secondary);font-size:14px;margin:0;">Detecta modelos subvaluados y maximiza el rendimiento obtenido por cada dólar invertido.</p>
+            <ul class="spec-list">
+              <li><strong>KPIs:</strong> <code>Value Index</code>, <code>HP per 10k USD</code>, <code>Price per HP</code>, <code>Underpriced Gems Count</code>.</li>
+              <li><strong>Matriz &amp; Cockpit:</strong> Pivot <code>Value Index</code>, Gauge vs. mercado y barras <code>HP per 10k USD</code> por segmento.</li>
+              <li><strong>Arbitraje &amp; Ranking:</strong> Scatter <code>Hedonic Fair Price</code> vs. <code>Average Price</code> y Top 10 con <code>Hedonic Price Gap %</code>.</li>
+            </ul>
+          </div>
+          <aside class="contract-panel">
+            <h4>Definición PBIP · Hoja 03</h4>
+            <div class="contract-row"><span>ID de Página</span><code>c033c6b7a0e103746573</code></div>
+            <div class="contract-row"><span>Canvas</span><code>1920 × 1080 FitToPage</code></div>
+            <div class="contract-row"><span>Visuales Nativos</span><code>15 contenedores</code></div>
+            <div class="contract-row"><span>Filtros</span><code>Segment · Fuel · Brand · Position</code></div>
+            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/c033c6b7a0e103746573/page.json">Ver page.json</a>
+          </aside>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-04" aria-labelledby="tab-04">
+          <div>
+            <h3>04_VehicleExplorer — Explorador y Dossier</h3>
+            <p style="color:var(--text-secondary);font-size:14px;margin:0;">Comparador unitario de marcas y modelos con densidad de potencia y auditoría de completitud.</p>
+            <ul class="spec-list">
+              <li><strong>KPIs:</strong> <code>Specific Output (HP/L)</code>, <code>EV Power Density (HP/kWh)</code>, <code>Electrified Share %</code>, <code>Data Quality Rate %</code>.</li>
+              <li><strong>Scorecard &amp; Cockpit:</strong> Pivot por marca (<code>DimCompany</code>), Gauge <code>Score Price (inverted)</code> y barras por combustible.</li>
+              <li><strong>Cuadrante &amp; Dossier:</strong> <code>Score Price (inverted)</code> vs. <code>Performance Index</code> y ficha completa Top 10.</li>
+            </ul>
+          </div>
+          <aside class="contract-panel">
+            <h4>Definición PBIP · Hoja 04</h4>
+            <div class="contract-row"><span>ID de Página</span><code>d044c6b7a0e103746574</code></div>
+            <div class="contract-row"><span>Canvas</span><code>1920 × 1080 FitToPage</code></div>
+            <div class="contract-row"><span>Visuales Nativos</span><code>15 contenedores</code></div>
+            <div class="contract-row"><span>Filtros</span><code>Brand · Vehicle · Fuel · Seats</code></div>
+            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/d044c6b7a0e103746574/page.json">Ver page.json</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catálogo de Autos Reales (Estilo Find Your Exclusive Brand) -->
+    <section id="fleet" class="section" aria-labelledby="fleet-title">
+      <div class="section-centered">
+        <h2 id="fleet-title">Modelos Reales del Catálogo 2025</h2>
+        <p>Seis vehículos reales extraídos directamente de <code>Cars Datasets 2025.csv</code> con su telemetría e índices calculados en el modelo DAX.</p>
+      </div>
+
+      <div class="fleet-grid">
+        <article class="car-card">
+          <div class="car-img-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/51/Tesla_Model_S_Plaid_Autofr%C3%BChling_Ulm_IMG_9321.jpg"
+              alt="Tesla Model S Plaid"
+              loading="lazy"
+              data-fallback-label="Tesla Model S Plaid · 1,020 HP"
+            >
+          </div>
+          <div class="car-body">
+            <h3 class="car-title">Tesla Model S Plaid</h3>
+            <p class="car-specs">Tri-Motor Electric · 1,020 HP · 322 km/h · 2.1 s (0–100) · Perf 98.4 · Value 56.8 · 94.0 HP/$10k.</p>
+            <div class="car-footer">
+              <span class="car-price">$108,490 USD</span>
+              <span class="car-tag under">Gap -69.7%</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card">
+          <div class="car-img-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/3/33/Chevrolet_Corvette_C8_IMG_8837.jpg"
+              alt="Chevrolet Corvette C8 Stingray"
+              loading="lazy"
+              data-fallback-label="Chevrolet Corvette Stingray · 495 HP"
+            >
+          </div>
+          <div class="car-body">
+            <h3 class="car-title">Chevrolet Corvette Stingray</h3>
+            <p class="car-specs">6.2L V8 Petrol · 495 HP · 312 km/h · 3.0 s (0–100) · Perf 89.4 · Value 58.5 · 75.1 HP/$10k.</p>
+            <div class="car-footer">
+              <span class="car-price">$65,895 USD</span>
+              <span class="car-tag under">Gap -60.1%</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card">
+          <div class="car-img-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/40/2021_BMW_M4_Competition_Coup%C3%A9.jpg"
+              alt="BMW M4 Competition Coupé"
+              loading="lazy"
+              data-fallback-label="BMW M4 Competition · 503 HP"
+            >
+          </div>
+          <div class="car-body">
+            <h3 class="car-title">BMW M4 Competition</h3>
+            <p class="car-specs">Twin-Turbo I6 · 503 HP · 290 km/h · 3.8 s (0–100) · Perf 87.1 · Value 54.5 · 62.1 HP/$10k.</p>
+            <div class="car-footer">
+              <span class="car-price">$81,000 USD</span>
+              <span class="car-tag under">Gap -45.8%</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card">
+          <div class="car-img-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Porsche_Taycan_Turbo_S_%2848769113873%29.jpg"
+              alt="Porsche Taycan Turbo S"
+              loading="lazy"
+              data-fallback-label="Porsche Taycan Turbo S · 750 HP"
+            >
+          </div>
+          <div class="car-body">
+            <h3 class="car-title">Porsche Taycan Turbo S</h3>
+            <p class="car-specs">Dual Electric Motors · 750 HP · 260 km/h · 2.8 s (0–100) · 1,050 Nm · Perf 95.1 · Value 52.3.</p>
+            <div class="car-footer">
+              <span class="car-price">$185,000 USD</span>
+              <span class="car-tag">Gap -2.5%</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card">
+          <div class="car-img-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Porsche_911_GT3_RS_3.jpg"
+              alt="Porsche 911 GT3 RS"
+              loading="lazy"
+              data-fallback-src="https://images.unsplash.com/photo-1597858520171-563a8e8b9925?auto=format&fit=crop&w=1000&q=80"
+              data-fallback-label="Porsche 911 GT3 RS · 518 HP"
+            >
+          </div>
+          <div class="car-body">
+            <h3 class="car-title">Porsche 911 GT3 RS</h3>
+            <p class="car-specs">4.0L Flat-6 NA · 518 HP · 296 km/h · 3.2 s (0–100) · Perf 85.2 · Track-focused aero icon.</p>
+            <div class="car-footer">
+              <span class="car-price">$241,300 USD</span>
+              <span class="car-tag over">Gap +51.9%</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="car-card">
+          <div class="car-img-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Ferrari_SF90_Stradale.jpg"
+              alt="Ferrari SF90 Stradale"
+              loading="lazy"
+              data-fallback-src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1000&q=80"
+              data-fallback-label="Ferrari SF90 Stradale · 963 HP"
+            >
+          </div>
+          <div class="car-body">
+            <h3 class="car-title">Ferrari SF90 Stradale</h3>
+            <p class="car-specs">V8 Plug-in Hybrid · 963 HP · 340 km/h · 2.5 s (0–100) · 800 Nm · Perf 97.3 · Flagship Halo.</p>
+            <div class="car-footer">
+              <span class="car-price">$1,100,000 USD</span>
+              <span class="car-tag over">Gap +195.6%</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Bottom Journey CTA -->
+    <section class="journey-banner" aria-labelledby="journey-title">
+      <img
+        src="https://images.unsplash.com/photo-1602200059552-39ed78989991?auto=format&fit=crop&w=1400&q=85"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+      >
+      <div class="journey-content">
+        <h2 id="journey-title">Inicia tu Recorrido en Power BI</h2>
+        <p>Abre el proyecto PBIP para interactuar con la portada oscura <code>00_Home</code> y navegar en un clic por las 4 hojas analíticas del catálogo 2025.</p>
+        <a class="pill-btn" href="../powerbi/CarsIntelligence.pbip">Abrir CarsIntelligence.pbip</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span><strong>Cars Intelligence 2025</strong> · Automotive Market &amp; Performance Intelligence</span>
+    <span>
+      <a href="#page-01" data-select-tab="tab-01">01 Market</a> ·
+      <a href="#page-02" data-select-tab="tab-02">02 Performance</a> ·
+      <a href="#page-03" data-select-tab="tab-03">03 Value</a> ·
+      <a href="#page-04" data-select-tab="tab-04">04 Explorer</a>
+    </span>
+  </footer>
+
+  <script>
+    (function () {
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
+
+      function activateTab(tabId) {
+        tabs.forEach((t) => {
+          t.setAttribute('aria-selected', t.id === tabId ? 'true' : 'false');
+        });
+        panels.forEach((p) => {
+          p.classList.toggle('active', p.getAttribute('aria-labelledby') === tabId);
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => activateTab(tab.id));
+      });
+
+      document.querySelectorAll('[data-select-tab]').forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const targetTab = trigger.getAttribute('data-select-tab');
+          if (targetTab) {
+            activateTab(targetTab);
+          }
+        });
+      });
+
+      document.querySelectorAll('img[data-fallback-label]').forEach((img) => {
+        img.addEventListener('error', function () {
+          const fallbackSrc = img.getAttribute('data-fallback-src');
+          if (fallbackSrc && img.src !== fallbackSrc) {
+            img.src = fallbackSrc;
+            return;
+          }
+          const parent = img.parentElement;
+          if (!parent || parent.querySelector('.img-fallback-overlay')) return;
+          img.style.display = 'none';
+          const fallback = document.createElement('div');
+          fallback.className = 'img-fallback-overlay';
+          fallback.textContent = img.getAttribute('data-fallback-label') || img.alt;
+          parent.insertBefore(fallback, img);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -12,8 +12,11 @@ from typing import Dict, List, Any, Optional, Tuple
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SEMANTIC_MODEL_DIR = os.path.join(REPO_ROOT, "powerbi", "CarsIntelligence.SemanticModel", "definition")
 REPORT_DEF_DIR = os.path.join(REPO_ROOT, "powerbi", "CarsIntelligence.Report", "definition")
+PAGE0_DIR = os.path.join(REPORT_DEF_DIR, "pages", "a001c6b7a0e103746570")
 PAGE1_DIR = os.path.join(REPORT_DEF_DIR, "pages", "3f7688a2cc2e12e049b0")
 PAGE2_DIR = os.path.join(REPORT_DEF_DIR, "pages", "deb9f8692d454328e800")
+PAGE3_DIR = os.path.join(REPORT_DEF_DIR, "pages", "c033c6b7a0e103746573")
+PAGE4_DIR = os.path.join(REPORT_DEF_DIR, "pages", "d044c6b7a0e103746574")
 PAGE_DIR = PAGE1_DIR
 THEME_PATH = os.path.join(
     REPO_ROOT,
@@ -170,6 +173,10 @@ def load_report_page(page_dir: str = PAGE1_DIR) -> ReportPage:
 
     return ReportPage(page_data, visuals)
 
+def load_home_page() -> ReportPage:
+    """Loads page 00_Home and all visual containers."""
+    return load_report_page(PAGE0_DIR)
+
 def load_market_overview_page() -> ReportPage:
     """Loads page 01_MarketOverview and all visual containers."""
     return load_report_page(PAGE1_DIR)
@@ -177,6 +184,14 @@ def load_market_overview_page() -> ReportPage:
 def load_performance_lab_page() -> ReportPage:
     """Loads page 02_PerformanceLab and all visual containers."""
     return load_report_page(PAGE2_DIR)
+
+def load_value_intelligence_page() -> ReportPage:
+    """Loads page 03_ValueIntelligence and all visual containers."""
+    return load_report_page(PAGE3_DIR)
+
+def load_vehicle_explorer_page() -> ReportPage:
+    """Loads page 04_VehicleExplorer and all visual containers."""
+    return load_report_page(PAGE4_DIR)
 
 def load_theme() -> Dict[str, Any]:
     """Loads the registered modern enterprise theme."""
