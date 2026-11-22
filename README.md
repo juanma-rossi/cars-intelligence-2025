@@ -14,7 +14,7 @@ Transformar el dataset crudo en una interfaz de **Automotive Market & Performanc
 
 ## Estado actual
 
-🟢 **Checkpoints 1–8 completos** (`00_Home` en tema claro minimalista, 4 hojas analíticas Power BI `1920×1080`, Portal Web `html/index.html` y validación automatizada al 100%)
+🟢 **Checkpoints 1–10 completos — Proyecto finalizado y listo para portafolio** (`00_Home` en tema claro minimalista, 4 hojas analíticas Power BI `1920×1080`, Portal Web `html/index.html`, validador MCP + CI GitHub Actions y documentación final)
 
 | Checkpoint | Objetivo | Estado |
 |---|---|---|
@@ -26,8 +26,8 @@ Transformar el dataset crudo en una interfaz de **Automotive Market & Performanc
 | 6 | Design System y 5 páginas Power BI (`00_Home` tema claro minimalista con `actionButton` + `01_MarketOverview`, `02_PerformanceLab`, `03_ValueIntelligence`, `04_VehicleExplorer` en Bento Grid `1920×1080`) | ✅ |
 | 7 | Verificación automatizada PBIR (`scripts/verify_report.py`, 55 checks) y suite E2E multi-página (`tests/`, 322 tests) | ✅ |
 | 8 | Portal introductorio HTML/CSS (`html/index.html`) estilo Obsidian Dark Luxury con fotos reales de autos, resumen BI y links a las 4 hojas | ✅ |
-| 9 | MCP: validación de modelo y flujo de desarrollo reproducible | ⬜ |
-| 10 | Performance, documentación final, screenshots, portafolio | ⬜ |
+| 9 | MCP: validación de modelo (`scripts/validate_model_mcp.py`) y flujo reproducible en CI ([`.github/workflows/pbip-validate.yml`](.github/workflows/pbip-validate.yml)) | ✅ |
+| 10 | Performance, documentación final, screenshots y ficha de portafolio | ✅ |
 
 ## Arquitectura de datos
 
@@ -77,6 +77,9 @@ Durante el Checkpoint 4/5 se auditó la clave de identidad de vehículo (`Vehicl
 
 - [`docs/design-system-premium.md`](docs/design-system-premium.md) — dirección visual del dashboard (paleta, tipografía, motion, inventario de componentes), grid de implementación en Full HD y convención de la página `_QA_DAX_Profiling`.
 - [`docs/dax-gotchas.md`](docs/dax-gotchas.md) — lecciones de DAX documentadas a partir de errores reales del proyecto (manejo de blancos, límites del Filtro básico sobre medidas, empates de `RANKX`, contexto de fila vs. agregación, y el criterio medida-vs-columna para ranking/Top N).
+- [`docs/mcp-validation-workflow.md`](docs/mcp-validation-workflow.md) — validación reproducible con Power BI Modeling MCP (`powerbi-modeling-mcp`), consultas DAX de auditoría y pipeline headless CI.
+- [`docs/performance-and-portfolio.md`](docs/performance-and-portfolio.md) — auditoría de performance VertiPaq/PBIR ($\le 20$ visuales por página), hallazgos del catálogo y ficha ejecutiva de portafolio.
+- [`.github/workflows/pbip-validate.yml`](.github/workflows/pbip-validate.yml) — workflow automático en GitHub Actions que ejecuta verificación PBIR, validador MCP/TMDL y la suite E2E en cada `push` y `pull_request`.
 
 ## Dataset
 
@@ -96,10 +99,18 @@ Columnas originales: Company, Car Name, Engine, CC/Battery Capacity, HorsePower,
 
 ```bash
 python scripts/verify_report.py      # 55 checks de esquema PBIR, UTF-8 sin BOM, bindings DAX y colisiones
+python scripts/validate_model_mcp.py # Validador MCP/CI de modelo TMDL, staging M, 71 medidas DAX y presupuesto visual
 python tests/run_e2e_tests.py        # Suite E2E de 5 niveles (309 tests)
 python -m pytest tests/ -q           # Suite completa con mutaciones adversariales (322 tests)
 ```
 
-## Próximos pasos
+## Galería / Portafolio
 
-Abrir `powerbi/CarsIntelligence.pbip` en Power BI Desktop para revisión visual final y captura de screenshots (Checkpoints 9–10).
+| Módulos Analíticos y Arquitectura | Showroom de Modelos Reales (2025) |
+|---|---|
+| <img src="docs/assets/html-modules-preview.png" alt="Las 4 Hojas Analíticas y Arquitectura BI" width="420" /> | <img src="docs/assets/html-gallery-preview.png" alt="Modelos Reales del Catálogo 2025" width="420" /> |
+
+## Portafolio y uso
+
+- **Explorar sin licencia de Power BI**: abre [`html/index.html`](html/index.html) en tu navegador para recorrer el resumen ejecutivo, las métricas globales, las tarjetas de vehículos reales y el blueprint técnico de las 4 hojas analíticas.
+- **Explorar en Power BI Desktop**: abre [`powerbi/CarsIntelligence.pbip`](powerbi/CarsIntelligence.pbip) desde `00_Home` y viaja por `01_MarketOverview`, `02_PerformanceLab`, `03_ValueIntelligence` y `04_VehicleExplorer` aplicando los segmentadores interactivos de segmento, motorización, marca y alcance.
