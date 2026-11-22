@@ -180,17 +180,6 @@
             "mode": "Dropdown"
           }
         ],
-        "general": [
-          {
-            "outlineColor": {
-              "solid": {
-                "color": "#CBD5E1"
-              }
-            },
-            "outlineWeight": 1,
-            "orientation": "vertical"
-          }
-        ],
         "header": [
           {
             "show": true,
@@ -222,12 +211,6 @@
             },
             "textSize": 9,
             "fontFamily": "'Segoe UI Semibold', wf_segoe-ui_semibold, sans-serif"
-          }
-        ],
-        "selection": [
-          {
-            "singleSelect": false,
-            "selectAllCheckboxEnabled": true
           }
         ]
       }

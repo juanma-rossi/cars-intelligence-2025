@@ -4,7 +4,7 @@
   "position": {
     "x": 708,
     "y": 74,
-    "z": 10000,
+    "z": 12500,
     "height": 60,
     "width": 235,
     "tabOrder": 4000
@@ -57,44 +57,6 @@
                   "Value": "1D"
                 }
               }
-            },
-            "outlineColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#CBD5E1'"
-                    }
-                  }
-                }
-              }
-            },
-            "outlineWeight": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "selection": [
-        {
-          "properties": {
-            "singleSelect": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "selectAllCheckboxEnabled": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
             }
           }
         }
@@ -142,48 +104,6 @@
               "expr": {
                 "Literal": {
                   "Value": "8D"
-                }
-              }
-            },
-            "fontFamily": {
-              "expr": {
-                "Literal": {
-                  "Value": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, sans-serif'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "items": [
-        {
-          "properties": {
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#0F172A'"
-                    }
-                  }
-                }
-              }
-            },
-            "background": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#F8FAFC'"
-                    }
-                  }
-                }
-              }
-            },
-            "textSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "9D"
                 }
               }
             },

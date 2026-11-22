@@ -4,6 +4,10 @@ Proyecto de inteligencia de mercado y rendimiento automotriz, construido como ex
 
 **Stack:** Power BI · DAX · SVG · HTML/CSS · MCP · GitHub
 
+<p align="center">
+  <img src="docs/assets/html-portal-preview.png" alt="Cars Intelligence 2025 — Interactive HTML Portal" width="640" />
+</p>
+
 ## Objetivo
 
 Transformar el dataset crudo en una interfaz de **Automotive Market & Performance Intelligence**: no un catálogo de autos, sino una herramienta para explorar precio, prestaciones, motorización y posicionamiento relativo de cada vehículo frente al mercado.
