@@ -30,5 +30,247 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_bar_powertrain",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_kpi_electrified",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_kpi_ev_density",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_kpi_quality",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_kpi_specific_output",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_scatter_quadrant",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_slicer_seats",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_slicer_vehicle",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_brand",
+      "target": "exp_table_dossier",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_bar_powertrain",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_kpi_electrified",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_kpi_ev_density",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_kpi_quality",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_kpi_specific_output",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_scatter_quadrant",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_slicer_seats",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_slicer_vehicle",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_fuel",
+      "target": "exp_table_dossier",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_bar_powertrain",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_kpi_electrified",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_kpi_ev_density",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_kpi_quality",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_kpi_specific_output",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_scatter_quadrant",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_slicer_vehicle",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_seats",
+      "target": "exp_table_dossier",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_bar_powertrain",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_kpi_electrified",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_kpi_ev_density",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_kpi_quality",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_kpi_specific_output",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_scatter_quadrant",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_slicer_seats",
+      "type": "DataFilter"
+    },
+    {
+      "source": "exp_slicer_vehicle",
+      "target": "exp_table_dossier",
+      "type": "DataFilter"
+    }
+  ]
 }

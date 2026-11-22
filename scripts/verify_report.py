@@ -74,6 +74,19 @@ class VerificationReporter:
         return self.failures == 0
 
 
+def _find_invalid_subquery_entity_refs(node, in_subquery=False):
+    """Return True if any SourceRef nested under a Subquery uses Entity instead of Source."""
+    if isinstance(node, dict):
+        next_sub = in_subquery or ("Subquery" in node)
+        if next_sub and "SourceRef" in node and isinstance(node["SourceRef"], dict):
+            if "Entity" in node["SourceRef"]:
+                return True
+        return any(_find_invalid_subquery_entity_refs(v, next_sub) for v in node.values())
+    if isinstance(node, list):
+        return any(_find_invalid_subquery_entity_refs(item, in_subquery) for item in node)
+    return False
+
+
 def check_file_encodings(reporter, repo_root):
     """Validate UTF-8 without BOM, indentation rules, and JSON syntax."""
     tmdl_pattern = os.path.join(repo_root, "powerbi/**/*.tmdl")
@@ -170,6 +183,8 @@ def check_file_encodings(reporter, repo_root):
                     extra_ds = set(ds_obj.get("properties", {}).keys()) - allowed_ds
                     if extra_ds:
                         json_parse_failures.append(f"{rel}: unexpected dropShadow[{ds_idx}] property {sorted(extra_ds)}")
+                if _find_invalid_subquery_entity_refs(parsed_json):
+                    json_parse_failures.append(f"{rel}: Subquery expression contains illegal SourceRef.Entity instead of Source")
         except UnicodeDecodeError:
             reporter.log_fail("JSON UTF-8 Valid", f"{rel} is not valid UTF-8")
         except json.JSONDecodeError as jde:

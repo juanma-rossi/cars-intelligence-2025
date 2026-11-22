@@ -641,6 +641,7 @@
     "filters": [
       {
         "name": "Filter_Top10_ValueIndex",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -685,13 +686,18 @@
                       {
                         "Direction": 2,
                         "Expression": {
-                          "Measure": {
+                          "Aggregation": {
                             "Expression": {
-                              "SourceRef": {
-                                "Entity": "_Measures"
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "Value Index (Static)"
                               }
                             },
-                            "Property": "Value Index"
+                            "Function": 1
                           }
                         }
                       }

@@ -671,6 +671,7 @@
     "filters": [
       {
         "name": "Filter_Top10_ExplorerPerf",
+        "ordinal": 0,
         "field": {
           "Column": {
             "Expression": {
@@ -678,7 +679,7 @@
                 "Entity": "FactVehicle"
               }
             },
-            "Property": "Car_Name"
+            "Property": "Vehicle Display Name"
           }
         },
         "type": "TopN",
@@ -706,7 +707,7 @@
                               "Source": "f"
                             }
                           },
-                          "Property": "Car_Name"
+                          "Property": "Vehicle Display Name"
                         },
                         "Name": "field"
                       }
@@ -715,13 +716,18 @@
                       {
                         "Direction": 2,
                         "Expression": {
-                          "Measure": {
+                          "Aggregation": {
                             "Expression": {
-                              "SourceRef": {
-                                "Entity": "_Measures"
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "Performance Index (Static)"
                               }
                             },
-                            "Property": "Performance Index"
+                            "Function": 1
                           }
                         }
                       }
@@ -750,7 +756,7 @@
                             "Source": "f"
                           }
                         },
-                        "Property": "Car_Name"
+                        "Property": "Vehicle Display Name"
                       }
                     }
                   ],

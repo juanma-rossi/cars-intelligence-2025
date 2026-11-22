@@ -30,5 +30,247 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "val_slicer_brand",
+      "target": "val_bar_roi",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_kpi_hp_per_10k",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_kpi_price_per_hp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_kpi_underpriced_gems",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_kpi_value_index",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_scatter_hedonic",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_slicer_position",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_slicer_segment",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_brand",
+      "target": "val_table_leaders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_bar_roi",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_kpi_hp_per_10k",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_kpi_price_per_hp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_kpi_underpriced_gems",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_kpi_value_index",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_scatter_hedonic",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_slicer_position",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_slicer_segment",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_fuel",
+      "target": "val_table_leaders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_bar_roi",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_kpi_hp_per_10k",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_kpi_price_per_hp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_kpi_underpriced_gems",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_kpi_value_index",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_scatter_hedonic",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_slicer_segment",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_position",
+      "target": "val_table_leaders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_bar_roi",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_kpi_hp_per_10k",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_kpi_price_per_hp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_kpi_underpriced_gems",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_kpi_value_index",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_scatter_hedonic",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_slicer_position",
+      "type": "DataFilter"
+    },
+    {
+      "source": "val_slicer_segment",
+      "target": "val_table_leaders",
+      "type": "DataFilter"
+    }
+  ]
 }

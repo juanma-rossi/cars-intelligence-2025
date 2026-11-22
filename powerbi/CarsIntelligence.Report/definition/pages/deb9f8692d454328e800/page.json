@@ -30,5 +30,247 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_bar_sprint",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_kpi_accel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_kpi_hp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_kpi_speed",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_kpi_torque",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_scatter_dynamics",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_slicer_scope",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_slicer_segment",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_brand",
+      "target": "perf_table_leaders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_bar_sprint",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_kpi_accel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_kpi_hp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_kpi_speed",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_kpi_torque",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_scatter_dynamics",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_slicer_scope",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_slicer_segment",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_fuel",
+      "target": "perf_table_leaders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_bar_sprint",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_kpi_accel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_kpi_hp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_kpi_speed",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_kpi_torque",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_scatter_dynamics",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_slicer_segment",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_scope",
+      "target": "perf_table_leaders",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_bar_sprint",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_gauge_cockpit",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_kpi_accel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_kpi_hp",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_kpi_speed",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_kpi_torque",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_pivot_matrix",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_scatter_dynamics",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_slicer_brand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_slicer_fuel",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_slicer_scope",
+      "type": "DataFilter"
+    },
+    {
+      "source": "perf_slicer_segment",
+      "target": "perf_table_leaders",
+      "type": "DataFilter"
+    }
+  ]
 }

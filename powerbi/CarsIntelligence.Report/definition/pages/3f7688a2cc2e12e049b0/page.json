@@ -30,5 +30,247 @@
         }
       }
     ]
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "401ea508097183644a8e",
+      "target": "0e40087896146b7ba3c3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "23f0ba32400217a4ec46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "3112cd91aa0cb63e3349",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "371f8a9d6900c3d0710c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "42bbf04369ccacc09a0c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "594d1045a87c00059ea9",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "74c894b7e23d1008c953",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "753e1eb8102003d4c297",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "a393c997415e16d9a466",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "center_performance_gauge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "center_segment_hp_bars",
+      "type": "DataFilter"
+    },
+    {
+      "source": "401ea508097183644a8e",
+      "target": "f5a31f46825807e5bb60",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "0e40087896146b7ba3c3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "23f0ba32400217a4ec46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "3112cd91aa0cb63e3349",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "371f8a9d6900c3d0710c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "401ea508097183644a8e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "594d1045a87c00059ea9",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "74c894b7e23d1008c953",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "753e1eb8102003d4c297",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "a393c997415e16d9a466",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "center_performance_gauge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "center_segment_hp_bars",
+      "type": "DataFilter"
+    },
+    {
+      "source": "42bbf04369ccacc09a0c",
+      "target": "f5a31f46825807e5bb60",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "0e40087896146b7ba3c3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "23f0ba32400217a4ec46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "3112cd91aa0cb63e3349",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "371f8a9d6900c3d0710c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "401ea508097183644a8e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "42bbf04369ccacc09a0c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "594d1045a87c00059ea9",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "753e1eb8102003d4c297",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "a393c997415e16d9a466",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "center_performance_gauge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "center_segment_hp_bars",
+      "type": "DataFilter"
+    },
+    {
+      "source": "74c894b7e23d1008c953",
+      "target": "f5a31f46825807e5bb60",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "0e40087896146b7ba3c3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "23f0ba32400217a4ec46",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "3112cd91aa0cb63e3349",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "371f8a9d6900c3d0710c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "401ea508097183644a8e",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "42bbf04369ccacc09a0c",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "594d1045a87c00059ea9",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "74c894b7e23d1008c953",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "a393c997415e16d9a466",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "center_performance_gauge",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "center_segment_hp_bars",
+      "type": "DataFilter"
+    },
+    {
+      "source": "753e1eb8102003d4c297",
+      "target": "f5a31f46825807e5bb60",
+      "type": "DataFilter"
+    }
+  ]
 }
