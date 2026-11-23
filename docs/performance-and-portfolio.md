@@ -38,7 +38,7 @@ Microsoft recomienda no superar **20 contenedores visuales por página** para ma
 
 ### Resumen ejecutivo
 **Cars Intelligence 2025** convierte un dataset heterogéneo de especificaciones automotrices (precios con rangos y monedas mixtas, desplazamientos con errores de columna y duplicados exactos) en una plataforma bicanal de inteligencia de mercado:
-1. **Portal Web interactivo** ([`html/index.html`](../html/index.html)) en estética *Obsidian Dark Luxury* con métricas verificadas, showroom de vehículos reales, inspector de arquitectura y acceso directo a las 4 hojas.
+1. **Portal Web interactivo** ([`html/index.html`](../html/index.html)) en estética **Light Editorial (`#F8FAFC` / `#FFFFFF`) unificada con Power BI** e interruptor **Claro / Oscuro**, con métricas verificadas, distribución por segmento/motorización, showroom filtrable de vehículos reales, inspector PBIP y acceso directo a las 4 hojas.
 2. **Reporte Power BI PBIP** ([`powerbi/CarsIntelligence.pbip`](../powerbi/CarsIntelligence.pbip)) de **5 páginas visibles** (`00_Home` en tema claro `#F8FAFC` estilo web + `01`–`04` en Bento Grid).
 
 ### Hallazgos clave del catálogo 2025
@@ -55,9 +55,9 @@ Microsoft recomienda no superar **20 contenedores visuales por página** para ma
 
 | Pieza | Vista | Archivo |
 |---|---|---|
-| Hero Portal Web (Oscuro) | Portada editorial + telemetría y Porsche Panamera | [`docs/assets/html-portal-preview.png`](assets/html-portal-preview.png) |
-| Módulos Analíticos BI | Tarjetas `01`–`04` y arquitectura del modelo | [`docs/assets/html-modules-preview.png`](assets/html-modules-preview.png) |
-| Showroom de Vehículos Reales | Galería curada con fotos reales y ficha técnica | [`docs/assets/html-gallery-preview.png`](assets/html-gallery-preview.png) |
+| Hero Portal Web (Tema Claro Unificado) | Portada editorial `#F8FAFC`, KPIs y Porsche Studio | [`docs/assets/html-portal-preview.png`](assets/html-portal-preview.png) |
+| Módulos Analíticos, Snapshot y Arquitectura | Tarjetas `01`–`04`, distribución verificada y fórmulas | [`docs/assets/html-modules-preview.png`](assets/html-modules-preview.png) |
+| Showroom Filtrable de Vehículos Reales | Galería con fotos reales, filtros y barras Perf/Value | [`docs/assets/html-gallery-preview.png`](assets/html-gallery-preview.png) |
 
 ---
 

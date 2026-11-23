@@ -25,7 +25,7 @@ Transformar el dataset crudo en una interfaz de **Automotive Market & Performanc
 | 5 | Scores de rendimiento y valor (`Performance Index`, `Value Index`, `Market Position`) y regresión hedónica | ✅ |
 | 6 | Design System y 5 páginas Power BI (`00_Home` tema claro minimalista con `actionButton` + `01_MarketOverview`, `02_PerformanceLab`, `03_ValueIntelligence`, `04_VehicleExplorer` en Bento Grid `1920×1080`) | ✅ |
 | 7 | Verificación automatizada PBIR (`scripts/verify_report.py`, 55 checks) y suite E2E multi-página (`tests/`, 322 tests) | ✅ |
-| 8 | Portal introductorio HTML/CSS (`html/index.html`) estilo Obsidian Dark Luxury con fotos reales de autos, resumen BI y links a las 4 hojas | ✅ |
+| 8 | Portal introductorio HTML/CSS ([`html/index.html`](html/index.html)) en estética **Light Editorial (`#F8FAFC` / `#FFFFFF`) unificada con Power BI** + selector Claro/Oscuro, snapshot verificado, showroom filtrable y links a las 4 hojas | ✅ |
 | 9 | MCP: validación de modelo (`scripts/validate_model_mcp.py`) y flujo reproducible en CI ([`.github/workflows/pbip-validate.yml`](.github/workflows/pbip-validate.yml)) | ✅ |
 | 10 | Performance, documentación final, screenshots y ficha de portafolio | ✅ |
 
@@ -88,7 +88,7 @@ Columnas originales: Company, Car Name, Engine, CC/Battery Capacity, HorsePower,
 
 ## Páginas del reporte y portal introductorio
 
-- **Portal Web Introductorio:** [`html/index.html`](html/index.html) — landing page en estética *Obsidian Dark Luxury* con resumen ejecutivo del BI completo, galería de vehículos reales con telemetría verificada, inspector de blueprint y enlaces directos a las 4 hojas analíticas.
+- **Portal Web Introductorio:** [`html/index.html`](html/index.html) — landing page en estética **Light Editorial (`#F8FAFC` / `#FFFFFF`) unificada con Power BI** e interruptor **Claro / Oscuro** (conserva el modo Obsidian), con snapshot de `DimPriceSegment`/`DimFuel`, galería filtrable de vehículos reales con barras de telemetría, inspector PBIP (71 medidas DAX) y enlaces directos a las 4 hojas analíticas.
 - **`00_Home`** (`a001c6b7a0e103746570`) — portada minimalista en tema claro (`#F8FAFC` / `#FFFFFF`) estilo web moderno con 12 visuales nativos (0 gráficos saturados), 4 KPIs globales, resumen de arquitectura y 4 tarjetas interactivas (`actionButton` con `PageNavigation`) + `pageNavigator` para viajar directamente a cada módulo.
 - **`01_MarketOverview`** (`3f7688a2cc2e12e049b0`) — panorama de catálogo, segmentos de precio, mix de motorización y posicionamiento general.
 - **`02_PerformanceLab`** (`deb9f8692d454328e800`) — dinámica de tren motriz, telemetría de pista (`HP`, `Speed`, `0-100`, `Torque`) y `Performance Index`.

@@ -3,29 +3,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cars Intelligence 2025 — Automotive Intelligence</title>
-  <meta name="description" content="Portal ejecutivo oscuro de Cars Intelligence 2025: 1.214 vehículos reales auditados, 62 medidas DAX, precios hedónicos y acceso interactivo a las 4 hojas del Power BI.">
+  <title>Cars Intelligence 2025 — Automotive Market &amp; Performance Studio</title>
+  <meta name="description" content="Portal ejecutivo Light Editorial de Cars Intelligence 2025 unificado con Power BI: 1,214 vehículos auditados, 71 medidas DAX, precios hedónicos y 4 hojas analíticas.">
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('cars2025-theme') === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <style>
     :root {
-      --bg-pure: #000000;
-      --bg-canvas: #050608;
-      --bg-card: #0B0D12;
-      --bg-card-hover: #141720;
-      --border-hairline: rgba(255, 255, 255, 0.14);
-      --border-bright: rgba(255, 255, 255, 0.48);
-      --text-primary: #F8FAFC;
-      --text-secondary: #A1A1AA;
-      --text-muted: #71717A;
-      --accent-silver: #E4E4E7;
-      --accent-ice: #38BDF8;
+      color-scheme: light;
+      --bg-page: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F1F5F9;
+      --bg-nav: rgba(248, 250, 252, 0.88);
+      --border: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #64748B;
+      --accent-blue: #2563EB;
+      --accent-blue-hover: #1D4ED8;
+      --accent-blue-soft: rgba(37, 99, 235, 0.08);
       --accent-emerald: #10B981;
+      --accent-emerald-soft: rgba(16, 185, 129, 0.12);
       --accent-amber: #F59E0B;
-      --accent-rose: #FB7185;
+      --accent-rose: #F43F5E;
+      --accent-rose-soft: rgba(244, 63, 94, 0.10);
+      --accent-violet: #8B5CF6;
+      --accent-cyan: #06B6D4;
+      --code-bg: #F1F5F9;
+      --code-fg: #0F172A;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.04), 0 12px 28px -12px rgba(15, 23, 42, 0.08);
+      --shadow-hero: 0 24px 60px -20px rgba(15, 23, 42, 0.18);
       --radius-lg: 16px;
       --radius-md: 12px;
       --radius-pill: 999px;
       --font-sans: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
       --font-mono: Consolas, "Cascadia Code", monospace;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg-page: #050608;
+      --bg-surface: #0B0D12;
+      --bg-subtle: #11151E;
+      --bg-nav: rgba(5, 6, 8, 0.86);
+      --border: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 255, 255, 0.34);
+      --text-primary: #F8FAFC;
+      --text-secondary: #A1A1AA;
+      --text-muted: #71717A;
+      --accent-blue: #3B82F6;
+      --accent-blue-hover: #60A5FA;
+      --accent-blue-soft: rgba(59, 130, 246, 0.14);
+      --accent-emerald: #10B981;
+      --accent-emerald-soft: rgba(16, 185, 129, 0.16);
+      --accent-rose: #FB7185;
+      --accent-rose-soft: rgba(251, 113, 133, 0.14);
+      --code-bg: #121620;
+      --code-fg: #E2E8F0;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+      --shadow-card: 0 10px 30px -12px rgba(0, 0, 0, 0.65);
+      --shadow-hero: 0 28px 70px -24px rgba(0, 0, 0, 0.85);
     }
 
     *, *::before, *::after {
@@ -34,7 +79,7 @@
 
     html {
       scroll-behavior: smooth;
-      background-color: var(--bg-pure);
+      background-color: var(--bg-page);
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -48,18 +93,28 @@
     body {
       margin: 0;
       font-family: var(--font-sans);
-      background-color: var(--bg-pure);
+      background-color: var(--bg-page);
       color: var(--text-primary);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 220ms ease, color 220ms ease;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--code-bg);
+      color: var(--code-fg);
+      padding: 2px 6px;
+      border-radius: 6px;
     }
 
     .skip-link {
       position: absolute;
       left: -9999px;
       top: 0;
-      background: #FFFFFF;
-      color: #000000;
+      background: var(--accent-blue);
+      color: #FFFFFF;
       padding: 10px 16px;
       z-index: 1000;
       font-weight: 700;
@@ -67,20 +122,21 @@
     }
     .skip-link:focus { left: 0; }
 
-    /* Minimalist Luxury Top Navigation */
+    /* Sticky Glassmorphic Navigation */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(0, 0, 0, 0.86);
+      background: var(--bg-nav);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
     }
 
     .topbar-inner {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 18px 28px;
+      padding: 14px 28px;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
@@ -90,11 +146,12 @@
     .nav-group {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
     }
 
     .nav-group.right {
       justify-content: flex-end;
+      gap: 14px;
     }
 
     .nav-link {
@@ -102,58 +159,107 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.02em;
-      transition: color 180ms ease;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      transition: color 160ms ease;
     }
 
     .nav-link:hover,
     .nav-link:focus-visible,
     .nav-link.active {
-      color: var(--text-primary);
+      color: var(--accent-blue);
       outline: none;
     }
 
     .brand-wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       color: var(--text-primary);
       text-decoration: none;
-      font-size: 17px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      text-align: center;
       white-space: nowrap;
     }
 
-    .pill-btn {
+    .brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-blue);
+      display: inline-block;
+    }
+
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px 24px;
+      padding: 11px 22px;
       border-radius: var(--radius-pill);
-      border: 1px solid var(--border-bright);
-      background: transparent;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
       color: var(--text-primary);
       text-decoration: none;
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.03em;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
       cursor: pointer;
-      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 180ms ease;
+      white-space: nowrap;
+      transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 160ms ease, box-shadow 180ms ease;
     }
 
-    .pill-btn:hover,
-    .pill-btn:focus-visible {
-      background: #FFFFFF;
-      color: #000000;
-      border-color: #FFFFFF;
+    .btn:hover,
+    .btn:focus-visible {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
       transform: translateY(-1px);
       outline: none;
     }
 
-    .pill-btn.sm {
-      padding: 7px 16px;
+    .btn-primary {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: #FFFFFF;
+      box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.65);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background: var(--accent-blue-hover);
+      border-color: var(--accent-blue-hover);
+      color: #FFFFFF;
+    }
+
+    .btn-sm {
+      padding: 7px 14px;
       font-size: 12px;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
+    }
+
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      border-color: var(--accent-blue);
+      color: var(--text-primary);
+      outline: none;
     }
 
     main {
@@ -162,29 +268,52 @@
       padding: 0 28px 88px;
     }
 
-    /* Hero Showroom Section — Obsidian Dark Luxury Aesthetic */
+    /* Editorial Light Hero Showroom */
     .hero {
-      padding: 58px 0 42px;
+      padding: 46px 0 28px;
       text-align: center;
-      position: relative;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 0 3px var(--accent-emerald-soft);
     }
 
     .hero-title {
       margin: 0 auto 14px;
-      font-size: clamp(40px, 6.4vw, 80px);
-      font-weight: 400;
+      font-size: clamp(38px, 5.8vw, 68px);
+      font-weight: 700;
       letter-spacing: -0.035em;
-      line-height: 1.04;
-      color: #ECEEF2;
-      max-width: 16ch;
+      line-height: 1.05;
+      color: var(--text-primary);
+      max-width: 17ch;
     }
 
     .hero-subtitle {
-      margin: 0 auto 28px;
-      max-width: 58ch;
+      margin: 0 auto 26px;
+      max-width: 62ch;
       color: var(--text-secondary);
-      font-size: 15px;
-      font-weight: 400;
+      font-size: 15.5px;
     }
 
     .hero-actions {
@@ -192,50 +321,22 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 34px;
+      margin-bottom: 32px;
     }
 
     .hero-stage {
       position: relative;
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
-      padding: 0 36px;
-    }
-
-    .hero-rail-left {
-      position: absolute;
-      left: 0;
-      top: 16%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      color: var(--text-secondary);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-rail-left::after {
-      content: "";
-      width: 1px;
-      height: 110px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%);
-    }
-
-    .hero-rail-right {
-      position: absolute;
-      right: 0;
-      top: 16%;
-      color: var(--text-muted);
-      font-size: 12px;
-      letter-spacing: 0.04em;
     }
 
     .hero-car-frame {
       position: relative;
-      border-radius: 18px;
+      border-radius: 20px;
       overflow: hidden;
-      background: #000000;
+      background: #0F172A;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-hero);
       aspect-ratio: 21 / 9;
     }
 
@@ -244,40 +345,87 @@
       height: 100%;
       object-fit: cover;
       object-position: center 58%;
-      filter: contrast(1.08) brightness(0.86);
       display: block;
+      filter: contrast(1.04) brightness(0.95);
     }
 
     .hero-car-frame::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at center, rgba(0,0,0,0) 42%, rgba(0,0,0,0.88) 100%),
-        linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 24%, rgba(0,0,0,0) 68%, rgba(0,0,0,0.96) 100%);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.04) 0%, rgba(15, 23, 42, 0.12) 60%, rgba(15, 23, 42, 0.62) 100%);
       pointer-events: none;
     }
 
+    html[data-theme="dark"] .hero-car-frame::after {
+      background:
+        radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.78) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.88) 100%);
+    }
+
+    .hero-badge-overlay {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      pointer-events: none;
+    }
+
+    .glass-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #F8FAFC;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
     .hero-kpi-bar {
-      margin: 26px auto 0;
-      max-width: 1040px;
+      margin: 22px auto 0;
+      max-width: 1140px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      gap: 16px;
     }
 
     .hero-kpi {
-      background: var(--bg-card);
-      border: 1px solid var(--border-hairline);
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 16px 18px;
+      padding: 18px 20px 16px 22px;
       text-align: left;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .hero-kpi::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 12px;
+      bottom: 12px;
+      width: 4px;
+      border-radius: 0 4px 4px 0;
+      background: var(--kpi-accent, var(--accent-blue));
     }
 
     .hero-kpi-val {
-      font-size: 26px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
       color: var(--text-primary);
       line-height: 1.1;
     }
@@ -285,37 +433,54 @@
     .hero-kpi-lbl {
       margin-top: 6px;
       font-size: 11px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.07em;
+      color: var(--text-secondary);
+    }
+
+    .hero-kpi-sub {
+      margin-top: 3px;
+      font-size: 12px;
       color: var(--text-muted);
     }
 
-    /* Section Headings */
+    /* Section Headers */
     .section {
-      padding: 64px 0 12px;
+      padding: 64px 0 8px;
     }
 
     .section-centered {
       text-align: center;
-      margin-bottom: 34px;
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
     }
 
     .section-centered h2 {
       margin: 0 0 10px;
-      font-size: clamp(26px, 3.2vw, 38px);
-      font-weight: 400;
-      letter-spacing: -0.02em;
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
       color: var(--text-primary);
     }
 
     .section-centered p {
       margin: 0 auto;
-      max-width: 60ch;
+      max-width: 62ch;
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 14.5px;
     }
 
-    /* 4-Page Numbered Luxury Cards (01 - 04) */
+    /* 4-Page Numbered Module Cards (01 - 04) */
     .module-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -323,44 +488,61 @@
     }
 
     .module-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 26px 22px;
+      padding: 24px 22px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       color: inherit;
-      transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+      box-shadow: var(--shadow-card);
+      transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
     }
 
     .module-card:hover,
     .module-card:focus-visible {
-      background: var(--bg-card-hover);
-      border-color: var(--border-bright);
+      border-color: var(--mod-accent, var(--accent-blue));
       transform: translateY(-3px);
+      box-shadow: 0 18px 34px -16px rgba(37, 99, 235, 0.24);
       outline: none;
     }
 
+    .module-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .module-num {
-      font-size: 26px;
-      font-weight: 300;
-      color: var(--text-muted);
-      letter-spacing: -0.02em;
-      line-height: 1;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-subtle);
+      color: var(--mod-accent, var(--accent-blue));
+      font-family: var(--font-mono);
+    }
+
+    .module-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mod-accent, var(--accent-blue));
     }
 
     .module-card h3 {
-      margin: 4px 0 0;
+      margin: 6px 0 0;
       font-size: 18px;
-      font-weight: 500;
+      font-weight: 700;
+      letter-spacing: -0.015em;
       color: var(--text-primary);
     }
 
     .module-card p {
       margin: 0;
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-secondary);
       line-height: 1.55;
     }
@@ -368,52 +550,54 @@
     .module-meta {
       margin-top: auto;
       padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 12px;
-      color: var(--accent-silver);
+      font-weight: 600;
+      color: var(--mod-accent, var(--accent-blue));
     }
 
-    /* Editorial BI Split + Banner */
+    /* Editorial Split & Showroom Feature */
     .editorial-split {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 28px;
       align-items: end;
       margin-bottom: 24px;
     }
 
     .editorial-split h2 {
-      margin: 0;
-      font-size: clamp(26px, 3vw, 36px);
-      font-weight: 400;
+      margin: 6px 0 0;
+      font-size: clamp(24px, 2.8vw, 34px);
+      font-weight: 700;
       line-height: 1.15;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
     }
 
     .editorial-split p {
       margin: 0;
       color: var(--text-secondary);
-      font-size: 14px;
+      font-size: 14.5px;
     }
 
     .showroom-banner {
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--border-hairline);
+      border: 1px solid var(--border);
       aspect-ratio: 21 / 8;
-      background: #08090C;
-      margin-bottom: 26px;
+      background: #0F172A;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-card);
     }
 
     .showroom-banner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: contrast(1.08) brightness(0.75);
+      filter: contrast(1.06) brightness(0.76);
       display: block;
     }
 
@@ -421,7 +605,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.22) 55%, rgba(0,0,0,0.75) 100%);
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.35) 55%, rgba(15, 23, 42, 0.72) 100%);
       pointer-events: none;
     }
 
@@ -433,81 +617,167 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      color: #F8FAFC;
+    }
+
+    /* Verified Dataset Visual Distribution Cards */
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .snapshot-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .snapshot-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .snapshot-head h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .snapshot-head span {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .bar-list {
+      display: grid;
+      gap: 11px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 145px 1fr 78px;
+      align-items: center;
+      gap: 12px;
+      font-size: 12.5px;
+    }
+
+    .bar-label {
+      color: var(--text-secondary);
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bar-track {
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-subtle);
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      background: var(--bar-color, var(--accent-blue));
+    }
+
+    .bar-val {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-primary);
+      font-weight: 600;
     }
 
     .formula-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: 16px;
     }
 
     .formula-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow-card);
     }
 
     .formula-card h4 {
       margin: 0 0 6px;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 14.5px;
+      font-weight: 700;
       color: var(--text-primary);
     }
 
     .formula-card p {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       font-size: 13px;
       color: var(--text-secondary);
     }
 
     .formula-code {
       display: block;
-      padding: 8px 10px;
+      padding: 9px 11px;
       border-radius: 8px;
-      background: #050608;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
       font-family: var(--font-mono);
       font-size: 11.5px;
-      color: #D4D4D8;
+      color: var(--text-primary);
       overflow-x: auto;
     }
 
-    /* Interactive Blueprint Inspector */
+    /* Interactive PBIP Blueprint Inspector */
     .inspector-shell {
-      background: var(--bg-card);
-      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
+      box-shadow: var(--shadow-card);
     }
 
     .tablist {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border-hairline);
-      background: #07080B;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-subtle);
     }
 
     .tab-btn {
       padding: 8px 16px;
       border-radius: var(--radius-pill);
-      border: 1px solid var(--border-hairline);
-      background: transparent;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
       color: var(--text-secondary);
       font-family: inherit;
       font-size: 12.5px;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
       transition: all 160ms ease;
     }
 
+    .tab-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
     .tab-btn[aria-selected="true"] {
-      background: #FFFFFF;
-      color: #000000;
-      border-color: #FFFFFF;
-      font-weight: 600;
+      background: var(--accent-blue);
+      color: #FFFFFF;
+      border-color: var(--accent-blue);
     }
 
     .tab-panel {
@@ -524,7 +794,8 @@
     .tab-panel h3 {
       margin: 0 0 8px;
       font-size: 20px;
-      font-weight: 500;
+      font-weight: 700;
+      letter-spacing: -0.015em;
     }
 
     .spec-list {
@@ -532,28 +803,23 @@
       padding: 0;
       list-style: none;
       display: grid;
-      gap: 9px;
+      gap: 10px;
     }
 
     .spec-list li {
-      padding: 10px 14px;
-      background: #07080B;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 11px 14px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
       border-radius: 10px;
       font-size: 13px;
       color: var(--text-secondary);
     }
 
     .spec-list li strong { color: var(--text-primary); }
-    .spec-list code {
-      font-family: var(--font-mono);
-      color: #E4E4E7;
-      font-size: 12px;
-    }
 
     .contract-panel {
-      background: #050608;
-      border: 1px solid var(--border-hairline);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
       border-radius: var(--radius-md);
       padding: 20px;
       display: flex;
@@ -563,7 +829,8 @@
 
     .contract-panel h4 {
       margin: 0;
-      font-size: 12px;
+      font-size: 11.5px;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -574,14 +841,60 @@
       justify-content: space-between;
       gap: 10px;
       padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid var(--border);
       font-size: 12.5px;
     }
 
     .contract-row span { color: var(--text-secondary); }
-    .contract-row code { font-family: var(--font-mono); color: var(--text-primary); }
+    .contract-row code { font-weight: 600; }
 
-    /* Find Your Exclusive Model — 3x2 Real Car Grid */
+    /* Interactive Filterable Real Vehicles Showroom */
+    .fleet-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-btn {
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+    }
+
+    .filter-btn[aria-pressed="true"] {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+      color: var(--bg-page);
+    }
+
+    .fleet-count {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
     .fleet-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -589,23 +902,28 @@
     }
 
     .car-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-hairline);
-      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: border-color 180ms ease, transform 180ms ease;
+      box-shadow: var(--shadow-card);
+      transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .car-card.is-hidden {
+      display: none;
     }
 
     .car-card:hover {
-      border-color: var(--border-bright);
+      border-color: var(--accent-blue);
       transform: translateY(-2px);
     }
 
     .car-img-wrap {
       aspect-ratio: 16 / 10;
-      background: #07080B;
+      background: var(--bg-subtle);
       overflow: hidden;
       position: relative;
     }
@@ -622,55 +940,135 @@
       transform: scale(1.03);
     }
 
+    .car-fuel-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(8px);
+      color: #F8FAFC;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
     .car-body {
-      padding: 18px;
+      padding: 18px 18px 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
       flex: 1;
     }
 
     .car-title {
       margin: 0;
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 700;
       color: var(--text-primary);
+      letter-spacing: -0.01em;
     }
 
-    .car-specs {
-      margin: 0;
-      font-size: 12.5px;
+    .car-sub {
+      margin: -6px 0 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .car-telemetry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      background: var(--bg-subtle);
+      text-align: center;
+    }
+
+    .tel-item strong {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+    }
+
+    .tel-item span {
+      display: block;
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .car-scores {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .score-mini-lbl {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
       color: var(--text-secondary);
-      line-height: 1.5;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .score-track {
+      height: 5px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-subtle);
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
     }
 
     .car-footer {
       margin-top: auto;
       padding-top: 10px;
+      border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
+      align-items: center;
       gap: 8px;
     }
 
     .car-price {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 14.5px;
+      font-weight: 700;
       color: var(--text-primary);
       font-family: var(--font-mono);
     }
 
     .car-tag {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 9px;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 4px 10px;
       border-radius: var(--radius-pill);
-      border: 1px solid var(--border-hairline);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
       color: var(--text-secondary);
     }
 
-    .car-tag.under { color: var(--accent-emerald); border-color: rgba(16, 185, 129, 0.35); }
-    .car-tag.over { color: var(--accent-rose); border-color: rgba(251, 113, 133, 0.35); }
+    .car-tag.under {
+      color: #047857;
+      background: var(--accent-emerald-soft);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+    html[data-theme="dark"] .car-tag.under { color: #34D399; }
+
+    .car-tag.over {
+      color: #BE123C;
+      background: var(--accent-rose-soft);
+      border-color: rgba(244, 63, 94, 0.35);
+    }
+    html[data-theme="dark"] .car-tag.over { color: #FB7185; }
 
     /* Bottom Journey Banner */
     .journey-banner {
@@ -678,13 +1076,14 @@
       position: relative;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--border-hairline);
-      background: #08090C;
-      min-height: 250px;
+      border: 1px solid var(--border);
+      background: #0F172A;
+      min-height: 240px;
       display: grid;
       place-items: center;
       text-align: center;
-      padding: 40px 24px;
+      padding: 44px 28px;
+      box-shadow: var(--shadow-card);
     }
 
     .journey-banner img {
@@ -693,33 +1092,40 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.34;
-      filter: grayscale(40%) contrast(1.1);
+      opacity: 0.32;
+      filter: contrast(1.08);
     }
 
     .journey-banner::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.9) 100%);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 41, 59, 0.78) 100%);
     }
 
     .journey-content {
       position: relative;
       z-index: 2;
-      max-width: 560px;
+      max-width: 600px;
+      color: #F8FAFC;
     }
 
     .journey-content h2 {
       margin: 0 0 10px;
       font-size: clamp(24px, 3vw, 34px);
-      font-weight: 400;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
 
     .journey-content p {
       margin: 0 0 22px;
-      color: var(--text-secondary);
-      font-size: 14px;
+      color: #CBD5E1;
+      font-size: 14.5px;
+    }
+
+    .journey-content code {
+      background: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
     }
 
     .img-fallback-overlay {
@@ -730,7 +1136,7 @@
       padding: 16px;
       text-align: center;
       color: var(--text-secondary);
-      background: #0B0D12;
+      background: var(--bg-subtle);
       font-size: 13px;
     }
 
@@ -738,7 +1144,7 @@
       max-width: 1280px;
       margin: 0 auto;
       padding: 28px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -751,21 +1157,21 @@
     footer a {
       color: var(--text-secondary);
       text-decoration: none;
+      font-weight: 500;
     }
-    footer a:hover { color: #FFFFFF; }
+    footer a:hover { color: var(--accent-blue); }
 
     @media (max-width: 1024px) {
       .module-grid { grid-template-columns: repeat(2, 1fr); }
       .fleet-grid { grid-template-columns: repeat(2, 1fr); }
-      .formula-strip, .editorial-split, .tab-panel.active { grid-template-columns: 1fr; }
-      .hero-rail-left, .hero-rail-right { display: none; }
-      .hero-stage { padding: 0; }
+      .snapshot-grid, .formula-strip, .editorial-split, .tab-panel.active { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 760px) {
       .topbar-inner { grid-template-columns: 1fr; text-align: center; }
-      .nav-group, .nav-group.right { justify-content: center; flex-wrap: wrap; gap: 14px; }
+      .nav-group, .nav-group.right { justify-content: center; flex-wrap: wrap; gap: 12px; }
       .hero-kpi-bar, .module-grid, .fleet-grid { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 118px 1fr 72px; }
     }
   </style>
 </head>
@@ -780,12 +1186,21 @@
         <a class="nav-link" href="#overview">Arquitectura</a>
       </nav>
 
-      <a class="brand-wordmark" href="#top">Cars Intelligence</a>
+      <a class="brand-wordmark" href="#top">
+        <span class="brand-dot" aria-hidden="true"></span>
+        Cars Intelligence
+      </a>
 
       <nav class="nav-group right" aria-label="Navegación principal derecha">
         <a class="nav-link" href="#fleet">Catálogo 2025</a>
         <a class="nav-link" href="#inspector">Blueprint</a>
-        <a class="pill-btn sm" href="../powerbi/CarsIntelligence.pbip">Abrir .pbip</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Alternar tema claro u oscuro">
+          <svg id="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <span id="theme-label">Oscuro</span>
+        </button>
+        <a class="btn btn-primary btn-sm" href="../powerbi/CarsIntelligence.pbip">Abrir .pbip</a>
       </nav>
     </div>
   </header>
@@ -793,93 +1208,116 @@
   <main id="main-content">
     <!-- Hero Showroom -->
     <section id="top" class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow-pill">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span>Automotive Market Intelligence · Edition 2025 · 71 Medidas DAX</span>
+      </div>
       <h1 id="hero-title" class="hero-title">Automotive Intelligence</h1>
       <p class="hero-subtitle">
-        Explora 1.214 vehículos reales de 2025 en una experiencia BI de precisión: telemetría de pista, precios hedónicos y 62 medidas DAX distribuidas en 4 hojas analíticas + portada ejecutiva <code>00_Home</code>.
+        Explora 1,214 vehículos reales de 2025 en una interfaz unificada con Power BI: telemetría de pista, precios hedónicos y 71 medidas DAX en 4 hojas analíticas + portada ejecutiva <code>00_Home</code>.
       </p>
       <div class="hero-actions">
-        <a class="pill-btn" href="#pages-hub">Explorar las 4 Hojas</a>
-        <a class="pill-btn" href="../powerbi/CarsIntelligence.pbip">Abrir Power BI Desktop</a>
+        <a class="btn btn-primary" href="#pages-hub">Explorar las 4 Hojas</a>
+        <a class="btn" href="../powerbi/CarsIntelligence.pbip">Abrir Power BI Desktop</a>
       </div>
 
       <div class="hero-stage">
-        <div class="hero-rail-left" aria-hidden="true">01</div>
-        <div class="hero-rail-right" aria-hidden="true">Dataset Edition 2025</div>
         <div class="hero-car-frame">
           <img
             src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=85"
-            alt="Vehículo deportivo oscuro en estudio minimalista"
+            alt="Vehículo deportivo de alto rendimiento en estudio editorial"
             fetchpriority="high"
             data-fallback-src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Ferrari_SF90_Stradale.jpg"
-            data-fallback-label="Cars Intelligence 2025 · Automotive Intelligence"
+            data-fallback-label="Cars Intelligence 2025 · Light Studio"
           >
+          <div class="hero-badge-overlay" aria-hidden="true">
+            <span class="glass-chip">Tema Unificado #F8FAFC · PBIP + TMDL + MCP</span>
+            <span class="glass-chip">1,214 Vehículos · 32 OEM · 0 Colisiones</span>
+          </div>
         </div>
       </div>
 
       <div class="hero-kpi-bar" aria-label="KPIs globales del modelo">
-        <div class="hero-kpi">
+        <div class="hero-kpi" style="--kpi-accent:#2563EB;">
           <div class="hero-kpi-val">1,214</div>
           <div class="hero-kpi-lbl">Vehículos Auditados</div>
+          <div class="hero-kpi-sub">de 1,218 filas crudas (0 colisiones)</div>
         </div>
-        <div class="hero-kpi">
+        <div class="hero-kpi" style="--kpi-accent:#06B6D4;">
           <div class="hero-kpi-val">32</div>
           <div class="hero-kpi-lbl">Marcas OEM Globales</div>
+          <div class="hero-kpi-sub">precio mediano $42,795 USD</div>
         </div>
-        <div class="hero-kpi">
+        <div class="hero-kpi" style="--kpi-accent:#10B981;">
           <div class="hero-kpi-val">15.8%</div>
           <div class="hero-kpi-lbl">Flota Electrificada</div>
+          <div class="hero-kpi-sub">192 modelos EV, Hybrid, PHEV &amp; H2</div>
         </div>
-        <div class="hero-kpi">
+        <div class="hero-kpi" style="--kpi-accent:#F59E0B;">
           <div class="hero-kpi-val">459</div>
-          <div class="hero-kpi-lbl">Gemas Hedónicas (≤ -15%)</div>
+          <div class="hero-kpi-lbl">Gemas Hedónicas</div>
+          <div class="hero-kpi-sub">descuento real ≤ -15% vs. valor justo</div>
         </div>
       </div>
     </section>
 
-    <!-- 4 Hojas del BI (Estilo Tarjetas Numeradas 01-04) -->
+    <!-- 4 Hojas del BI (Tarjetas Numeradas 01-04) -->
     <section id="pages-hub" class="section" aria-labelledby="hub-title">
       <div class="section-centered">
+        <span class="section-kicker">Reporte Power BI Desktop · 5 Páginas</span>
         <h2 id="hub-title">Las 4 Hojas Analíticas del BI</h2>
         <p>
-          Cada módulo responde una dimensión clave del mercado automotriz sobre una grilla Full HD 1920×1080 100% nativa. Haz clic en cualquiera para inspeccionar su estructura o abrir su definición PBIP.
+          Cada módulo responde una dimensión clave del mercado automotriz sobre una grilla Full HD 1920×1080 100% nativa en tema claro corporativo. Selecciona cualquiera para inspeccionar sus medidas DAX y visuales.
         </p>
       </div>
 
       <div class="module-grid">
-        <a id="page-01" class="module-card" href="#inspector" data-select-tab="tab-01">
-          <span class="module-num">01</span>
+        <a id="page-01" class="module-card" style="--mod-accent:#2563EB;" href="#inspector" data-select-tab="tab-01">
+          <div class="module-top">
+            <span class="module-num">01</span>
+            <span class="module-dot" aria-hidden="true"></span>
+          </div>
           <h3>Market Overview</h3>
-          <p>Composición del catálogo (1.214 modelos), precio mediano ($42,795), mix eléctrico y mapa de posicionamiento.</p>
+          <p>Composición del catálogo (1,214 modelos), precio mediano ($42,795), mix eléctrico y mapa de posicionamiento.</p>
           <div class="module-meta">
             <span>01_MarketOverview</span>
             <span>Explorar →</span>
           </div>
         </a>
 
-        <a id="page-02" class="module-card" href="#inspector" data-select-tab="tab-02">
-          <span class="module-num">02</span>
+        <a id="page-02" class="module-card" style="--mod-accent:#06B6D4;" href="#inspector" data-select-tab="tab-02">
+          <div class="module-top">
+            <span class="module-num">02</span>
+            <span class="module-dot" aria-hidden="true"></span>
+          </div>
           <h3>Performance Lab</h3>
-          <p>Telemetría pura: potencia (306 HP), velocidad punta (217 km/h), sprint 0–100 km/h y Top 10 líderes de pista.</p>
+          <p>Telemetría pura: potencia (306 HP), velocidad punta (217 km/h), sprint 0–100 km/h (7.6 s) y Top 10 líderes.</p>
           <div class="module-meta">
             <span>02_PerformanceLab</span>
             <span>Explorar →</span>
           </div>
         </a>
 
-        <a id="page-03" class="module-card" href="#inspector" data-select-tab="tab-03">
-          <span class="module-num">03</span>
+        <a id="page-03" class="module-card" style="--mod-accent:#10B981;" href="#inspector" data-select-tab="tab-03">
+          <div class="module-top">
+            <span class="module-num">03</span>
+            <span class="module-dot" aria-hidden="true"></span>
+          </div>
           <h3>Value Intelligence</h3>
-          <p>Arbitraje por Precio Justo Hedónico, retorno HP/$10k USD, costo por caballo de fuerza y 459 gemas subvaluadas.</p>
+          <p>Arbitraje por Precio Justo Hedónico, retorno HP/$10k USD, costo por HP y las 459 gemas subvaluadas.</p>
           <div class="module-meta">
             <span>03_ValueIntelligence</span>
             <span>Explorar →</span>
           </div>
         </a>
 
-        <a id="page-04" class="module-card" href="#inspector" data-select-tab="tab-04">
-          <span class="module-num">04</span>
+        <a id="page-04" class="module-card" style="--mod-accent:#8B5CF6;" href="#inspector" data-select-tab="tab-04">
+          <div class="module-top">
+            <span class="module-num">04</span>
+            <span class="module-dot" aria-hidden="true"></span>
+          </div>
           <h3>Vehicle Explorer</h3>
-          <p>Consulta unitaria por vehículo y marca, eficiencia HP/L y HP/kWh, cuadrante multi-score y dossier de especificaciones.</p>
+          <p>Consulta unitaria por vehículo y marca, eficiencia HP/L y HP/kWh, cuadrante multi-score y dossier completo.</p>
           <div class="module-meta">
             <span>04_VehicleExplorer</span>
             <span>Explorar →</span>
@@ -888,30 +1326,103 @@
       </div>
     </section>
 
-    <!-- Detalle del BI Completo -->
+    <!-- Detalle del BI Completo + Snapshot Verificado -->
     <section id="overview" class="section" aria-labelledby="overview-title">
       <div class="editorial-split">
-        <h2 id="overview-title">Arquitectura Integral de Business Intelligence Automotriz</h2>
+        <div>
+          <span class="section-kicker">Ingeniería de Datos &amp; Modelo Semántico</span>
+          <h2 id="overview-title">Arquitectura Integral de Business Intelligence Automotriz</h2>
+        </div>
         <p>
-          <strong>Cars Intelligence 2025</strong> combina ingeniería de datos reproducible en Power BI (PBIP + TMDL) con un motor matemático de percentiles y regresión hedónica, sincronizado visualmente entre este portal y la portada interactiva <code>00_Home</code>.
+          <strong>Cars Intelligence 2025</strong> une ingesta reproducible en <code>stg_Cars_Raw</code> con esquema en estrella TMDL, 71 medidas centralizadas y verificación continua mediante validador MCP y 322 pruebas automatizadas.
         </p>
       </div>
 
       <div class="showroom-banner">
         <img
           src="https://images.unsplash.com/photo-1704476944918-c1258561ebb9?auto=format&fit=crop&w=1400&q=85"
-          alt="Automóvil de lujo negro en estudio oscuro"
+          alt="Silueta de automóvil deportivo en estudio"
           loading="lazy"
           data-fallback-src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Bugatti_Chiron.jpg"
           data-fallback-label="Cars Intelligence 2025 · Star Schema & Hedonic Engine"
         >
         <div class="showroom-overlay">
-          <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#A1A1AA;">PBIP + TMDL · 100% Native Visuals</span>
-          <div style="max-width:460px;">
-            <strong style="font-size:18px;font-weight:500;display:block;margin-bottom:4px;">De 1.218 registros crudos a 1.214 vehículos auditados</strong>
-            <span style="font-size:13px;color:#CBD5E1;">0 colisiones de clave natural · 62 medidas DAX centralizadas · Validación automatizada con 322 pruebas E2E.</span>
+          <span style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#CBD5E1;font-weight:700;">PBIP + TMDL · 100% Native Visuals · CI Validated</span>
+          <div style="max-width:520px;">
+            <strong style="font-size:20px;font-weight:700;display:block;margin-bottom:4px;">De 1,218 registros crudos a 1,214 vehículos auditados</strong>
+            <span style="font-size:13.5px;color:#E2E8F0;">0 colisiones de clave natural · 71 medidas DAX centralizadas · 55 checks PBIR + 322 pruebas E2E.</span>
           </div>
         </div>
+      </div>
+
+      <div class="snapshot-grid" aria-label="Distribución verificada del catálogo 2025">
+        <article class="snapshot-card">
+          <div class="snapshot-head">
+            <h3>Distribución por Segmento (DimPriceSegment)</h3>
+            <span>n = 1,214 vehículos</span>
+          </div>
+          <div class="bar-list">
+            <div class="bar-row">
+              <span class="bar-label">Mass Market</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%;--bar-color:#2563EB;"></div></div>
+              <span class="bar-val">485 (40.0%)</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Budget (&lt;$30k)</span>
+              <div class="bar-track"><div class="bar-fill" style="width:69.1%;--bar-color:#3B82F6;"></div></div>
+              <span class="bar-val">335 (27.6%)</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Premium</span>
+              <div class="bar-track"><div class="bar-fill" style="width:47.8%;--bar-color:#06B6D4;"></div></div>
+              <span class="bar-val">232 (19.1%)</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Luxury &amp; Sport</span>
+              <div class="bar-track"><div class="bar-fill" style="width:18.8%;--bar-color:#8B5CF6;"></div></div>
+              <span class="bar-val">91 (7.5%)</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Exotic &amp; Hypercar</span>
+              <div class="bar-track"><div class="bar-fill" style="width:14.4%;--bar-color:#F59E0B;"></div></div>
+              <span class="bar-val">70 (5.8%)</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="snapshot-card">
+          <div class="snapshot-head">
+            <h3>Mix de Motorización (DimFuel)</h3>
+            <span>15.8% electrificada</span>
+          </div>
+          <div class="bar-list">
+            <div class="bar-row">
+              <span class="bar-label">Petrol</span>
+              <div class="bar-track"><div class="bar-fill" style="width:100%;--bar-color:#475569;"></div></div>
+              <span class="bar-val">871 (71.7%)</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Diesel</span>
+              <div class="bar-track"><div class="bar-fill" style="width:12.2%;--bar-color:#64748B;"></div></div>
+              <span class="bar-val">106 (8.7%)</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Electric</span>
+              <div class="bar-track"><div class="bar-fill" style="width:11.0%;--bar-color:#10B981;"></div></div>
+              <span class="bar-val">96 (7.9%)</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Hybrid</span>
+              <div class="bar-track"><div class="bar-fill" style="width:9.9%;--bar-color:#06B6D4;"></div></div>
+              <span class="bar-val">86 (7.1%)</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">Multi-Fuel &amp; PHEV</span>
+              <div class="bar-track"><div class="bar-fill" style="width:6.1%;--bar-color:#8B5CF6;"></div></div>
+              <span class="bar-val">53 (4.4%)</span>
+            </div>
+          </div>
+        </article>
       </div>
 
       <div class="formula-strip">
@@ -922,12 +1433,12 @@
         </article>
         <article class="formula-card">
           <h4>Motor de Percentiles (0–100)</h4>
-          <p>Evaluación ponderada en contexto activo (<code>ALLSELECTED</code>) y columnas estáticas para rankings Top N nativos.</p>
+          <p>Evaluación ponderada en contexto activo (<code>ALLSELECTED</code>) y columnas estáticas para Top N y slicers nativos.</p>
           <code class="formula-code">Perf = 0.30·HP + 0.30·Acc + 0.20·Vmax + 0.20·Nm</code>
         </article>
         <article class="formula-card">
           <h4>Precio Justo Hedónico</h4>
-          <p>Regresión log-lineal que mide sobreprecio o descuento real respecto a las prestaciones entregadas.</p>
+          <p>Regresión log-lineal que mide sobreprecio o descuento real respecto a potencia y velocidad punta entregadas.</p>
           <code class="formula-code">FairUSD = exp(4.1775 + 0.9967·ln(HP) + 0.0053·Vmax)</code>
         </article>
       </div>
@@ -936,6 +1447,7 @@
     <!-- Inspector Interactivo de las Hojas -->
     <section id="inspector" class="section" aria-labelledby="inspector-title">
       <div class="section-centered">
+        <span class="section-kicker">Contrato Técnico PBIR</span>
         <h2 id="inspector-title">Inspector Interactivo de Páginas PBIP</h2>
         <p>Revisa los visuales, slicers y medidas DAX de la portada <code>00_Home</code> y de cada una de las 4 hojas analíticas.</p>
       </div>
@@ -951,21 +1463,21 @@
 
         <div class="tab-panel" role="tabpanel" id="panel-00" aria-labelledby="tab-00">
           <div>
-            <h3>00_Home — Portada Interactiva Obsidian</h3>
-            <p style="color:var(--text-secondary);font-size:14px;margin:0;">Réplica resumida y oscura de este portal dentro de Power BI Desktop con botones nativos de navegación hacia las 4 hojas.</p>
+            <h3>00_Home — Portada Ejecutiva en Tema Claro</h3>
+            <p style="color:var(--text-secondary);font-size:14px;margin:0;">Portada limpia estilo aplicación web dentro de Power BI Desktop (<code>#F8FAFC</code>), sincronizada con este portal y diseñada para viajar en un clic a las 4 hojas.</p>
             <ul class="spec-list">
-              <li><strong>4 KPI Cards Oscuros:</strong> <code>Vehicle Count</code>, <code>Company Count</code>, <code>Electrified Share %</code> y <code>Underpriced Gems Count</code>.</li>
-              <li><strong>4 Tarjetas Botón (<code>actionButton</code>):</strong> Acceso interactivo <code>PageNavigation</code> hacia <code>01_MarketOverview</code>, <code>02_PerformanceLab</code>, <code>03_ValueIntelligence</code> y <code>04_VehicleExplorer</code>.</li>
-              <li><strong>Resumen Ejecutivo + Telemetría Viva:</strong> Síntesis del proyecto BI + Gauge <code>Value Index</code> + Barras de <code>Vehicle Count</code> por segmento.</li>
+              <li><strong>4 KPI Cards Minimalistas:</strong> <code>Vehicle Count</code>, <code>Company Count</code>, <code>Electrified Share %</code> y <code>Underpriced Gems Count</code>.</li>
+              <li><strong>4 Tarjetas Botón (<code>actionButton</code>):</strong> Acceso directo <code>PageNavigation</code> hacia <code>01_MarketOverview</code>, <code>02_PerformanceLab</code>, <code>03_ValueIntelligence</code> y <code>04_VehicleExplorer</code>.</li>
+              <li><strong>Estructura Web Ordenada:</strong> Banner editorial superior + ficha de resumen BI inferior sin gráficos sobrecargados.</li>
             </ul>
           </div>
           <aside class="contract-panel">
             <h4>Definición PBIP · 00_Home</h4>
             <div class="contract-row"><span>ID de Página</span><code>a001c6b7a0e103746570</code></div>
-            <div class="contract-row"><span>Tema Visual</span><code>Obsidian Dark (#050608)</code></div>
-            <div class="contract-row"><span>Visuales Nativos</span><code>14 contenedores (0 colisiones)</code></div>
+            <div class="contract-row"><span>Tema Visual</span><code>Light Enterprise (#F8FAFC)</code></div>
+            <div class="contract-row"><span>Visuales Nativos</span><code>12 contenedores (0 colisiones)</code></div>
             <div class="contract-row"><span>Navegación</span><code>4 actionButtons + pageNavigator</code></div>
-            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/a001c6b7a0e103746570/page.json">Ver page.json</a>
+            <a class="btn btn-sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/a001c6b7a0e103746570/page.json">Ver page.json</a>
           </aside>
         </div>
 
@@ -985,7 +1497,7 @@
             <div class="contract-row"><span>Canvas</span><code>1920 × 1080 FitToPage</code></div>
             <div class="contract-row"><span>Visuales Nativos</span><code>15 contenedores</code></div>
             <div class="contract-row"><span>Filtros</span><code>Segment · Fuel · Brand · Scope</code></div>
-            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/3f7688a2cc2e12e049b0/page.json">Ver page.json</a>
+            <a class="btn btn-sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/3f7688a2cc2e12e049b0/page.json">Ver page.json</a>
           </aside>
         </div>
 
@@ -1005,7 +1517,7 @@
             <div class="contract-row"><span>Canvas</span><code>1920 × 1080 FitToPage</code></div>
             <div class="contract-row"><span>Visuales Nativos</span><code>15 contenedores</code></div>
             <div class="contract-row"><span>Filtros</span><code>Segment · Fuel · Brand · Scope</code></div>
-            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/deb9f8692d454328e800/page.json">Ver page.json</a>
+            <a class="btn btn-sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/deb9f8692d454328e800/page.json">Ver page.json</a>
           </aside>
         </div>
 
@@ -1025,7 +1537,7 @@
             <div class="contract-row"><span>Canvas</span><code>1920 × 1080 FitToPage</code></div>
             <div class="contract-row"><span>Visuales Nativos</span><code>15 contenedores</code></div>
             <div class="contract-row"><span>Filtros</span><code>Segment · Fuel · Brand · Position</code></div>
-            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/c033c6b7a0e103746573/page.json">Ver page.json</a>
+            <a class="btn btn-sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/c033c6b7a0e103746573/page.json">Ver page.json</a>
           </aside>
         </div>
 
@@ -1045,21 +1557,33 @@
             <div class="contract-row"><span>Canvas</span><code>1920 × 1080 FitToPage</code></div>
             <div class="contract-row"><span>Visuales Nativos</span><code>15 contenedores</code></div>
             <div class="contract-row"><span>Filtros</span><code>Brand · Vehicle · Fuel · Seats</code></div>
-            <a class="pill-btn sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/d044c6b7a0e103746574/page.json">Ver page.json</a>
+            <a class="btn btn-sm" style="margin-top:8px;" href="../powerbi/CarsIntelligence.Report/definition/pages/d044c6b7a0e103746574/page.json">Ver page.json</a>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- Catálogo de Autos Reales (Estilo Find Your Exclusive Brand) -->
+    <!-- Catálogo Interactivo de Autos Reales -->
     <section id="fleet" class="section" aria-labelledby="fleet-title">
       <div class="section-centered">
+        <span class="section-kicker">Showroom Interactivo</span>
         <h2 id="fleet-title">Modelos Reales del Catálogo 2025</h2>
-        <p>Seis vehículos reales extraídos directamente de <code>Cars Datasets 2025.csv</code> con su telemetría e índices calculados en el modelo DAX.</p>
+        <p>Seis vehículos reales de <code>Cars Datasets 2025.csv</code> con telemetría e índices calculados en DAX. Filtra por tecnología o perfil de arbitraje.</p>
+      </div>
+
+      <div class="fleet-controls">
+        <div class="filter-pills" role="group" aria-label="Filtrar modelos del showroom">
+          <button class="filter-btn" type="button" data-fleet-filter="all" aria-pressed="true">Todos (6)</button>
+          <button class="filter-btn" type="button" data-fleet-filter="electrified" aria-pressed="false">Electrificados</button>
+          <button class="filter-btn" type="button" data-fleet-filter="combustion" aria-pressed="false">Combustión</button>
+          <button class="filter-btn" type="button" data-fleet-filter="gem" aria-pressed="false">Gemas (≤ -15%)</button>
+          <button class="filter-btn" type="button" data-fleet-filter="halo" aria-pressed="false">Track &amp; Halo</button>
+        </div>
+        <span id="fleet-count" class="fleet-count">Mostrando 6 de 6 modelos</span>
       </div>
 
       <div class="fleet-grid">
-        <article class="car-card">
+        <article class="car-card" data-tags="electrified gem">
           <div class="car-img-wrap">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/5/51/Tesla_Model_S_Plaid_Autofr%C3%BChling_Ulm_IMG_9321.jpg"
@@ -1067,10 +1591,26 @@
               loading="lazy"
               data-fallback-label="Tesla Model S Plaid · 1,020 HP"
             >
+            <span class="car-fuel-badge">Electric</span>
           </div>
           <div class="car-body">
             <h3 class="car-title">Tesla Model S Plaid</h3>
-            <p class="car-specs">Tri-Motor Electric · 1,020 HP · 322 km/h · 2.1 s (0–100) · Perf 98.4 · Value 56.8 · 94.0 HP/$10k.</p>
+            <p class="car-sub">Tri-Motor AWD · 94.0 HP/$10k USD</p>
+            <div class="car-telemetry">
+              <div class="tel-item"><strong>1,020</strong><span>HP</span></div>
+              <div class="tel-item"><strong>322</strong><span>km/h</span></div>
+              <div class="tel-item"><strong>2.1 s</strong><span>0–100</span></div>
+            </div>
+            <div class="car-scores">
+              <div>
+                <div class="score-mini-lbl"><span>Perf Index</span><span>98.4</span></div>
+                <div class="score-track"><div class="score-fill" style="width:98.4%;background:#2563EB;"></div></div>
+              </div>
+              <div>
+                <div class="score-mini-lbl"><span>Value Index</span><span>56.8</span></div>
+                <div class="score-track"><div class="score-fill" style="width:56.8%;background:#10B981;"></div></div>
+              </div>
+            </div>
             <div class="car-footer">
               <span class="car-price">$108,490 USD</span>
               <span class="car-tag under">Gap -69.7%</span>
@@ -1078,7 +1618,7 @@
           </div>
         </article>
 
-        <article class="car-card">
+        <article class="car-card" data-tags="combustion gem">
           <div class="car-img-wrap">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/3/33/Chevrolet_Corvette_C8_IMG_8837.jpg"
@@ -1086,10 +1626,26 @@
               loading="lazy"
               data-fallback-label="Chevrolet Corvette Stingray · 495 HP"
             >
+            <span class="car-fuel-badge">6.2L V8 Petrol</span>
           </div>
           <div class="car-body">
             <h3 class="car-title">Chevrolet Corvette Stingray</h3>
-            <p class="car-specs">6.2L V8 Petrol · 495 HP · 312 km/h · 3.0 s (0–100) · Perf 89.4 · Value 58.5 · 75.1 HP/$10k.</p>
+            <p class="car-sub">Mid-Engine NA · 75.1 HP/$10k USD</p>
+            <div class="car-telemetry">
+              <div class="tel-item"><strong>495</strong><span>HP</span></div>
+              <div class="tel-item"><strong>312</strong><span>km/h</span></div>
+              <div class="tel-item"><strong>3.0 s</strong><span>0–100</span></div>
+            </div>
+            <div class="car-scores">
+              <div>
+                <div class="score-mini-lbl"><span>Perf Index</span><span>89.4</span></div>
+                <div class="score-track"><div class="score-fill" style="width:89.4%;background:#2563EB;"></div></div>
+              </div>
+              <div>
+                <div class="score-mini-lbl"><span>Value Index</span><span>58.5</span></div>
+                <div class="score-track"><div class="score-fill" style="width:58.5%;background:#10B981;"></div></div>
+              </div>
+            </div>
             <div class="car-footer">
               <span class="car-price">$65,895 USD</span>
               <span class="car-tag under">Gap -60.1%</span>
@@ -1097,7 +1653,7 @@
           </div>
         </article>
 
-        <article class="car-card">
+        <article class="car-card" data-tags="combustion gem">
           <div class="car-img-wrap">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/4/40/2021_BMW_M4_Competition_Coup%C3%A9.jpg"
@@ -1105,10 +1661,26 @@
               loading="lazy"
               data-fallback-label="BMW M4 Competition · 503 HP"
             >
+            <span class="car-fuel-badge">Twin-Turbo I6</span>
           </div>
           <div class="car-body">
             <h3 class="car-title">BMW M4 Competition</h3>
-            <p class="car-specs">Twin-Turbo I6 · 503 HP · 290 km/h · 3.8 s (0–100) · Perf 87.1 · Value 54.5 · 62.1 HP/$10k.</p>
+            <p class="car-sub">3.0L I6 Petrol · 62.1 HP/$10k USD</p>
+            <div class="car-telemetry">
+              <div class="tel-item"><strong>503</strong><span>HP</span></div>
+              <div class="tel-item"><strong>290</strong><span>km/h</span></div>
+              <div class="tel-item"><strong>3.8 s</strong><span>0–100</span></div>
+            </div>
+            <div class="car-scores">
+              <div>
+                <div class="score-mini-lbl"><span>Perf Index</span><span>87.1</span></div>
+                <div class="score-track"><div class="score-fill" style="width:87.1%;background:#2563EB;"></div></div>
+              </div>
+              <div>
+                <div class="score-mini-lbl"><span>Value Index</span><span>54.5</span></div>
+                <div class="score-track"><div class="score-fill" style="width:54.5%;background:#10B981;"></div></div>
+              </div>
+            </div>
             <div class="car-footer">
               <span class="car-price">$81,000 USD</span>
               <span class="car-tag under">Gap -45.8%</span>
@@ -1116,7 +1688,7 @@
           </div>
         </article>
 
-        <article class="car-card">
+        <article class="car-card" data-tags="electrified">
           <div class="car-img-wrap">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Porsche_Taycan_Turbo_S_%2848769113873%29.jpg"
@@ -1124,10 +1696,26 @@
               loading="lazy"
               data-fallback-label="Porsche Taycan Turbo S · 750 HP"
             >
+            <span class="car-fuel-badge">Electric</span>
           </div>
           <div class="car-body">
             <h3 class="car-title">Porsche Taycan Turbo S</h3>
-            <p class="car-specs">Dual Electric Motors · 750 HP · 260 km/h · 2.8 s (0–100) · 1,050 Nm · Perf 95.1 · Value 52.3.</p>
+            <p class="car-sub">Dual Motors · 1,050 Nm Torque</p>
+            <div class="car-telemetry">
+              <div class="tel-item"><strong>750</strong><span>HP</span></div>
+              <div class="tel-item"><strong>260</strong><span>km/h</span></div>
+              <div class="tel-item"><strong>2.8 s</strong><span>0–100</span></div>
+            </div>
+            <div class="car-scores">
+              <div>
+                <div class="score-mini-lbl"><span>Perf Index</span><span>95.1</span></div>
+                <div class="score-track"><div class="score-fill" style="width:95.1%;background:#2563EB;"></div></div>
+              </div>
+              <div>
+                <div class="score-mini-lbl"><span>Value Index</span><span>52.3</span></div>
+                <div class="score-track"><div class="score-fill" style="width:52.3%;background:#06B6D4;"></div></div>
+              </div>
+            </div>
             <div class="car-footer">
               <span class="car-price">$185,000 USD</span>
               <span class="car-tag">Gap -2.5%</span>
@@ -1135,7 +1723,7 @@
           </div>
         </article>
 
-        <article class="car-card">
+        <article class="car-card" data-tags="combustion halo">
           <div class="car-img-wrap">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Porsche_911_GT3_RS_3.jpg"
@@ -1144,10 +1732,26 @@
               data-fallback-src="https://images.unsplash.com/photo-1597858520171-563a8e8b9925?auto=format&fit=crop&w=1000&q=80"
               data-fallback-label="Porsche 911 GT3 RS · 518 HP"
             >
+            <span class="car-fuel-badge">4.0L Flat-6 NA</span>
           </div>
           <div class="car-body">
             <h3 class="car-title">Porsche 911 GT3 RS</h3>
-            <p class="car-specs">4.0L Flat-6 NA · 518 HP · 296 km/h · 3.2 s (0–100) · Perf 85.2 · Track-focused aero icon.</p>
+            <p class="car-sub">Track-Focused Aero · 129.5 HP/L</p>
+            <div class="car-telemetry">
+              <div class="tel-item"><strong>518</strong><span>HP</span></div>
+              <div class="tel-item"><strong>296</strong><span>km/h</span></div>
+              <div class="tel-item"><strong>3.2 s</strong><span>0–100</span></div>
+            </div>
+            <div class="car-scores">
+              <div>
+                <div class="score-mini-lbl"><span>Perf Index</span><span>85.2</span></div>
+                <div class="score-track"><div class="score-fill" style="width:85.2%;background:#2563EB;"></div></div>
+              </div>
+              <div>
+                <div class="score-mini-lbl"><span>Premium Halo</span><span>+51.9%</span></div>
+                <div class="score-track"><div class="score-fill" style="width:76%;background:#F43F5E;"></div></div>
+              </div>
+            </div>
             <div class="car-footer">
               <span class="car-price">$241,300 USD</span>
               <span class="car-tag over">Gap +51.9%</span>
@@ -1155,7 +1759,7 @@
           </div>
         </article>
 
-        <article class="car-card">
+        <article class="car-card" data-tags="electrified halo">
           <div class="car-img-wrap">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Ferrari_SF90_Stradale.jpg"
@@ -1164,10 +1768,26 @@
               data-fallback-src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1000&q=80"
               data-fallback-label="Ferrari SF90 Stradale · 963 HP"
             >
+            <span class="car-fuel-badge">V8 Plug-in Hybrid</span>
           </div>
           <div class="car-body">
             <h3 class="car-title">Ferrari SF90 Stradale</h3>
-            <p class="car-specs">V8 Plug-in Hybrid · 963 HP · 340 km/h · 2.5 s (0–100) · 800 Nm · Perf 97.3 · Flagship Halo.</p>
+            <p class="car-sub">Flagship Halo · 800 Nm Combined</p>
+            <div class="car-telemetry">
+              <div class="tel-item"><strong>963</strong><span>HP</span></div>
+              <div class="tel-item"><strong>340</strong><span>km/h</span></div>
+              <div class="tel-item"><strong>2.5 s</strong><span>0–100</span></div>
+            </div>
+            <div class="car-scores">
+              <div>
+                <div class="score-mini-lbl"><span>Perf Index</span><span>97.3</span></div>
+                <div class="score-track"><div class="score-fill" style="width:97.3%;background:#2563EB;"></div></div>
+              </div>
+              <div>
+                <div class="score-mini-lbl"><span>Exotic Halo</span><span>+195.6%</span></div>
+                <div class="score-track"><div class="score-fill" style="width:100%;background:#F43F5E;"></div></div>
+              </div>
+            </div>
             <div class="car-footer">
               <span class="car-price">$1,100,000 USD</span>
               <span class="car-tag over">Gap +195.6%</span>
@@ -1187,14 +1807,14 @@
       >
       <div class="journey-content">
         <h2 id="journey-title">Inicia tu Recorrido en Power BI</h2>
-        <p>Abre el proyecto PBIP para interactuar con la portada oscura <code>00_Home</code> y navegar en un clic por las 4 hojas analíticas del catálogo 2025.</p>
-        <a class="pill-btn" href="../powerbi/CarsIntelligence.pbip">Abrir CarsIntelligence.pbip</a>
+        <p>Abre el proyecto PBIP para interactuar con la portada ejecutiva <code>00_Home</code> en tema claro unificado y navegar en un clic por las 4 hojas analíticas del catálogo 2025.</p>
+        <a class="btn btn-primary" href="../powerbi/CarsIntelligence.pbip">Abrir CarsIntelligence.pbip</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <span><strong>Cars Intelligence 2025</strong> · Automotive Market &amp; Performance Intelligence</span>
+    <span><strong>Cars Intelligence 2025</strong> · Unified Light Editorial &amp; Power BI Studio</span>
     <span>
       <a href="#page-01" data-select-tab="tab-01">01 Market</a> ·
       <a href="#page-02" data-select-tab="tab-02">02 Performance</a> ·
@@ -1205,6 +1825,39 @@
 
   <script>
     (function () {
+      const root = document.documentElement;
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeLabel = document.getElementById('theme-label');
+      const themeIcon = document.getElementById('theme-icon');
+
+      function applyTheme(mode) {
+        const isDark = mode === 'dark';
+        if (isDark) {
+          root.setAttribute('data-theme', 'dark');
+        } else {
+          root.removeAttribute('data-theme');
+        }
+        if (themeToggle) themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+        if (themeLabel) themeLabel.textContent = isDark ? 'Claro' : 'Oscuro';
+        if (themeIcon) {
+          themeIcon.innerHTML = isDark
+            ? '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>'
+            : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+        }
+        try {
+          localStorage.setItem('cars2025-theme', isDark ? 'dark' : 'light');
+        } catch (e) {}
+      }
+
+      applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+        });
+      }
+
       const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
       const panels = Array.from(document.querySelectorAll('[role="tabpanel"]'));
 
@@ -1217,8 +1870,17 @@
         });
       }
 
-      tabs.forEach((tab) => {
+      tabs.forEach((tab, idx) => {
         tab.addEventListener('click', () => activateTab(tab.id));
+        tab.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const step = e.key === 'ArrowRight' ? 1 : -1;
+            const next = tabs[(idx + step + tabs.length) % tabs.length];
+            activateTab(next.id);
+            next.focus();
+          }
+        });
       });
 
       document.querySelectorAll('[data-select-tab]').forEach((trigger) => {
@@ -1226,6 +1888,27 @@
           const targetTab = trigger.getAttribute('data-select-tab');
           if (targetTab) {
             activateTab(targetTab);
+          }
+        });
+      });
+
+      const filterBtns = Array.from(document.querySelectorAll('[data-fleet-filter]'));
+      const carCards = Array.from(document.querySelectorAll('.car-card'));
+      const fleetCount = document.getElementById('fleet-count');
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-fleet-filter') || 'all';
+          filterBtns.forEach((b) => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+          let visible = 0;
+          carCards.forEach((card) => {
+            const tags = (card.getAttribute('data-tags') || '').split(/\s+/);
+            const match = filter === 'all' || tags.includes(filter);
+            card.classList.toggle('is-hidden', !match);
+            if (match) visible += 1;
+          });
+          if (fleetCount) {
+            fleetCount.textContent = `Mostrando ${visible} de ${carCards.length} modelos`;
           }
         });
       });
